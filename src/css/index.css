@@ -1,0 +1,254 @@
+/* This stylesheet is used to override picocss styles  */
+
+@import url("https://fonts.googleapis.com/css2?family=Spectral+SC:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap");
+
+body {
+  margin: 0;
+  font-family: "Roboto Slab", serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: 1.5px;
+  /* height: calc(100vh-2rem); */
+  overflow-y: auto;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.main {
+  color: #14213d;
+  display: flex;
+  white-space: nowrap;
+}
+
+.header {
+  display: flex;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  justify-content: space-between;
+  background-color: #14213d;
+  border-bottom: 1px solid #e8e6e3;
+}
+
+.header__h1 {
+  padding: 0rem 0.2rem 0rem 0;
+  margin: 0;
+  font-family: "Spectral SC", serif;
+  font-weight: normal;
+  font-size: 1.3rem;
+}
+
+.header__profile {
+  color: #e8e6e3;
+  font-size: 1.5rem;
+  padding: 0.3rem 2rem;
+  display: flex;
+  align-items: center;
+}
+
+.header__profile p {
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.header a:hover {
+  background-color: #14213d;
+  color: #fca311;
+}
+
+.nav {
+  background-color: #fca311;
+  width: 15rem;
+  height: 100vh;
+  padding: 2rem 2rem;
+  border-right: 2px solid #14213d;
+}
+
+.nav ul {
+  flex-direction: column;
+  flex-grow: 1;
+  align-items: flex-start;
+  justify-content: center;
+  display: flex;
+  margin: auto;
+}
+.nav a {
+  width: 100%;
+  color: #14213d;
+  font-weight: bold;
+}
+
+.nav li {
+  display: block;
+  padding: 1rem 2rem;
+}
+
+.nav li:hover {
+  border-top: 2px solid #14213d;
+  border-bottom: 2px solid #14213d;
+  background-color: #14213d3a;
+}
+
+.active {
+  background-color: #14213d3a;
+}
+
+#error-page {
+  background-color: #e5e5e5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+#error-page h2 {
+  margin-bottom: 1rem;
+}
+
+.outlet {
+  padding: 1rem 2rem;
+  background-color: #e5e5e5;
+  height: 100vh;
+  width: 100%;
+  overflow-y: auto;
+}
+
+.outlet h2 {
+  font-family: "Spectral SC", serif;
+  font-size: 3rem;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  text-decoration: double underline #14213d 3px;
+}
+
+.outlet form {
+  width: 50%;
+}
+.outlet form button {
+  background-color: #14213d;
+  color: #e5e5e5;
+}
+
+.outlet form button:hover {
+  background-color: #fca311;
+  color: #14213d;
+  border: 2px solid #14213d;
+}
+
+.paper__form select {
+  background-color: #e5e5e5;
+}
+.form__error {
+  color: red;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.table th,
+.table td {
+  border: 2px solid #14213d;
+  text-align: center;
+  padding: 0.2rem;
+}
+
+.table select {
+  width: 100%;
+}
+
+#table__td > .table__input {
+  line-height: 20px;
+  padding: 0;
+  font-size: 0.7rem;
+  height: 2rem;
+  margin-bottom: 0;
+  border: none;
+  border-radius: 0;
+}
+
+.time_schedule form {
+  width: 100%;
+}
+
+.outlet form input,
+select {
+  width: 100%;
+}
+
+.form__select {
+  width: 100%;
+}
+.form__select option {
+  padding: 0.5rem;
+}
+
+.form__redirect a {
+  color: #fca311;
+  text-decoration: double;
+}
+
+.outlet h3 {
+  margin-bottom: 0.5rem;
+}
+
+.soon p {
+  white-space: normal;
+  width: 100%;
+}
+
+.form__head form {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+}
+/* .form__head button {
+  margin-left: 10rem;
+} */
+
+.attendance__head form {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+}
+
+/* .attendance .attendance__head form:first-child {
+  width: 16rem;
+} */
+
+.attendance .attendance__head form select[name="hour"] {
+  width: 10rem;
+}
+
+.internal__body form input {
+  width: 8rem;
+  margin-bottom: 0;
+  padding: 0 1rem;
+  height: 2rem;
+  border: none;
+}
+
+.internal__body form input:focus {
+  box-shadow: none;
+}
+
+.internal__body form input:disabled {
+  opacity: 1;
+  background-color: inherit;
+}
+
+.attendance__form td {
+  height: 3rem;
+}
+
+.attendance__form .table input {
+  width: 2rem;
+  font-size: 1.5rem;
+  height: 2rem;
+  background-color: #14213d;
+  accent-color: #14213d;
+}
