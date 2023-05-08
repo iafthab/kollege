@@ -5,6 +5,7 @@ const Soon = () => {
     <div className="soon">
       <h3>
         Under Construction <IoSettingsSharp />
+        Developer is currently taking a nap 😴
       </h3>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga libero

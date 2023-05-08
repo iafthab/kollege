@@ -27,7 +27,7 @@ const Attendance = () => {
     e.preventDefault();
     try {
       const response = await axios.get(`/attendance/${paper}/${date}/${hour}`);
-      await setAttendance(response.data);
+      await setAttendance(response.data.attendance);
       console.log(response.data);
       setDisabled(true);
     } catch (err) {
@@ -49,12 +49,16 @@ const Attendance = () => {
   const addAttendance = async (e) => {
     e.preventDefault();
     try {
+      const newData = attendance.map((i) => {
+        return { student: i._id, present: i.present };
+      });
+      console.log(newData);
       const response = await axios.post(
         `/attendance/${paper}/${date}/${hour}`,
-        attendance
+        { paper, date, hour, attendance: newData }
       );
       console.log(response);
-      // navigate("../");
+      navigate("../");
       alert(response.data.message);
     } catch (err) {
       setError(err);
@@ -64,12 +68,17 @@ const Attendance = () => {
 
   const handleFormChange = (e) => {
     const index = parseInt(e.target.id);
-    const value = e.target.checked;
-    const student = attendance[index];
-    student.present = value;
-    setAttendance([...attendance, ([attendance[index]] = student)]);
+    // const value = e.target.checked;
+    const newStudent = attendance[index];
+    newStudent.present = !newStudent.present;
+    const newAttendance = attendance.map((student, index) => {
+      if (index === parseInt(e.target.id)) return student;
+      else return student;
+    });
+    setAttendance(newAttendance);
+    console.log(attendance);
   };
-  //Fetch and Add
+
   return (
     <main className="attendance">
       <h2>Attendance</h2>
@@ -144,13 +153,12 @@ const Attendance = () => {
                       required
                       disabled={disabled}
                       id={index}
-                      name="seminar"
                       checked={student.present}
                       // value={student.present}
                       onChange={(e) => handleFormChange(e)}
                     />
                   </td>
-                  <td>{student.name}</td>
+                  <td>{student.student.name}</td>
                 </tr>
               ))}
             </tbody>

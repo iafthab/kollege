@@ -25,6 +25,88 @@ body {
   white-space: nowrap;
 }
 
+/* LOGIN PAGE */
+.login {
+  height: 100vh;
+  background-color: #14213d;
+  color: #e5e5e5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.login__header {
+  display: flex;
+  gap: 1rem;
+}
+.login__header svg {
+  font-size: 5rem;
+}
+.login__header h1 {
+  font-family: "Spectral SC", serif;
+  font-size: 4rem;
+  margin-bottom: 0rem;
+}
+.login__form:hover {
+  opacity: 1;
+}
+
+.login__form {
+  width: 22%;
+  /* opacity: 0.5; */
+  justify-self: center;
+  /* background-image: linear-gradient(#fca311, #eaaa3a); */
+  background-color: #fca311;
+  border-radius: 10%;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.login__form button {
+  background-color: #14213d;
+  height: 2.5rem;
+  padding: 0.2rem;
+  border: 1.5px solid #e5e5e5;
+}
+.login__form form {
+  padding-right: 2rem;
+  padding-left: 2rem;
+}
+
+.login__form div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login__form input::placeholder {
+  color: #e5e5e5;
+}
+.login__form input {
+  width: 100%;
+  color: #e5e5e5;
+  padding: 0.2rem;
+  margin-bottom: 0.5rem;
+  height: 2.5rem;
+  padding-left: 0.5rem;
+  border: 1.5px solid #14213d;
+}
+
+.login h2 {
+  text-align: center;
+  display: block;
+  color: #e5e5e5;
+  font-family: "Roboto Slab", serif;
+  margin-bottom: 0rem;
+}
+.login__user {
+  border: 2px solid #14213d;
+  border-radius: 50%;
+  font-size: 5.5rem;
+  padding: 0.5rem;
+  margin: 1rem;
+}
+
+/* HEADER */
 .header {
   display: flex;
   width: 100%;
@@ -61,6 +143,7 @@ body {
   color: #fca311;
 }
 
+/* NAV */
 .nav {
   background-color: #fca311;
   width: 15rem;
@@ -110,6 +193,7 @@ body {
   margin-bottom: 1rem;
 }
 
+/* OUTLET */
 .outlet {
   padding: 1rem 2rem;
   background-color: #e5e5e5;
@@ -140,10 +224,12 @@ body {
   border: 2px solid #14213d;
 }
 
+/* EVERYTHING ELSE 🥴 */
 .paper__form select {
   background-color: #e5e5e5;
 }
 .form__error {
+  text-align: center;
   color: red;
   white-space: nowrap;
   overflow: hidden;
@@ -251,4 +337,8 @@ select {
   height: 2rem;
   background-color: #14213d;
   accent-color: #14213d;
+}
+
+.outlet a {
+  color: #14213d;
 }

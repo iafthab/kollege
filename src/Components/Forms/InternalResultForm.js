@@ -66,11 +66,11 @@ const InternalResultForm = () => {
     const index = parseInt(e.target.id);
     const value = e.target.value;
     const key = e.target.name;
-    const student = internal[index];
-    student[key] = value;
+    const newStudent = internal[index];
+    newStudent[key] = value;
     const newInternal = internal.map((student, index) => {
       if (index === e.target.id) {
-        return student;
+        return newStudent;
       } else return student;
     });
     setInternal(newInternal);

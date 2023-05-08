@@ -1,18 +1,11 @@
 import { useState, useEffect } from "react";
 import axios from "../../config/api/axios";
-import { useNavigate } from "react-router-dom";
 
 const TimeScheduleForm = () => {
-  const [timeSchedule, setTimeSchedule] = useState({
-    monday: ["--", "--", "--", "--", "--"],
-    tuesday: ["--", "--", "--", "--", "--"],
-    wednesday: ["--", "--", "--", "--", "--"],
-    thursday: ["--", "--", "--", "--", "--"],
-    friday: ["--", "--", "--", "--", "--"],
-  });
+  const [timeSchedule, setTimeSchedule] = useState({});
   const [papers, setPapers] = useState([]);
   const [error, setError] = useState("");
-  const navigate = useNavigate();
+  const [disabled, setDisabled] = useState(true);
 
   const handleFormChange = (e) => {
     const index = parseInt(e.target.id);
@@ -31,27 +24,50 @@ const TimeScheduleForm = () => {
 
   // Fetch papers
   useEffect(() => {
+    const getTimeSchedule = async (e) => {
+      try {
+        const response = await axios.get(
+          "time_schedule/644e4f27cce0a7d6a232420e"
+        );
+        //? Needs checking
+        delete response.data.schedule._id;
+        setTimeSchedule(response.data.schedule);
+      } catch (err) {
+        if (err.response.status === 404) {
+          setTimeSchedule({
+            monday: ["--", "--", "--", "--", "--"],
+            tuesday: ["--", "--", "--", "--", "--"],
+            wednesday: ["--", "--", "--", "--", "--"],
+            thursday: ["--", "--", "--", "--", "--"],
+            friday: ["--", "--", "--", "--", "--"],
+          });
+          setDisabled(false);
+        } else setError(err);
+      }
+    };
+    getTimeSchedule();
+
     const getPapersList = async (e) => {
-      const list = await axios.get("/paper/teacher/644e4f59cce0a7d6a2324211");
+      const list = await axios.get("/paper/teacher/644e4f27cce0a7d6a232420e");
       setPapers(list.data);
     };
     getPapersList();
   }, []);
+  console.log(timeSchedule);
 
   const addTimeSchedule = async (e) => {
     e.preventDefault();
     try {
       const data = {
-        teacher: "644e4f59cce0a7d6a2324211",
+        teacher: "644e4f27cce0a7d6a232420e",
         schedule: timeSchedule,
       };
       const reqData = JSON.stringify(data);
       const response = await axios.post(
-        "time_schedule/644e4f59cce0a7d6a2324211",
+        "time_schedule/644e4f27cce0a7d6a232420e",
         reqData
       );
       console.log(response);
-      navigate("../");
       alert(response.data.message);
     } catch (err) {
       setError(err);
@@ -74,21 +90,22 @@ const TimeScheduleForm = () => {
             </tr>
           </thead>
           <tbody>
-            {Object.entries(timeSchedule).map(([key, value]) => {
+            {Object.entries(timeSchedule)?.map(([key, value]) => {
               return (
                 <tr key={key} className="table__row">
                   <th>{key}</th>
-                  {value?.map((day, index) => (
+                  {value.map((day, index) => (
                     <td id="table__td" key={index}>
                       <select
                         className="table__input"
                         value={day}
                         name={key}
                         id={index}
+                        disabled={disabled}
                         onChange={(e) => handleFormChange(e)}
                       >
                         <option defaultValue>--</option>
-                        {papers.map((paper) => (
+                        {papers?.map((paper) => (
                           <option key={paper._id} value={paper.name}>
                             {paper.paper}
                           </option>
@@ -101,9 +118,11 @@ const TimeScheduleForm = () => {
             })}
           </tbody>
         </table>
-        <button type="submit" onClick={(e) => addTimeSchedule(e)}>
-          Add
-        </button>
+        {disabled === false && (
+          <button type="submit" onClick={(e) => addTimeSchedule(e)}>
+            Add
+          </button>
+        )}
       </form>
       <p className="form__error">
         {error
@@ -116,4 +135,4 @@ const TimeScheduleForm = () => {
   );
 };
 
-export { TimeScheduleForm };
+export default TimeScheduleForm;
