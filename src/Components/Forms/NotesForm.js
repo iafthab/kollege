@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import axios from "../../config/api/axios";
 import { useNavigate } from "react-router-dom";
+import UserContext from "../../Hooks/UserContext";
 
 const NotesForm = () => {
+  const { paper } = useContext(UserContext);
   const [note, setNote] = useState({
-    paper: "644a939514c3d1754e6c6ffb",
+    paper: paper._id,
     title: "",
     body: "",
   });
@@ -23,17 +25,12 @@ const NotesForm = () => {
     e.preventDefault();
     try {
       const reqData = JSON.stringify(note);
-      const response = await axios.post(
-        "notes/644a939514c3d1754e6c6ffb",
-        reqData
-      );
-      console.log(response);
+      const response = await axios.post("notes/paper/" + paper._id, reqData);
       setError("");
       navigate("../");
       alert(response.data.message);
     } catch (err) {
       setError(err);
-      console.log(error);
     }
   };
 
@@ -51,7 +48,7 @@ const NotesForm = () => {
         />
         <label htmlFor="body">Body:</label>
         <textarea
-          rows="7"
+          rows="8"
           type="text"
           id="body"
           required

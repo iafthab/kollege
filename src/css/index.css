@@ -52,7 +52,7 @@ body {
 }
 
 .login__form {
-  width: 22%;
+  width: 25%;
   /* opacity: 0.5; */
   justify-self: center;
   /* background-image: linear-gradient(#fca311, #eaaa3a); */
@@ -86,6 +86,7 @@ body {
   color: #e5e5e5;
   padding: 0.2rem;
   margin-bottom: 0.5rem;
+  text-align: center;
   height: 2.5rem;
   padding-left: 0.5rem;
   border: 1.5px solid #14213d;
@@ -138,6 +139,10 @@ body {
   margin-bottom: 0;
 }
 
+.header svg {
+  margin: 0.2rem;
+}
+
 .header a:hover {
   background-color: #14213d;
   color: #fca311;
@@ -178,7 +183,10 @@ body {
 }
 
 .active {
-  background-color: #14213d3a;
+  background-color: #14213d;
+}
+.active li {
+  color: #fca311;
 }
 
 #error-page {
@@ -245,6 +253,11 @@ body {
 
 .table select {
   width: 100%;
+}
+.table select:disabled {
+  background-color: #e8e6e3;
+  background-image: none;
+  opacity: 1;
 }
 
 #table__td > .table__input {
@@ -341,4 +354,50 @@ select {
 
 .outlet a {
   color: #14213d;
+}
+
+.footer {
+  display: flex;
+}
+
+/* PAPER */
+.outlet h3 {
+  font-family: "Roboto Slab", serif;
+}
+
+.outlet .notes article {
+  background-image: linear-gradient(#e5e5e5, #dbdada);
+}
+
+.outlet .paper article {
+  background-image: linear-gradient(#fca311, #e3b66e);
+}
+
+.notes__list {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 4rem;
+}
+.notes__list li {
+  list-style: none;
+  padding: 0.2rem;
+}
+.notes__list li:has(a) {
+  background-color: #fca311;
+}
+
+.outlet article p,
+.outlet hr {
+  white-space: normal;
+  color: #14213d;
+  font-family: BlinkMacSystemFont, Oxygen, Ubuntu, Cantarell, "Open Sans",
+    "Helvetica Neue", sans-serif;
+}
+.outlet hr {
+  border-color: #14213d;
+}
+
+.outlet textarea {
+  width: 100%;
 }

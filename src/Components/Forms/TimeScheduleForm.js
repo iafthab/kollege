@@ -1,13 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "../../config/api/axios";
+import UserContext from "../../Hooks/UserContext";
+import { FaPlus, FaEdit, FaTrash } from "react-icons/fa";
 
 const TimeScheduleForm = () => {
+  const { user } = useContext(UserContext);
   const [timeSchedule, setTimeSchedule] = useState({});
   const [papers, setPapers] = useState([]);
   const [error, setError] = useState("");
   const [disabled, setDisabled] = useState(true);
+  const [id, setId] = useState("");
 
   const handleFormChange = (e) => {
+    console.log(id);
     const index = parseInt(e.target.id);
     const day = e.target.name;
     const value = e.target.value;
@@ -26,10 +31,9 @@ const TimeScheduleForm = () => {
   useEffect(() => {
     const getTimeSchedule = async (e) => {
       try {
-        const response = await axios.get(
-          "time_schedule/644e4f27cce0a7d6a232420e"
-        );
+        const response = await axios.get("time_schedule/" + user._id);
         //? Needs checking
+        setId(response.data._id);
         delete response.data.schedule._id;
         setTimeSchedule(response.data.schedule);
       } catch (err) {
@@ -48,27 +52,58 @@ const TimeScheduleForm = () => {
     getTimeSchedule();
 
     const getPapersList = async (e) => {
-      const list = await axios.get("/paper/teacher/644e4f27cce0a7d6a232420e");
+      const list = await axios.get("/paper/teacher/" + user._id);
       setPapers(list.data);
     };
     getPapersList();
-  }, []);
-  console.log(timeSchedule);
+  }, [user]);
 
   const addTimeSchedule = async (e) => {
     e.preventDefault();
+    const data = {
+      teacher: user._id,
+      schedule: timeSchedule,
+    };
+    const reqData = JSON.stringify(data);
     try {
-      const data = {
-        teacher: "644e4f27cce0a7d6a232420e",
-        schedule: timeSchedule,
-      };
-      const reqData = JSON.stringify(data);
-      const response = await axios.post(
-        "time_schedule/644e4f27cce0a7d6a232420e",
-        reqData
-      );
-      console.log(response);
+      const response = await axios.post("time_schedule/" + user._id, reqData);
       alert(response.data.message);
+    } catch (err) {
+      if (err.response.status === 409) {
+        try {
+          const response = await axios.patch(
+            "time_schedule/" + user._id,
+            reqData
+          );
+          alert(response.data.message);
+          setDisabled(true);
+        } catch (err) {
+          setError(err);
+        }
+      } else setError(err);
+    }
+  };
+
+  // const editTimeSchedule = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     const data = {
+  //       teacher: user._id,
+  //       schedule: timeSchedule,
+  //     };
+  //     const reqData = JSON.stringify(data);
+  //     const response = await axios.post("time_schedule/" + user._id, reqData);
+  //     alert(response.data.message);
+  //   } catch (err) {
+  //     setError(err);
+  //   }
+  // };
+  const deleteTimeSchedule = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.delete("time_schedule/" + id);
+      alert(response.data.message);
+      setTimeSchedule({});
     } catch (err) {
       setError(err);
     }
@@ -76,7 +111,7 @@ const TimeScheduleForm = () => {
 
   return (
     <main className="time_schedule">
-      <h2>Add Time Schedule</h2>
+      <h2>Time Schedule</h2>
       <form>
         <table className="table">
           <thead>
@@ -118,9 +153,20 @@ const TimeScheduleForm = () => {
             })}
           </tbody>
         </table>
-        {disabled === false && (
+
+        {timeSchedule && disabled && (
+          <div className="footer">
+            <button type="submit" onClick={(e) => setDisabled(false)}>
+              <FaEdit /> Edit
+            </button>
+            <button type="submit" onClick={(e) => deleteTimeSchedule(e)}>
+              <FaTrash /> Delete
+            </button>
+          </div>
+        )}
+        {!disabled && (
           <button type="submit" onClick={(e) => addTimeSchedule(e)}>
-            Add
+            <FaPlus /> Add
           </button>
         )}
       </form>

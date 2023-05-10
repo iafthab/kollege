@@ -1,30 +1,32 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "../../config/api/axios";
-import { useNavigate } from "react-router-dom";
+import UserContext from "../../Hooks/UserContext";
+import { FaPlus, FaEdit, FaTrash } from "react-icons/fa";
 
 const InternalResultForm = () => {
-  const [paper, setPaper] = useState("");
+  const { user } = useContext(UserContext);
   const [paperList, setPaperList] = useState([]);
-  const [error, setError] = useState("");
+  const [paper, setPaper] = useState("");
   const [disabled, setDisabled] = useState(true);
   const [internal, setInternal] = useState([]);
-  const navigate = useNavigate();
+  const [id, setId] = useState([]);
+  const [error, setError] = useState("");
 
   // Fetch papers
   useEffect(() => {
     const getPapersList = async (e) => {
-      const list = await axios.get("/paper/teacher/644e4f27cce0a7d6a232420e");
+      const list = await axios.get("/paper/teacher/" + user._id);
       setPaperList(list.data);
     };
     getPapersList();
-  }, []);
+  }, [user]);
 
   const fetchInternal = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.get("/internal/" + paper);
-      await setInternal(response.data.marks);
-      console.log(response.data.marks);
+      setId(response.data._id);
+      setInternal(response.data.marks);
       setDisabled(true);
     } catch (err) {
       if (err.response.status === 404) {
@@ -40,7 +42,6 @@ const InternalResultForm = () => {
           });
         });
         setInternal(students);
-        console.log(students);
         setDisabled(false);
       } else {
         setError(err);
@@ -50,15 +51,31 @@ const InternalResultForm = () => {
 
   const addInternalMark = async (e) => {
     e.preventDefault();
+    const marks = { id, paper, marks: internal };
     try {
-      const marks = { paper, marks: internal };
       const response = await axios.post("internal/" + paper, marks);
-      console.log(response);
-      navigate("../");
       alert(response.data.message);
     } catch (err) {
+      if (err.response.status === 409) {
+        try {
+          const response = await axios.patch("internal/" + paper, marks);
+          alert(response.data.message);
+          setDisabled(true);
+        } catch (err) {
+          setError(err);
+        }
+      } else setError(err);
+    }
+  };
+
+  const deleteInternalMark = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.delete("internal/", { id });
+      alert(response.data.message);
+      setInternal([]);
+    } catch (err) {
       setError(err);
-      console.log(err);
     }
   };
 
@@ -104,6 +121,11 @@ const InternalResultForm = () => {
           </button>
         </form>
       </section>
+      <div>
+        <p className="form__error">
+          {error ? error?.response?.data?.message || error?.response?.data : ""}
+        </p>
+      </div>
       <section className="internal__body">
         <form className="internal__body__form">
           <table className="table">
@@ -129,6 +151,8 @@ const InternalResultForm = () => {
                     <input
                       type="number"
                       required
+                      min="0"
+                      max="3"
                       disabled={disabled}
                       id={index}
                       name="test"
@@ -140,6 +164,8 @@ const InternalResultForm = () => {
                     <input
                       type="number"
                       required
+                      min="0"
+                      max="3"
                       disabled={disabled}
                       id={index}
                       name="seminar"
@@ -151,6 +177,8 @@ const InternalResultForm = () => {
                     <input
                       type="number"
                       required
+                      min="0"
+                      max="3"
                       disabled={disabled}
                       id={index}
                       name="assignment"
@@ -162,6 +190,8 @@ const InternalResultForm = () => {
                     <input
                       type="number"
                       required
+                      min="0"
+                      max="3"
                       disabled={disabled}
                       id={index}
                       name="attendance"
@@ -173,6 +203,8 @@ const InternalResultForm = () => {
                     <input
                       type="number"
                       required
+                      min="0"
+                      max="3"
                       disabled
                       id={index}
                       name="total"
@@ -189,20 +221,25 @@ const InternalResultForm = () => {
               ))}
             </tbody>
           </table>
-          {disabled === false ? (
-            <button type="submit" onClick={(e) => addInternalMark(e)}>
-              Add
-            </button>
+          {internal.length && disabled ? (
+            <div className="footer">
+              <button type="submit" onClick={(e) => setDisabled(false)}>
+                <FaEdit /> Edit
+              </button>
+              <button type="submit" onClick={(e) => deleteInternalMark(e)}>
+                <FaTrash /> Delete
+              </button>
+            </div>
           ) : (
             ""
           )}
+          {!disabled && (
+            <button type="submit" onClick={(e) => addInternalMark(e)}>
+              <FaPlus /> Add
+            </button>
+          )}
         </form>
       </section>
-      <div>
-        <p className="form__error">
-          {error ? error?.response?.data?.message || error?.response?.data : ""}
-        </p>
-      </div>
     </main>
   );
 };

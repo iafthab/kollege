@@ -1,21 +1,22 @@
+import { useContext } from "react";
+import UserContext from "../../Hooks/UserContext";
+
 const TeacherProfile = () => {
-  const teacher = {};
-
-  //TODO Fetch departments and map
-
+  const { user } = useContext(UserContext);
+  console.log(user);
   return (
-    <main className="teacher">
+    <main className="profile">
       <h2>Profile</h2>
       <p>
-        username:{teacher?.username}
+        username:{user?.username}
         <br />
-        name:{teacher?.name}
+        name:{user?.name}
         <br />
-        qualification:{teacher?.qualification}
+        qualification:{user?.qualification}
         <br />
-        email:{teacher?.email} <br />
-        {/*//TODO <p> roles:{teacher.roles} </p> */}
-        department:{teacher?.department}
+        email:{user?.email} <br />
+        {/*//TODO <p> roles:{user.roles} </p> */}
+        department:{user?.department}
       </p>
       <br />
     </main>

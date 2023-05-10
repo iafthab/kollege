@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { FaUser, FaUniversity } from "react-icons/fa";
-import { AiOutlineUser } from "react-icons/ai";
+// import { AiOutlineUser } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import axios from "../../config/api/axios";
+import UserContext from "../../Hooks/UserContext";
 
 const Login = () => {
+  const { setUser } = useContext(UserContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -14,6 +16,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await axios.post("/auth/login", { username, password });
+      setUser(response.data);
       if (response.status === 200) navigate("/dash");
       else setError(response);
     } catch (err) {
@@ -24,7 +27,7 @@ const Login = () => {
   return (
     <main className="login">
       <section className="login__header">
-        <FaUniversity login__uni />
+        <FaUniversity />
         <h1>Kollege</h1>
       </section>
       <section className="login__form">
@@ -33,7 +36,7 @@ const Login = () => {
           <FaUser className="login__user" />
           {/* <AiOutlineUser className="login__user" /> */}
         </div>
-        <form>
+        <form onSubmit={(e) => handleLogin(e)}>
           {/* <label htmlFor="username">Username</label> */}
           <input
             placeholder="username"

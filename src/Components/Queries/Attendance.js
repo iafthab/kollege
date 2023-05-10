@@ -1,8 +1,10 @@
 import axios from "../../config/api/axios";
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect, useContext } from "react";
+import UserContext from "../../Hooks/UserContext";
+import { FaPlus, FaEdit, FaTrash } from "react-icons/fa";
 
 const Attendance = () => {
+  const { user } = useContext(UserContext);
   const [attendance, setAttendance] = useState([]);
   const [paper, setPaper] = useState("");
   const [date, setDate] = useState("");
@@ -10,65 +12,84 @@ const Attendance = () => {
   const [paperList, setPaperList] = useState([]);
   const [error, setError] = useState("");
   const [disabled, setDisabled] = useState(true);
-  const navigate = useNavigate();
+  const [id, setId] = useState("");
 
   // Fetch papers
   useEffect(() => {
     const getPapersList = async (e) => {
-      const list = await axios.get("/paper/teacher/644e4f27cce0a7d6a232420e");
+      const list = await axios.get("/paper/teacher/" + user._id);
       setPaperList(list.data);
-      console.log(list.data);
     };
     getPapersList();
-  }, []);
+  }, [user]);
 
   // fetching Attendance
   const fetchAttendance = async (e) => {
     e.preventDefault();
+    setError("");
     try {
       const response = await axios.get(`/attendance/${paper}/${date}/${hour}`);
-      await setAttendance(response.data.attendance);
       console.log(response.data);
+      setId(response.data._id);
+      setAttendance(response.data.attendance);
       setDisabled(true);
     } catch (err) {
+      setError(err);
       if (err.response.status === 404) {
         const response = await axios.get("paper/" + paper);
         const students = response.data.students;
         students.forEach((student) => {
           Object.assign(student, { present: true });
         });
-        console.log(students);
         setAttendance(students);
         setDisabled(false);
-      } else {
-        setError(err);
       }
     }
   };
 
   const addAttendance = async (e) => {
     e.preventDefault();
+    const newData = attendance.map((i) => {
+      return { student: i._id, present: i.present };
+    });
     try {
-      const newData = attendance.map((i) => {
-        return { student: i._id, present: i.present };
-      });
-      console.log(newData);
       const response = await axios.post(
         `/attendance/${paper}/${date}/${hour}`,
         { paper, date, hour, attendance: newData }
       );
-      console.log(response);
-      navigate("../");
       alert(response.data.message);
+      setDisabled(true);
+      setError("");
+    } catch (err) {
+      if (err.response.status === 409) {
+        try {
+          const response = await axios.patch(
+            `/attendance/${paper}/${date}/${hour}`,
+            { id, paper, date, hour, attendance: newData }
+          );
+          alert(response.data.message);
+          setDisabled(true);
+          setError("");
+        } catch (err) {
+          setError(err);
+        }
+      } else setError(err);
+    }
+  };
+
+  const deleteAttendance = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.delete("attendance/" + id);
+      alert(response.data.message);
+      setAttendance([]);
     } catch (err) {
       setError(err);
-      console.log(err);
     }
   };
 
   const handleFormChange = (e) => {
     const index = parseInt(e.target.id);
-    // const value = e.target.checked;
     const newStudent = attendance[index];
     newStudent.present = !newStudent.present;
     const newAttendance = attendance.map((student, index) => {
@@ -76,7 +97,6 @@ const Attendance = () => {
       else return student;
     });
     setAttendance(newAttendance);
-    console.log(attendance);
   };
 
   return (
@@ -96,8 +116,8 @@ const Attendance = () => {
             <option defaultValue hidden>
               Select Paper
             </option>
-            {paperList.map((paper) => (
-              <option key={paper._id} value={paper._id}>
+            {paperList.map((paper, index) => (
+              <option key={index} value={paper._id}>
                 {paper.paper}
               </option>
             ))}
@@ -131,6 +151,11 @@ const Attendance = () => {
           </button>
         </form>
       </section>
+      <div>
+        <p className="form__error">
+          {error ? error?.response?.data?.message || error?.response?.data : ""}
+        </p>
+      </div>
       <section className="attendance__form">
         <form className="internal__body__form">
           <table className="table">
@@ -158,27 +183,31 @@ const Attendance = () => {
                       onChange={(e) => handleFormChange(e)}
                     />
                   </td>
-                  <td>{student.student.name}</td>
+                  <td>{student?.student?.name || student.name}</td>
                 </tr>
               ))}
             </tbody>
           </table>
-          {disabled === false ? (
-            <button type="submit" onClick={(e) => addAttendance(e)}>
-              Add
-            </button>
+          {attendance.length && disabled ? (
+            <div className="footer">
+              <button type="submit" onClick={(e) => setDisabled(false)}>
+                <FaEdit /> Edit
+              </button>
+              <button type="submit" onClick={(e) => deleteAttendance(e)}>
+                <FaTrash /> Delete
+              </button>
+            </div>
           ) : (
             ""
           )}
+          {!disabled && (
+            <button type="submit" onClick={(e) => addAttendance(e)}>
+              <FaPlus /> Add
+            </button>
+          )}
         </form>
       </section>
-      <div>
-        <p className="form__error">
-          {error ? error?.response?.data?.message || error?.response?.data : ""}
-        </p>
-      </div>
     </main>
   );
 };
-
 export default Attendance;

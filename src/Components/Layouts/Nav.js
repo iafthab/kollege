@@ -1,5 +1,4 @@
 import { NavLink } from "react-router-dom";
-import { BsConeStriped } from "react-icons/bs";
 
 const Nav = () => {
   return (
@@ -15,17 +14,13 @@ const Nav = () => {
           to={"./attendance"}
           className={({ isActive }) => (isActive ? "active" : "")}
         >
-          <li>
-            Attendance <BsConeStriped />{" "}
-          </li>
+          <li>Attendance</li>
         </NavLink>
         <NavLink
           to={"./internal"}
           className={({ isActive }) => (isActive ? "active" : "")}
         >
-          <li>
-            Internal Mark <BsConeStriped />
-          </li>
+          <li>Internal Mark</li>
         </NavLink>
         <NavLink
           to={"./time_schedule"}

@@ -1,54 +1,49 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "../../config/api/axios";
-import { useLocation, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import UserContext from "../../Hooks/UserContext";
 
 const Notes = () => {
-  //TODO Check location for paperName
-  const location = useLocation().pathname;
-  const [paper, setPaper] = useState({});
-  const [notes, setNotes] = useState({});
+  const { paper } = useContext(UserContext);
+  const [notes, setNotes] = useState([]);
   const [error, setError] = useState("");
 
   useEffect(() => {
-    const getPaper = async () => {
-      const response = await axios.get(location);
-      setPaper(response.data);
-      console.log(response.data);
-    };
-    getPaper();
-
     const getNotes = async () => {
       try {
-        const response = await axios.get("/notes" + location);
-        console.log(response);
+        const response = await axios.get("/notes/paper/" + paper._id);
         setNotes(response.data);
       } catch (err) {
         setError(err);
       }
     };
     getNotes();
-  }, [location]);
+  }, [paper]);
 
   return (
     <main className="notes">
       <h2>{paper.paper}</h2>
-      <p>
-        year:{paper.year} semester:{paper.semester}
-        <br />
-        <Link to="students">Students</Link>
-        <Link to="add">Add Note</Link>
-      </p>
+      <ul className="notes__list">
+        <li>YEAR:{paper.year}</li>
+        <li>SEMESTER:{paper.semester}</li>
+        <li>
+          <Link to="students">STUDENTS</Link>
+        </li>
+        <li>
+          <Link to="add">ADD NOTE</Link>
+        </li>
+      </ul>
 
       <hr />
-      {/* <section className="note__body">
-        {notes.map((note, index) => (
+      <section className="note__body">
+        {notes?.map((note, index) => (
           <article className="note__container" key={index}>
             <h3 className="note__name">{note.title}</h3>
             <hr />
             <p>{note.body}</p>
           </article>
         ))}
-      </section> */}
+      </section>
       <p className="form__error">
         {error
           ? error?.response?.data?.message ||
