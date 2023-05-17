@@ -1,27 +1,17 @@
 import axios from "../../config/api/axios";
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext } from "react";
 import UserContext from "../../Hooks/UserContext";
 import { FaPlus, FaEdit, FaTrash } from "react-icons/fa";
 
 const Attendance = () => {
-  const { user } = useContext(UserContext);
+  const { paperList } = useContext(UserContext);
   const [attendance, setAttendance] = useState([]);
   const [paper, setPaper] = useState("");
   const [date, setDate] = useState("");
   const [hour, setHour] = useState("");
-  const [paperList, setPaperList] = useState([]);
   const [error, setError] = useState("");
   const [disabled, setDisabled] = useState(true);
   const [id, setId] = useState("");
-
-  // Fetch papers
-  useEffect(() => {
-    const getPapersList = async (e) => {
-      const list = await axios.get("/paper/teacher/" + user._id);
-      setPaperList(list.data);
-    };
-    getPapersList();
-  }, [user]);
 
   // fetching Attendance
   const fetchAttendance = async (e) => {
@@ -29,7 +19,6 @@ const Attendance = () => {
     setError("");
     try {
       const response = await axios.get(`/attendance/${paper}/${date}/${hour}`);
-      console.log(response.data);
       setId(response.data._id);
       setAttendance(response.data.attendance);
       setDisabled(true);
@@ -60,8 +49,13 @@ const Attendance = () => {
       alert(response.data.message);
       setDisabled(true);
       setError("");
+      fetchAttendance(e);
     } catch (err) {
-      if (err.response.status === 409) {
+      if (err?.response.status === 409) {
+        const newData = attendance.map((i) => {
+          return { student: i.student._id, present: i.present };
+        });
+        console.log(newData);
         try {
           const response = await axios.patch(
             `/attendance/${paper}/${date}/${hour}`,
@@ -70,6 +64,7 @@ const Attendance = () => {
           alert(response.data.message);
           setDisabled(true);
           setError("");
+          fetchAttendance(e);
         } catch (err) {
           setError(err);
         }
@@ -183,7 +178,7 @@ const Attendance = () => {
                       onChange={(e) => handleFormChange(e)}
                     />
                   </td>
-                  <td>{student?.student?.name || student.name}</td>
+                  <td>{student.student?.name || student?.name}</td>
                 </tr>
               ))}
             </tbody>
@@ -193,7 +188,11 @@ const Attendance = () => {
               <button type="submit" onClick={(e) => setDisabled(false)}>
                 <FaEdit /> Edit
               </button>
-              <button type="submit" onClick={(e) => deleteAttendance(e)}>
+              <button
+                type="submit"
+                className="delete_btn"
+                onClick={(e) => deleteAttendance(e)}
+              >
                 <FaTrash /> Delete
               </button>
             </div>
@@ -202,7 +201,7 @@ const Attendance = () => {
           )}
           {!disabled && (
             <button type="submit" onClick={(e) => addAttendance(e)}>
-              <FaPlus /> Add
+              <FaPlus /> Save
             </button>
           )}
         </form>

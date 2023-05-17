@@ -200,22 +200,22 @@ kbd {
 [data-theme="light"],
 :root:not([data-theme="dark"]) {
   --background-color: #fff;
-  --color: #14213d;
-  --h1-color: #e8e6e3;
-  --h2-color: #14213d;
-  --h3-color: #14213d;
-  --h4-color: #14213d;
+  --color: #001427;
+  --h1-color: #ecebf3;
+  --h2-color: #001427;
+  --h3-color: #001427;
+  --h4-color: #001427;
   --h5-color: hsl(205deg, 20%, 32%);
   --h6-color: #4d606d;
   --muted-color: hsl(205deg, 10%, 50%);
   --muted-border-color: hsl(205deg, 20%, 94%);
-  --primary: #e8e6e3;
-  --primary-hover: #e8e6e3;
-  --primary-focus: #fca21183;
+  --primary: #ecebf3;
+  --primary-hover: #ecebf3;
+  --primary-focus: #012a4a83;
   --primary-inverse: #000000;
   --secondary: hsl(205deg, 15%, 41%);
   --secondary-hover: hsl(205deg, 20%, 32%);
-  --secondary-focus: #fca21183;
+  --secondary-focus: #012a4a83;
   --secondary-inverse: #fff;
   --contrast: hsl(205deg, 30%, 15%);
   --contrast-hover: #000;
@@ -313,7 +313,7 @@ kbd {
   --h6-color: #afbbc4;
   --muted-color: hsl(205deg, 10%, 50%);
   --muted-border-color: #ffffff;
-  --primary: #e8e6e3;
+  --primary: #ecebf3;
   --primary-hover: hsl(195deg, 80%, 50%);
   --primary-focus: rgba(16, 149, 193, 0.25);
   --primary-inverse: #fff;
@@ -777,6 +777,7 @@ button,
 
 button {
   display: block;
+  height: 2.5rem;
   width: 100%;
   margin-bottom: 0rem;
 }
@@ -795,8 +796,7 @@ input[type="reset"],
   --border-color: var(--primary);
   --color: white;
   --box-shadow: var(--button-box-shadow, 0 0 0 rgba(0, 0, 0, 0));
-  padding: var(--form-element-spacing-vertical)
-    var(--form-element-spacing-horizontal);
+  padding: 0.2rem 1rem;
   border: var(--border-width) solid var(--border-color);
   border-radius: var(--border-radius);
   outline: none;
@@ -1773,7 +1773,7 @@ details summary::after {
   margin-inline-start: calc(var(--spacing, 1rem) * 0.5);
   float: right;
   transform: rotate(-90deg);
-  background-image: var(--icon-chevron);
+  /* background-image: var(--icon-chevron); */
   background-position: right center;
   background-size: 1rem auto;
   background-repeat: no-repeat;

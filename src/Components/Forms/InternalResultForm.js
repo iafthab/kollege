@@ -1,25 +1,15 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext } from "react";
 import axios from "../../config/api/axios";
 import UserContext from "../../Hooks/UserContext";
 import { FaPlus, FaEdit, FaTrash } from "react-icons/fa";
 
 const InternalResultForm = () => {
-  const { user } = useContext(UserContext);
-  const [paperList, setPaperList] = useState([]);
+  const { paperList } = useContext(UserContext);
   const [paper, setPaper] = useState("");
   const [disabled, setDisabled] = useState(true);
   const [internal, setInternal] = useState([]);
   const [id, setId] = useState([]);
   const [error, setError] = useState("");
-
-  // Fetch papers
-  useEffect(() => {
-    const getPapersList = async (e) => {
-      const list = await axios.get("/paper/teacher/" + user._id);
-      setPaperList(list.data);
-    };
-    getPapersList();
-  }, [user]);
 
   const fetchInternal = async (e) => {
     e.preventDefault();
@@ -28,7 +18,9 @@ const InternalResultForm = () => {
       setId(response.data._id);
       setInternal(response.data.marks);
       setDisabled(true);
+      setError("");
     } catch (err) {
+      setError(err);
       if (err.response.status === 404) {
         const response = await axios.get("paper/" + paper);
         const students = response.data.students;
@@ -43,8 +35,6 @@ const InternalResultForm = () => {
         });
         setInternal(students);
         setDisabled(false);
-      } else {
-        setError(err);
       }
     }
   };
@@ -55,12 +45,16 @@ const InternalResultForm = () => {
     try {
       const response = await axios.post("internal/" + paper, marks);
       alert(response.data.message);
+      setDisabled(true);
+      setError("");
+      fetchInternal(e);
     } catch (err) {
       if (err.response.status === 409) {
         try {
           const response = await axios.patch("internal/" + paper, marks);
           alert(response.data.message);
           setDisabled(true);
+          setError("");
         } catch (err) {
           setError(err);
         }
@@ -226,7 +220,11 @@ const InternalResultForm = () => {
               <button type="submit" onClick={(e) => setDisabled(false)}>
                 <FaEdit /> Edit
               </button>
-              <button type="submit" onClick={(e) => deleteInternalMark(e)}>
+              <button
+                type="submit"
+                className="delete_btn"
+                onClick={(e) => deleteInternalMark(e)}
+              >
                 <FaTrash /> Delete
               </button>
             </div>
@@ -235,7 +233,7 @@ const InternalResultForm = () => {
           )}
           {!disabled && (
             <button type="submit" onClick={(e) => addInternalMark(e)}>
-              <FaPlus /> Add
+              <FaPlus /> Save
             </button>
           )}
         </form>

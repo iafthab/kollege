@@ -1,18 +1,24 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "../../config/api/axios";
 import { useNavigate } from "react-router-dom";
 import UserContext from "../../Hooks/UserContext";
 
 const NotesForm = () => {
-  const { paper } = useContext(UserContext);
+  const { paper, notes, noteId, setNoteId } = useContext(UserContext);
   const [note, setNote] = useState({
     paper: paper._id,
     title: "",
     body: "",
   });
-  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (noteId) {
+      setNote(notes[noteId]);
+    }
+  }, [noteId, notes]);
 
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleFormChange = (e) => {
     setNote({
@@ -24,11 +30,23 @@ const NotesForm = () => {
   const addNote = async (e) => {
     e.preventDefault();
     try {
-      const reqData = JSON.stringify(note);
-      const response = await axios.post("notes/paper/" + paper._id, reqData);
+      const response = await axios.post("notes/paper/" + paper._id, note);
       setError("");
-      navigate("../");
+      navigate("./../");
       alert(response.data.message);
+    } catch (err) {
+      setError(err);
+    }
+  };
+
+  const updateNote = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.patch("notes/" + note._id, note);
+      navigate("./../../");
+      setError("");
+      alert(response.data.message);
+      setNoteId("");
     } catch (err) {
       setError(err);
     }
@@ -36,7 +54,7 @@ const NotesForm = () => {
 
   return (
     <main className="notes">
-      <h2>Add Notes</h2>
+      {noteId ? <h2>Edit Note</h2> : <h2>Add Note</h2>}
       <form>
         <label htmlFor="title">Title:</label>
         <input
@@ -55,9 +73,15 @@ const NotesForm = () => {
           value={note.body}
           onChange={(e) => handleFormChange(e)}
         />
-        <button type="submit" onClick={(e) => addNote(e)}>
-          Add Note
-        </button>
+        {noteId ? (
+          <button type="submit" onClick={(e) => updateNote(e)}>
+            Update Note
+          </button>
+        ) : (
+          <button type="submit" onClick={(e) => addNote(e)}>
+            Add Note
+          </button>
+        )}
       </form>
       <p className="form__error">
         {error ? error?.response?.data?.message || error?.response?.data : ""}

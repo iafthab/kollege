@@ -3,14 +3,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Spectral+SC:wght@500&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap");
 
+/* *root{
+  --BG-COLOR:#
+} */
+
 body {
   margin: 0;
   font-family: "Roboto Slab", serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   letter-spacing: 1.5px;
-  /* height: calc(100vh-2rem); */
   overflow-y: auto;
+  /* background-color: #001427; */
+  background: linear-gradient(#001427, #14213d, #003049, #1d3557);
 }
 
 .body {
@@ -20,7 +25,7 @@ body {
 }
 
 .main {
-  color: #14213d;
+  color: #001427;
   display: flex;
   white-space: nowrap;
 }
@@ -28,8 +33,8 @@ body {
 /* LOGIN PAGE */
 .login {
   height: 100vh;
-  background-color: #14213d;
-  color: #e5e5e5;
+  background: linear-gradient(#001427, #14213d, #003049, #1d3557);
+  color: #ecebf3;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -47,6 +52,9 @@ body {
   font-size: 4rem;
   margin-bottom: 0rem;
 }
+.login a {
+  color: #94d2bd;
+}
 .login__form:hover {
   opacity: 1;
 }
@@ -55,17 +63,18 @@ body {
   width: 25%;
   /* opacity: 0.5; */
   justify-self: center;
-  /* background-image: linear-gradient(#fca311, #eaaa3a); */
-  background-color: #fca311;
-  border-radius: 10%;
+  background-color: #0a949650;
+  /* opacity: 0.5; */
+  border-radius: 5px;
   padding-top: 1rem;
   padding-bottom: 1rem;
+  color: #0a9396;
 }
 .login__form button {
-  background-color: #14213d;
+  background-color: #003049;
   height: 2.5rem;
   padding: 0.2rem;
-  border: 1.5px solid #e5e5e5;
+  border: 1.5px solid #94d2bd;
 }
 .login__form form {
   padding-right: 2rem;
@@ -79,28 +88,21 @@ body {
 }
 
 .login__form input::placeholder {
-  color: #e5e5e5;
+  color: #0a9396;
 }
 .login__form input {
   width: 100%;
-  color: #e5e5e5;
   padding: 0.2rem;
   margin-bottom: 0.5rem;
   text-align: center;
   height: 2.5rem;
   padding-left: 0.5rem;
-  border: 1.5px solid #14213d;
+  border: 1.5px solid #94d2bd;
+  color: #94d2bd;
 }
 
-.login h2 {
-  text-align: center;
-  display: block;
-  color: #e5e5e5;
-  font-family: "Roboto Slab", serif;
-  margin-bottom: 0rem;
-}
 .login__user {
-  border: 2px solid #14213d;
+  border: 2px solid #94d2bd;
   border-radius: 50%;
   font-size: 5.5rem;
   padding: 0.5rem;
@@ -114,8 +116,8 @@ body {
   position: absolute;
   top: 0;
   justify-content: space-between;
-  background-color: #14213d;
-  border-bottom: 1px solid #e8e6e3;
+  background-color: #001427;
+  border-bottom: 1px solid #94d2bd;
 }
 
 .header__h1 {
@@ -127,7 +129,7 @@ body {
 }
 
 .header__profile {
-  color: #e8e6e3;
+  color: #ecebf3;
   font-size: 1.5rem;
   padding: 0.3rem 2rem;
   display: flex;
@@ -144,17 +146,17 @@ body {
 }
 
 .header a:hover {
-  background-color: #14213d;
-  color: #fca311;
+  background-color: #001427;
+  color: #0a9396;
 }
 
 /* NAV */
 .nav {
-  background-color: #fca311;
+  background-color: #0a9396;
   width: 15rem;
   height: 100vh;
-  padding: 2rem 2rem;
-  border-right: 2px solid #14213d;
+  padding: 2rem 1rem;
+  border-right: 2px solid #001427;
 }
 
 .nav ul {
@@ -167,7 +169,7 @@ body {
 }
 .nav a {
   width: 100%;
-  color: #14213d;
+  color: #ecebf3;
   font-weight: bold;
 }
 
@@ -177,20 +179,20 @@ body {
 }
 
 .nav li:hover {
-  border-top: 2px solid #14213d;
-  border-bottom: 2px solid #14213d;
-  background-color: #14213d3a;
+  border-top: 2px solid #001427;
+  border-bottom: 2px solid #001427;
+  background-color: #0014273a;
 }
 
 .active {
-  background-color: #14213d;
+  background-color: #001427;
 }
-.active li {
-  color: #fca311;
-}
+/* .active li {
+  color: #;
+} */
 
 #error-page {
-  background-color: #e5e5e5;
+  background-color: #94d2bd;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -204,7 +206,7 @@ body {
 /* OUTLET */
 .outlet {
   padding: 1rem 2rem;
-  background-color: #e5e5e5;
+  background-color: #f3f3f3;
   height: 100vh;
   width: 100%;
   overflow-y: auto;
@@ -215,38 +217,38 @@ body {
   font-size: 3rem;
   margin-top: 2rem;
   margin-bottom: 0.5rem;
-  text-decoration: double underline #14213d 3px;
+  text-decoration: double underline #001427 3px;
 }
 
 .outlet form {
   width: 50%;
 }
 .outlet form button {
-  background-color: #14213d;
-  color: #e5e5e5;
+  background-color: #001427;
+  color: #ecebf3;
 }
 
 .outlet form button:hover {
-  background-color: #fca311;
-  color: #14213d;
-  border: 2px solid #14213d;
+  background-color: #0a9396;
+  color: #001427;
+  border: 2px solid #001427;
 }
 
 /* EVERYTHING ELSE 🥴 */
-.paper__form select {
-  background-color: #e5e5e5;
-}
 .form__error {
   text-align: center;
-  color: red;
+  color: crimson;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
+form:has(.table) {
+  width: 100%;
+}
 
 .table th,
 .table td {
-  border: 2px solid #14213d;
+  border: 2px solid #001427;
   text-align: center;
   padding: 0.2rem;
 }
@@ -254,10 +256,23 @@ body {
 .table select {
   width: 100%;
 }
-.table select:disabled {
-  background-color: #e8e6e3;
+
+.table td:has(button) {
+  padding: 0rem;
+}
+.table td button {
+  border: none;
+  border-radius: 0;
+}
+
+.outlet select:disabled {
+  background-color: #f3f3f3;
   background-image: none;
   opacity: 1;
+}
+
+.outlet input[type="checkbox"]:disabled {
+  background-color: #001427;
 }
 
 #table__td > .table__input {
@@ -276,7 +291,9 @@ body {
 
 .outlet form input,
 select {
+  padding: 0.2rem 1rem;
   width: 100%;
+  height: 2.5rem;
 }
 
 .form__select {
@@ -287,7 +304,7 @@ select {
 }
 
 .form__redirect a {
-  color: #fca311;
+  color: #001427;
   text-decoration: double;
 }
 
@@ -335,7 +352,7 @@ select {
   box-shadow: none;
 }
 
-.internal__body form input:disabled {
+.outlet form input:disabled {
   opacity: 1;
   background-color: inherit;
 }
@@ -348,12 +365,12 @@ select {
   width: 2rem;
   font-size: 1.5rem;
   height: 2rem;
-  background-color: #14213d;
-  accent-color: #14213d;
+  background-color: #001427;
+  accent-color: #001427;
 }
 
 .outlet a {
-  color: #14213d;
+  color: #001427;
 }
 
 .footer {
@@ -366,11 +383,11 @@ select {
 }
 
 .outlet .notes article {
-  background-image: linear-gradient(#e5e5e5, #dbdada);
+  background-image: linear-gradient(90deg, #a9d6e5, #fff1e6);
 }
 
 .outlet .paper article {
-  background-image: linear-gradient(#fca311, #e3b66e);
+  background-image: linear-gradient(#a9d6e5, #bee1e6);
 }
 
 .notes__list {
@@ -383,21 +400,131 @@ select {
   list-style: none;
   padding: 0.2rem;
 }
+.notes__list a {
+  color: #ecebf3;
+}
 .notes__list li:has(a) {
-  background-color: #fca311;
+  background-color: #0a9396;
+  border: 2px solid #001427;
+  border-radius: 5px;
+}
+
+.note__head {
+  display: flex;
+  justify-content: space-between;
+}
+
+.note__icons svg {
+  margin-left: 0.5rem;
+  font-size: 1.5rem;
 }
 
 .outlet article p,
 .outlet hr {
   white-space: normal;
-  color: #14213d;
-  font-family: BlinkMacSystemFont, Oxygen, Ubuntu, Cantarell, "Open Sans",
-    "Helvetica Neue", sans-serif;
+  color: #001427;
+  font-family: BlinkMac, SystemFontBlinkMac, Oxygen, Ubuntu, Cantarell,
+    "Open Sans", "Helvetica Neue", sans-serif;
 }
 .outlet hr {
-  border-color: #14213d;
+  border-color: #001427;
 }
 
 .outlet textarea {
   width: 100%;
+}
+
+.notes pre {
+  font-family: BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
+    "Open Sans", "Helvetica Neue", sans-serif;
+  background-color: transparent;
+  color: inherit;
+}
+
+.notes form {
+  width: 100%;
+}
+.register {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register__head {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  margin-right: 2rem;
+}
+.teacher {
+  width: 50%;
+  padding: 1rem;
+  font-family: "Roboto Slab", serif;
+  display: flex;
+  border-radius: 5px;
+  justify-content: flex-start;
+  background-color: #0a949650;
+  color: #0a9396;
+}
+
+.teacher h2 {
+  font-family: "Roboto Slab", serif;
+  margin-bottom: 0rem;
+  color: #0a9396;
+}
+
+.teacher a {
+  font-family: "Spectral SC", serif;
+  font-size: 1.2rem;
+  color: #ecebf3;
+}
+.teacher label {
+  color: #0a9396;
+}
+
+.teacher form,
+.teacher input {
+  width: 100%;
+  color: #94d2bd;
+  border-color: #94d2bd;
+  border-width: 1.5px;
+}
+.teacher input {
+  height: 2.5rem;
+}
+
+.teacher button {
+  background-color: #003049;
+  color: #ecebf3;
+}
+
+.outlet details {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.outlet .plus_btn:hover {
+  background-color: forestgreen;
+}
+.outlet .delete_btn:hover {
+  background-color: crimson;
+  color: white;
+}
+
+.outlet summary h3 {
+  padding: 0;
+}
+
+.note__container h3,
+.note__container pre {
+  white-space: pre-wrap;
+}
+
+.student__reg {
+  color: grey;
+}
+.outlet .student__reg button {
+  background-color: grey;
 }

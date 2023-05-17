@@ -37,7 +37,9 @@ const StudentForm = () => {
   return (
     <main className="student">
       <h2>Student Registration</h2>
-      <form>
+      <h3>TBD</h3>
+      <p>Student side is under progress</p>
+      <form className="student__reg">
         <label htmlFor="name">name:</label>
         <input
           type="text"

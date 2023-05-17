@@ -8,21 +8,20 @@ const Layout = () => {
   const { user } = useContext(UserContext);
 
   return (
-    <>
-      {user._id ? (
-        <div className="body">
-          <Header />
-          <main className="main">
-            <Nav />
-            <div className="outlet">
-              <Outlet />
-            </div>
-          </main>
-        </div>
-      ) : (
-        <Navigate to="/" replace={true} />
-      )}
-    </>
+    <div className="body">
+      <Header />
+      <main className="main">
+        <Nav />
+        {user ? (
+          <div className="outlet">
+            <Outlet />
+          </div>
+        ) : (
+          // <p>Login to continue</p>
+          <Navigate to="/" replace={true} />
+        )}
+      </main>
+    </div>
   );
 };
 

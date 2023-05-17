@@ -5,14 +5,18 @@ import { NavLink } from "react-router-dom";
 import UserContext from "../../Hooks/UserContext";
 
 const Header = () => {
-  const { setUser } = useContext(UserContext);
+  const { setUser, setIsHOD } = useContext(UserContext);
+  const logout = () => {
+    setUser("");
+    setIsHOD(false);
+  };
   return (
     <header className="header">
-      <NavLink to="../" className="header__profile">
+      <NavLink to="/dash" className="header__profile">
         <FaUniversity />
         <h1 className="header__h1">Kollege</h1>
       </NavLink>
-      <NavLink to="./" className="header__profile" onClick={() => setUser("")}>
+      <NavLink to="./" className="header__profile" onClick={() => logout()}>
         <p>Logout&nbsp;</p>
         <FiLogOut />
       </NavLink>

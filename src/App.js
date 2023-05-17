@@ -13,6 +13,7 @@ import NotesForm from "./Components/Forms/NotesForm";
 import TimeScheduleForm from "./Components/Forms/TimeScheduleForm";
 import LoginLayout from "./Components/Layouts/LoginLayout";
 import Login from "./Components/Forms/Login";
+import TeacherApproval from "./Components/Queries/TeacherApproval";
 import { UserProvider } from "./Hooks/UserContext";
 import {
   createBrowserRouter,
@@ -24,7 +25,7 @@ import {
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route path="/" element={<LoginLayout />}>
+      <Route path="/" element={<LoginLayout />} errorElement={<ErrorElement />}>
         <Route index element={<Login />} />
         <Route
           path="/dash"
@@ -35,14 +36,16 @@ function App() {
           <Route path="paper" element={<Paper />} />
           <Route path="paper/:paper" element={<Notes />} />
           <Route path="paper/:paper/add" element={<NotesForm />} />
+          <Route path="paper/:paper/:note/edit" element={<NotesForm />} />
           <Route path="paper/:paper/students" element={<StudentsList />} />
           <Route path="attendance" element={<Attendance />} />
           <Route path="internal" element={<InternalResultForm />} />
           <Route path="time_schedule" element={<TimeScheduleForm />} />
-          <Route path="reg_teacher" element={<TeacherForm />} />
           <Route path="reg_student" element={<StudentForm />} />
+          <Route path="approve_teacher" element={<TeacherApproval />} />
           <Route path="add_paper" element={<PaperForm />} />
         </Route>
+        <Route path="reg_teacher" element={<TeacherForm />} />
       </Route>
     )
   );
