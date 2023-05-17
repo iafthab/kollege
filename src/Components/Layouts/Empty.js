@@ -18,11 +18,6 @@ const Empty = () => {
         College based
         <br /> Data Management System
       </h2>
-      <h3>TODO</h3>
-      <ol>
-        <li>Add Reducer Hook.</li>
-        <li>Refactor Code.</li>
-      </ol>
     </div>
   );
 };

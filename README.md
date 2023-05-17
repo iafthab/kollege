@@ -1,6 +1,10 @@
 # KOLLEGE
 
+[kollege.onrender.com](https://kollege.onrender.com)
+
 A MERN Stack Application like Google Classroom.
+
+- There are two rules: Teacher and HOD. HOD approves new teachers.
 
 ## Login Details
 
@@ -10,13 +14,13 @@ A MERN Stack Application like Google Classroom.
 
 **username:** Delphine
 
-**pwd** Delphine123
+**pwd:** Delphine123
 
 ### HOD
 
 **username:** Moriah
 
-**pwd** Moriah123
+**pwd:** Moriah123
 
 ---
 
