@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "../../config/api/axios";
 import { Link, useNavigate } from "react-router-dom";
 import { FaUniversity } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 const TeacherForm = () => {
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ const TeacherForm = () => {
       const reqData = JSON.stringify(teacher);
       const response = await axios.post("teacher", reqData);
       navigate("../");
-      alert(response.data.message);
+      toast.success(response.data.message);
     } catch (err) {
       setError(err);
     }
@@ -78,14 +79,28 @@ const TeacherForm = () => {
             onChange={(e) => handleFormChange(e)}
           />
           <label htmlFor="department">department:</label>
-          <input
+          {/* <input
             type="text"
             name="department"
             required
             id="department"
             value={teacher.department}
             onChange={(e) => handleFormChange(e)}
-          />
+          /> */}
+          <select
+            placeholder="select department"
+            name="department"
+            id="department"
+            value={teacher.department}
+            required
+            onChange={(e) => handleFormChange(e)}
+          >
+            <option defaultValue hidden>
+              Select Paper
+            </option>
+
+            <option value="Computer">Computer</option>
+          </select>
           <label htmlFor="username">username:</label>
           <input
             name="username"

@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import axios from "../../config/api/axios";
 import { useNavigate, Navigate } from "react-router-dom";
 import UserContext from "../../Hooks/UserContext";
+import { toast } from "react-toastify";
 
 const PaperForm = () => {
   const { user } = useContext(UserContext);
@@ -31,7 +32,7 @@ const PaperForm = () => {
     try {
       const response = await axios.post("paper", JSON.stringify(paper));
       navigate("./../");
-      alert(response.data.message);
+      toast.success(response.data.message);
     } catch (err) {
       setError(err);
     }

@@ -2,6 +2,7 @@ import axios from "../../config/api/axios";
 import { useState, useContext } from "react";
 import UserContext from "../../Hooks/UserContext";
 import { FaPlus, FaEdit, FaTrash } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 const Attendance = () => {
   const { paperList } = useContext(UserContext);
@@ -46,7 +47,7 @@ const Attendance = () => {
         `/attendance/${paper}/${date}/${hour}`,
         { paper, date, hour, attendance: newData }
       );
-      alert(response.data.message);
+      toast.success(response.data.message);
       setDisabled(true);
       setError("");
       fetchAttendance(e);
@@ -60,7 +61,7 @@ const Attendance = () => {
             `/attendance/${paper}/${date}/${hour}`,
             { id, paper, date, hour, attendance: newData }
           );
-          alert(response.data.message);
+          toast.success(response.data.message);
           setDisabled(true);
           setError("");
           fetchAttendance(e);
@@ -75,7 +76,9 @@ const Attendance = () => {
     e.preventDefault();
     try {
       const response = await axios.delete("attendance/" + id);
-      alert(response.data.message);
+      toast.success(response.data.message, {
+        icon: ({ theme, type }) => <FaTrash />,
+      });
       setAttendance([]);
     } catch (err) {
       setError(err);

@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import axios from "../../config/api/axios";
 import UserContext from "../../Hooks/UserContext";
 import { FaPlus, FaEdit, FaTrash } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 const InternalResultForm = () => {
   const { paperList } = useContext(UserContext);
@@ -44,7 +45,7 @@ const InternalResultForm = () => {
     const marks = { id, paper, marks: internal };
     try {
       const response = await axios.post("internal/" + paper, marks);
-      alert(response.data.message);
+      toast.success(response.data.message);
       setDisabled(true);
       setError("");
       fetchInternal(e);
@@ -52,7 +53,7 @@ const InternalResultForm = () => {
       if (err.response.status === 409) {
         try {
           const response = await axios.patch("internal/" + paper, marks);
-          alert(response.data.message);
+          toast.success(response.data.message);
           setDisabled(true);
           setError("");
         } catch (err) {
@@ -65,8 +66,10 @@ const InternalResultForm = () => {
   const deleteInternalMark = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.delete("internal/", { id });
-      alert(response.data.message);
+      const response = await axios.delete("internal/" + id);
+      toast.success(response.data.message, {
+        icon: ({ theme, type }) => <FaTrash />,
+      });
       setInternal([]);
     } catch (err) {
       setError(err);

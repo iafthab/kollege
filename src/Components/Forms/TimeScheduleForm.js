@@ -2,6 +2,7 @@ import { useState, useContext, useEffect } from "react";
 import axios from "../../config/api/axios";
 import UserContext from "../../Hooks/UserContext";
 import { FaPlus, FaEdit, FaTrash } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 const TimeScheduleForm = () => {
   const { user, paperList } = useContext(UserContext);
@@ -56,11 +57,11 @@ const TimeScheduleForm = () => {
     };
     try {
       const response = await axios.post("time_schedule/" + user._id, data);
-      alert(response.data.message);
+      toast.success(response.data.message);
     } catch (err) {
       if (err.response.status === 409) {
         const response = await axios.patch("time_schedule/" + user._id, data);
-        alert(response.data.message);
+        toast.success(response.data.message);
       } else setError(err);
     } finally {
       setDisabled(true);
@@ -70,7 +71,9 @@ const TimeScheduleForm = () => {
   const deleteTimeSchedule = async (e) => {
     e.preventDefault();
     const response = await axios.delete("time_schedule/" + id);
-    alert(response.data.message);
+    toast.success(response.data.message, {
+      icon: ({ theme, type }) => <FaTrash />,
+    });
     setTimeSchedule({});
   };
 

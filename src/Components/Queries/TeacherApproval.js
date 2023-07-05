@@ -3,6 +3,7 @@ import UserContext from "../../Hooks/UserContext";
 import { Navigate } from "react-router-dom";
 import axios from "../../config/api/axios";
 import { FaPlus, FaTrash } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 const TeacherApproval = () => {
   const { user } = useContext(UserContext);
@@ -26,11 +27,12 @@ const TeacherApproval = () => {
     const teacher = users[index];
     teacher.roles.push("Teacher");
     try {
-      const response = await axios.patch("/teacher", {
+      const response = await axios.patch("/teacher/" + teacher._id, {
         id: teacher._id,
         roles: teacher.roles,
       });
-      alert(response.data.message);
+      users.splice(index, 1);
+      toast.success(response.data.message);
       setError("");
     } catch (err) {
       setError(err);
@@ -39,11 +41,16 @@ const TeacherApproval = () => {
   };
 
   const handleDelete = async (e) => {
-    const teacher = users[e.currentTarget.id];
-    console.log(teacher);
-    const response = await axios.delete("/teacher", { id: teacher._id });
-    console.log(response.data);
-    alert(response.data.message);
+    const teacher = users[e.currentTarget.id]._id;
+    try {
+      const response = await axios.delete("/teacher/" + teacher);
+      users.splice(e.currentTarget.id, 1);
+      toast.success(response.data.message, {
+        icon: ({ theme, type }) => <FaTrash />,
+      });
+    } catch (err) {
+      toast.error(err.message);
+    }
   };
 
   return (

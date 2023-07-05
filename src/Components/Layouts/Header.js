@@ -3,11 +3,13 @@ import { FaUniversity } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
 import { NavLink } from "react-router-dom";
 import UserContext from "../../Hooks/UserContext";
+import { toast } from "react-toastify";
 
 const Header = () => {
   const { setUser } = useContext(UserContext);
   const logout = () => {
     setUser("");
+    toast.info("Logged Out");
   };
   return (
     <header className="header">

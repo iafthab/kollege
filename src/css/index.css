@@ -506,7 +506,8 @@ select {
 }
 
 .teacher form,
-.teacher input {
+.teacher input,
+.teacher select {
   width: 100%;
   color: #94d2bd;
   border-color: #94d2bd;
@@ -567,7 +568,7 @@ select {
 }
 
 .dash a:hover {
-  background-color: #0a949681;
+  background-color: #005f7381;
 }
 
 .dash svg {
@@ -585,4 +586,13 @@ select {
 
 .bg-red {
   background-color: rgba(203, 27, 27, 0.2);
+}
+
+.Toastify__close-button {
+  width: auto;
+}
+
+.Toastify {
+  font-size: large;
+  letter-spacing: 0px;
 }

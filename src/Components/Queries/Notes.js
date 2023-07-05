@@ -3,6 +3,7 @@ import axios from "../../config/api/axios";
 import { Link } from "react-router-dom";
 import UserContext from "../../Hooks/UserContext";
 import { FaTrash, FaEdit } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 const Notes = () => {
   const { paper, setNoteId, notes, setNotes } = useContext(UserContext);
@@ -23,7 +24,9 @@ const Notes = () => {
   const deleteNote = async (e) => {
     const id = e.currentTarget.id;
     const response = await axios.delete("notes/" + id);
-    alert(response.data.message);
+    toast.success(response.data.message, {
+      icon: ({ theme, type }) => <FaTrash />,
+    });
   };
 
   return (
