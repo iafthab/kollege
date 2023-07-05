@@ -4,7 +4,7 @@
 
 A MERN Stack Application like Google Classroom.
 
-- There are two rules: Teacher and HOD. HOD approves new teachers.
+- There are two roles: Teacher and HOD. HOD approves new teachers.
 
 ## Login Details
 

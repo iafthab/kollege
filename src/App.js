@@ -1,5 +1,5 @@
 import Layout from "./Components/Layouts/Layout";
-import Empty from "./Components/Layouts/Empty";
+import Dash from "./Components/Layouts/Dash";
 import ErrorElement from "./Components/Layouts/ErrorElement";
 import Paper from "./Components/Queries/Paper";
 import Attendance from "./Components/Queries/Attendance";
@@ -32,7 +32,7 @@ function App() {
           element={<Layout />}
           errorElement={<ErrorElement />}
         >
-          <Route index element={<Empty />} />
+          <Route index element={<Dash />} />
           <Route path="paper" element={<Paper />} />
           <Route path="paper/:paper" element={<Notes />} />
           <Route path="paper/:paper/add" element={<NotesForm />} />

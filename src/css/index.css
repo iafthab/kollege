@@ -1,7 +1,7 @@
 /* This stylesheet is used to override picocss styles  */
 
 @import url("https://fonts.googleapis.com/css2?family=Spectral+SC:wght@500&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap");
 
 /* *root{
   --BG-COLOR:#
@@ -9,13 +9,12 @@
 
 body {
   margin: 0;
-  font-family: "Roboto Slab", serif;
+  font-family: "Titillium Web", sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   letter-spacing: 1.5px;
   overflow-y: auto;
   /* background-color: #001427; */
-  background: linear-gradient(#001427, #14213d, #003049, #1d3557);
+  background: linear-gradient(#0a9396, #005f73);
 }
 
 .body {
@@ -33,8 +32,8 @@ body {
 /* LOGIN PAGE */
 .login {
   height: 100vh;
-  background: linear-gradient(#001427, #14213d, #003049, #1d3557);
-  color: #ecebf3;
+  background: linear-gradient(#0a9396, #005f73);
+  color: #001427;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -50,6 +49,7 @@ body {
 .login__header h1 {
   font-family: "Spectral SC", serif;
   font-size: 4rem;
+  color: #001427;
   margin-bottom: 0rem;
 }
 .login a {
@@ -63,12 +63,12 @@ body {
   width: 25%;
   /* opacity: 0.5; */
   justify-self: center;
-  background-color: #0a949650;
+  background-color: #001427;
   /* opacity: 0.5; */
   border-radius: 5px;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  color: #0a9396;
+  color: #94d2bd;
 }
 .login__form button {
   background-color: #003049;
@@ -88,7 +88,7 @@ body {
 }
 
 .login__form input::placeholder {
-  color: #0a9396;
+  color: #94d2bd;
 }
 .login__form input {
   width: 100%;
@@ -121,11 +121,11 @@ body {
 }
 
 .header__h1 {
-  padding: 0rem 0.2rem 0rem 0;
-  margin: 0;
+  padding: 0rem 0.2rem 0rem 0rem;
+  margin: 0rem;
   font-family: "Spectral SC", serif;
   font-weight: normal;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
 }
 
 .header__profile {
@@ -147,13 +147,13 @@ body {
 
 .header a:hover {
   background-color: #001427;
-  color: #0a9396;
+  color: #008b8e;
 }
 
 /* NAV */
 .nav {
   background-color: #0a9396;
-  width: 15rem;
+  width: 28%;
   height: 100vh;
   padding: 2rem 1rem;
   border-right: 2px solid #001427;
@@ -167,6 +167,7 @@ body {
   display: flex;
   margin: auto;
 }
+
 .nav a {
   width: 100%;
   color: #ecebf3;
@@ -174,14 +175,21 @@ body {
 }
 
 .nav li {
-  display: block;
+  display: flex;
   padding: 1rem 2rem;
+  gap: 0.3rem;
 }
 
 .nav li:hover {
   border-top: 2px solid #001427;
   border-bottom: 2px solid #001427;
   background-color: #0014273a;
+}
+
+.nav li svg {
+  font-size: x-large;
+  font-weight: bolder;
+  padding-top: 0.1rem;
 }
 
 .active {
@@ -218,6 +226,7 @@ body {
   margin-top: 2rem;
   margin-bottom: 0.5rem;
   text-decoration: double underline #001427 3px;
+  white-space: break-spaces;
 }
 
 .outlet form {
@@ -253,8 +262,15 @@ form:has(.table) {
   padding: 0.2rem;
 }
 
+.table thead th {
+  background-color: #001427;
+  /* border: 2px solid #ecebf3; */
+  color: #ecebf3;
+}
+
 .table select {
   width: 100%;
+  text-align: center;
 }
 
 .table td:has(button) {
@@ -287,6 +303,12 @@ form:has(.table) {
 
 .time_schedule form {
   width: 100%;
+}
+
+.time_schedule tbody th {
+  background-color: #001427;
+  color: #ecebf3;
+  font-size: large;
 }
 
 .outlet form input,
@@ -379,11 +401,11 @@ select {
 
 /* PAPER */
 .outlet h3 {
-  font-family: "Roboto Slab", serif;
+  font-family: "Titillium Web", sans-serif;
 }
 
 .outlet .notes article {
-  background-image: linear-gradient(90deg, #a9d6e5, #fff1e6);
+  background-image: linear-gradient(90deg, #a9d6e5, #cfebf4);
 }
 
 .outlet .paper article {
@@ -460,18 +482,18 @@ select {
 .teacher {
   width: 50%;
   padding: 1rem;
-  font-family: "Roboto Slab", serif;
+  font-family: "Titillium Web", sans-serif;
   display: flex;
   border-radius: 5px;
   justify-content: flex-start;
-  background-color: #0a949650;
-  color: #0a9396;
+  background-color: #001427;
+  color: #94d2bd;
 }
 
 .teacher h2 {
-  font-family: "Roboto Slab", serif;
+  font-family: "Titillium Web", sans-serif;
   margin-bottom: 0rem;
-  color: #0a9396;
+  color: #94d2bd;
 }
 
 .teacher a {
@@ -480,7 +502,7 @@ select {
   color: #ecebf3;
 }
 .teacher label {
-  color: #0a9396;
+  color: #94d2bd;
 }
 
 .teacher form,
@@ -495,8 +517,8 @@ select {
 }
 
 .teacher button {
-  background-color: #003049;
-  color: #ecebf3;
+  background-color: #94d2bd;
+  color: #001427;
 }
 
 .outlet details {
@@ -527,4 +549,40 @@ select {
 }
 .outlet .student__reg button {
   background-color: grey;
+}
+
+.dash {
+  padding: 1rem 2rem;
+  display: grid;
+  place-content: center;
+  grid-template-columns: 33% 33% 33%;
+  gap: 0.5rem;
+}
+
+.dash a {
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  display: flex;
+  gap: 0.2rem;
+}
+
+.dash a:hover {
+  background-color: #0a949681;
+}
+
+.dash svg {
+  font-size: 4rem;
+}
+
+.dash p {
+  color: #001427;
+  white-space: break-spaces;
+}
+
+.bg-green {
+  background-color: rgba(26, 199, 26, 0.2);
+}
+
+.bg-red {
+  background-color: rgba(203, 27, 27, 0.2);
 }

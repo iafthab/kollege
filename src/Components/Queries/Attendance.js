@@ -55,7 +55,6 @@ const Attendance = () => {
         const newData = attendance.map((i) => {
           return { student: i.student._id, present: i.present };
         });
-        console.log(newData);
         try {
           const response = await axios.patch(
             `/attendance/${paper}/${date}/${hour}`,
@@ -166,7 +165,10 @@ const Attendance = () => {
             )}
             <tbody>
               {attendance?.map((student, index) => (
-                <tr key={index}>
+                <tr
+                  key={index}
+                  className={student.present ? "bg-green" : "bg-red"}
+                >
                   <td>
                     <input
                       type="checkbox"

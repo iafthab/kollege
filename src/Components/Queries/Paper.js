@@ -1,9 +1,13 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import UserContext from "../../Hooks/UserContext";
 
 const Paper = () => {
-  const { setPaper, paperList } = useContext(UserContext);
+  const { setNotes, setPaper, paperList } = useContext(UserContext);
+
+  useEffect(() => {
+    setNotes([]);
+  }, [setNotes]);
 
   return (
     <main className="paper">

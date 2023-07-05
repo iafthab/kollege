@@ -139,7 +139,18 @@ const InternalResultForm = () => {
             )}
             <tbody>
               {internal?.map((student, index) => (
-                <tr key={index}>
+                <tr
+                  key={index}
+                  className={
+                    parseInt(student?.test) +
+                      parseInt(student?.seminar) +
+                      parseInt(student?.assignment) +
+                      parseInt(student?.attendance) <
+                    7
+                      ? "bg-red"
+                      : "bg-green"
+                  }
+                >
                   <td>{student.name}</td>
                   <td>
                     <input

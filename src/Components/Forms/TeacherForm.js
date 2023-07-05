@@ -29,7 +29,6 @@ const TeacherForm = () => {
     try {
       const reqData = JSON.stringify(teacher);
       const response = await axios.post("teacher", reqData);
-      console.log(response.data.message);
       navigate("../");
       alert(response.data.message);
     } catch (err) {

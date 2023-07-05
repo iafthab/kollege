@@ -5,10 +5,9 @@ import { NavLink } from "react-router-dom";
 import UserContext from "../../Hooks/UserContext";
 
 const Header = () => {
-  const { setUser, setIsHOD } = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
   const logout = () => {
     setUser("");
-    setIsHOD(false);
   };
   return (
     <header className="header">

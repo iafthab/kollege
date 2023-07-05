@@ -7,7 +7,7 @@ import { FaTrash, FaEdit } from "react-icons/fa";
 const Notes = () => {
   const { paper, setNoteId, notes, setNotes } = useContext(UserContext);
   const [error, setError] = useState("");
-  // setNoteId("")
+
   useEffect(() => {
     const getNotes = async () => {
       try {
@@ -58,7 +58,7 @@ const Notes = () => {
                     </Link>
                     <Link
                       id={note._id}
-                      style={{ color: "darkred" }}
+                      style={{ color: "rgba(220, 20, 60, 0.8)" }}
                       onClick={(e) => deleteNote(e)}
                     >
                       <FaTrash />
