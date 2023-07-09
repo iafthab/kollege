@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./css/pico.classless.css";
-import "./css/index.css";
+// import "./css/pico.classless.css";
+import "./index.css";
 import "react-toastify/dist/ReactToastify.css";
 import App from "./App";
 import { disableReactDevTools } from "@fvilers/disable-react-devtools";
