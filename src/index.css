@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Spectral+SC&display=swap");
+
+@layer html {
+  input {
+    /* height: 3rem; */
+  }
+  .active {
+    background-color: #001427;
+  }
+}

@@ -25,10 +25,7 @@ const Dash = () => {
     <main>
       <h2>College Based Data Management System</h2>
       <div className="dash">
-        <Link
-          to={"./paper"}
-          className={({ isActive }) => (isActive ? "active" : "")}
-        >
+        <Link to={"./paper"}>
           <GiBookshelf />
           <div>
             Papers
@@ -36,10 +33,7 @@ const Dash = () => {
           </div>
         </Link>
 
-        <Link
-          to={"./attendance"}
-          className={({ isActive }) => (isActive ? "active" : "")}
-        >
+        <Link to={"./attendance"}>
           <IoCalendarOutline />
           <div>
             Attendance
@@ -47,10 +41,7 @@ const Dash = () => {
           </div>
         </Link>
 
-        <Link
-          to={"./internal"}
-          className={({ isActive }) => (isActive ? "active" : "")}
-        >
+        <Link to={"./internal"}>
           <HiOutlineDocumentReport />
           <div>
             Internal Mark
@@ -58,10 +49,7 @@ const Dash = () => {
           </div>
         </Link>
 
-        <Link
-          to={"./time_schedule"}
-          className={({ isActive }) => (isActive ? "active" : "")}
-        >
+        <Link to={"./time_schedule"}>
           <AiOutlineSchedule />
           <div>
             Time Schedule
@@ -71,10 +59,7 @@ const Dash = () => {
 
         {user.isHOD && (
           <>
-            <Link
-              to={"./add_paper"}
-              className={({ isActive }) => (isActive ? "active" : "")}
-            >
+            <Link to={"./add_paper"}>
               <BiBookAdd />
               <div>
                 Add Paper
@@ -82,10 +67,7 @@ const Dash = () => {
               </div>
             </Link>
 
-            <Link
-              to={"./approve_teacher"}
-              className={({ isActive }) => (isActive ? "active" : "")}
-            >
+            <Link to={"./approve_teacher"}>
               <RiUserAddLine />
               <div>
                 Approve Teacher
@@ -94,10 +76,7 @@ const Dash = () => {
             </Link>
           </>
         )}
-        <Link
-          to={"./reg_student"}
-          className={({ isActive }) => (isActive ? "active" : "")}
-        >
+        <Link to={"./reg_student"}>
           <AiOutlineUserAdd />
           <div>
             Register Student

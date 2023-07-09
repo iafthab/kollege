@@ -14,7 +14,7 @@ const Layout = () => {
       <main className="main">
         {location === "/dash" ? "" : <Nav />}
         {user ? (
-          <div className="outlet">
+          <div className="mt-10 py-4 px-8 bg-slate-50 h-screen w-full overflow-y-auto">
             <Outlet />
           </div>
         ) : (

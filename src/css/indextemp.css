@@ -30,7 +30,7 @@ body {
 }
 
 /* LOGIN PAGE */
-.login {
+/* .login {
   height: 100vh;
   background: linear-gradient(#0a9396, #005f73);
   color: #001427;
@@ -38,8 +38,8 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-}
-.login__header {
+} */
+/* .login__header {
   display: flex;
   gap: 1rem;
 }
@@ -99,15 +99,15 @@ body {
   padding-left: 0.5rem;
   border: 1.5px solid #94d2bd;
   color: #94d2bd;
-}
+} */
 
-.login__user {
+/* .login__user {
   border: 2px solid #94d2bd;
   border-radius: 50%;
   font-size: 5.5rem;
   padding: 0.5rem;
   margin: 1rem;
-}
+} */
 
 /* HEADER */
 .header {
