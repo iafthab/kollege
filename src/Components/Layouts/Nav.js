@@ -12,72 +12,51 @@ import { AiOutlineUserAdd } from "react-icons/ai";
 const Nav = () => {
   const { user } = useContext(UserContext);
   return (
-    <nav className="nav">
-      <ul>
-        <NavLink
-          to={"./paper"}
-          className={({ isActive }) => (isActive ? "active" : "")}
-        >
-          <li>
-            <GiBookshelf />
+    <nav className="h-full py-4 px-4 bg-slate-950 text-slate-100 ">
+      <ul className="flex flex-col flex-grow items-center justify-center m-auto">
+        <NavLink to={"./paper"} className="w-full font-medium">
+          <li className="flex py-2 rounded-md px-4 gap-2 hover:bg-violet-600/40 ">
+            <GiBookshelf className="text-2xl pt-[0.1rem]  " />
             Papers
           </li>
         </NavLink>
-        <NavLink
-          to={"./attendance"}
-          className={({ isActive }) => (isActive ? "active" : "")}
-        >
-          <li>
-            <IoCalendarOutline />
+        <NavLink to={"./attendance"} className="w-full font-medium">
+          <li className="flex py-2 rounded-md px-4 gap-2 hover:bg-violet-600/40 ">
+            <IoCalendarOutline className="text-2xl pt-[0.1rem]  " />
             Attendance
           </li>
         </NavLink>
-        <NavLink
-          to={"./internal"}
-          className={({ isActive }) => (isActive ? "active" : "")}
-        >
-          <li>
-            <HiOutlineDocumentReport />
+        <NavLink to={"./internal"} className="w-full font-medium">
+          <li className="flex py-2 rounded-md px-4 gap-2 hover:bg-violet-600/40 ">
+            <HiOutlineDocumentReport className="text-2xl pt-[0.1rem]  " />
             Internal Mark
           </li>
         </NavLink>
-        <NavLink
-          to={"./time_schedule"}
-          className={({ isActive }) => (isActive ? "active" : "")}
-        >
-          <li>
-            <AiOutlineSchedule />
+        <NavLink to={"./time_schedule"} className="w-full font-medium">
+          <li className="flex py-2 rounded-md px-4 gap-2 hover:bg-violet-600/40 ">
+            <AiOutlineSchedule className="text-2xl pt-[0.1rem]  " />
             Time Schedule
           </li>
         </NavLink>
         {user.isHOD && (
           <>
-            <NavLink
-              to={"./add_paper"}
-              className={({ isActive }) => (isActive ? "active" : "")}
-            >
-              <li>
-                <BiBookAdd />
+            <NavLink to={"./add_paper"} className="w-full font-medium">
+              <li className="flex py-2 rounded-md px-4 gap-2 hover:bg-violet-600/40 ">
+                <BiBookAdd className="text-2xl pt-[0.1rem]  " />
                 Add Paper
               </li>
             </NavLink>
-            <NavLink
-              to={"./approve_teacher"}
-              className={({ isActive }) => (isActive ? "active" : "")}
-            >
-              <li>
-                <RiUserAddLine />
+            <NavLink to={"./approve_teacher"} className="w-full font-medium">
+              <li className="flex py-2 rounded-md px-4 gap-2 hover:bg-violet-600/40 ">
+                <RiUserAddLine className="text-2xl pt-[0.1rem]  " />
                 Approve Teacher
               </li>
             </NavLink>
           </>
         )}
-        <NavLink
-          to={"./reg_student"}
-          className={({ isActive }) => (isActive ? "active" : "")}
-        >
-          <li>
-            <AiOutlineUserAdd />
+        <NavLink to={"./reg_student"} className="w-full font-medium">
+          <li className="flex py-2 rounded-md px-4 gap-2 hover:bg-violet-600/40 ">
+            <AiOutlineUserAdd className="text-2xl pt-[0.1rem]  " />
             Register Student
           </li>
         </NavLink>

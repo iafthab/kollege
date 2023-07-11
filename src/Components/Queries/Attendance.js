@@ -45,7 +45,7 @@ const Attendance = () => {
     try {
       const response = await axios.post(
         `/attendance/${paper}/${date}/${hour}`,
-        { paper, date, hour, attendance: newData }
+        { paper, date, hour, attendance: newData },
       );
       toast.success(response.data.message);
       setDisabled(true);
@@ -59,7 +59,7 @@ const Attendance = () => {
         try {
           const response = await axios.patch(
             `/attendance/${paper}/${date}/${hour}`,
-            { id, paper, date, hour, attendance: newData }
+            { id, paper, date, hour, attendance: newData },
           );
           toast.success(response.data.message);
           setDisabled(true);

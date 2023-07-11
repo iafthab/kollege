@@ -5,9 +5,10 @@
 
 @layer html {
   input {
-    /* height: 3rem; */
+    display: block;
   }
   .active {
-    background-color: #001427;
+    background-color: rgb(76 29 149);
+    border-radius: 0.375rem;
   }
 }

@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import axios from "../../config/api/axios";
 import { useNavigate } from "react-router-dom";
 import UserContext from "../../Hooks/UserContext";
+import { toast } from "react-toastify";
 
 const NotesForm = () => {
   const { paper, notes, noteId, setNoteId } = useContext(UserContext);
@@ -33,7 +34,7 @@ const NotesForm = () => {
       const response = await axios.post("notes/paper/" + paper._id, note);
       setError("");
       navigate("./../");
-      alert(response.data.message);
+      toast.success(response.data.message);
     } catch (err) {
       setError(err);
     }
@@ -45,7 +46,7 @@ const NotesForm = () => {
       const response = await axios.patch("notes/" + note._id, note);
       navigate("./../../");
       setError("");
-      alert(response.data.message);
+      toast.success(response.data.message);
       setNoteId("");
     } catch (err) {
       setError(err);

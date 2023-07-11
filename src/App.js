@@ -27,7 +27,7 @@ import {
 } from "react-router-dom";
 
 const TeacherApproval = lazy(() =>
-  import("./Components/Queries/TeacherApproval")
+  import("./Components/Queries/TeacherApproval"),
 );
 const PaperForm = lazy(() => import("./Components/Forms/PaperForm"));
 
@@ -69,8 +69,8 @@ function App() {
           />
         </Route>
         <Route path="reg_teacher" element={<TeacherForm />} />
-      </Route>
-    )
+      </Route>,
+    ),
   );
 
   return (

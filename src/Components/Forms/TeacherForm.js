@@ -40,16 +40,16 @@ const TeacherForm = () => {
   return (
     <main className="h-screen z-0 relative bg-gradient-to-b from-slate-400 to-slate-300 dark:from-slate-950 dark:to-slate-800 text-slate-900 dark:text-slate-200 flex justify-center items-center">
       <div
-        className=" hidden lg:flex flex-row  w-full h-full -z-[1] items-center justify-center blur-2xl gap-32 absolute "
+        className=" hidden lg:flex flex-row  w-full h-full -z-[1] items-center justify-center blur-2xl gap-16 absolute "
         name="blur design"
       >
-        <span className=" w-[8rem] h-[16rem] bg-violet-500 rounded-r-full inline-block   "></span>
-        <span className=" w-[16rem] h-[16rem] bg-violet-500 rounded-full inline-block   "></span>
-        <span className=" w-[16rem] h-[16rem] bg-violet-500 rounded-full inline-block   "></span>
-        <span className=" w-[16rem] h-[16rem] bg-violet-500 rounded-full inline-block   "></span>
-        <span className=" w-[8rem] h-[16rem] bg-violet-500 rounded-l-full inline-block   "></span>
+        <span className=" w-[10rem] h-[16rem] bg-violet-900 rounded-r-full inline-block   "></span>
+        <span className=" w-[18rem] h-[16rem] bg-violet-900 rounded-full inline-block   "></span>
+        <span className=" w-[18rem] h-[16rem] bg-violet-900 rounded-full inline-block   "></span>
+        <span className=" w-[18rem] h-[16rem] bg-violet-900 rounded-full inline-block   "></span>
+        <span className=" w-[10rem] h-[16rem] bg-violet-900 rounded-l-full inline-block   "></span>
       </div>
-      <div className="w-1/2 p-8 flex rounded-md justify-start bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-slate-50">
+      <div className="w-1/2 p-8 opacity-70 focus:opacity-100 hover:opacity-100 flex rounded-md justify-start bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-slate-50">
         <section className="flex justify-between flex-col mr-8 ">
           <h2 className="text-5xl font-bold ">
             Teacher
@@ -60,11 +60,10 @@ const TeacherForm = () => {
             to="../"
           >
             <FaUniversity />
-            <p
-              className="hover:bg-gradient-to-r from-slate-900 from-30% to-violet-900 to-70%
-          hover:bg-clip-text hover:text-transparent"
-            >
-              KOLLEGE
+            <p className="hover:underline decoration-violet-900 decoration-2">
+              K
+              <span className=" h-3 w-3 rounded-full bg-violet-900 dark:bg-violet-500 inline-block "></span>
+              llege
             </p>
           </Link>
         </section>
@@ -117,7 +116,7 @@ const TeacherForm = () => {
             required
             onChange={(e) => handleFormChange(e)}
           >
-            <option defaultValue disabled>
+            <option defaultValue hidden>
               Select Department
             </option>
 
@@ -159,7 +158,7 @@ const TeacherForm = () => {
           >
             Register
           </button>
-          <p className="form__error">
+          <p className="text-center font-medium text-red-700 whitespace-nowrap overflow-hidden text-ellipsis mb-3">
             {error
               ? error?.response?.data?.message ||
                 error?.data?.message ||

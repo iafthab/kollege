@@ -9,12 +9,12 @@ const Layout = () => {
   const location = useLocation().pathname;
 
   return (
-    <div className="body">
+    <div className="flex flex-col relative">
       <Header />
-      <main className="main">
+      <main className="flex h-[calc(100vh-3.35rem)] whitespace-nowrap bg-slate-950 mt-[3.35rem]">
         {location === "/dash" ? "" : <Nav />}
         {user ? (
-          <div className="mt-10 py-4 px-8 bg-slate-50 h-screen w-full overflow-y-auto">
+          <div className=" py-4 px-8 border-slate-950 rounded-xl border-4  bg-slate-50  w-full overflow-y-auto">
             <Outlet />
           </div>
         ) : (

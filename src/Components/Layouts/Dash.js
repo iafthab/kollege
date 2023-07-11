@@ -22,65 +22,88 @@ const Dash = () => {
   }, [user, setPaperList]);
 
   return (
-    <main>
-      <h2>College Based Data Management System</h2>
-      <div className="dash">
-        <Link to={"./paper"}>
-          <GiBookshelf />
-          <div>
+    <main className="self-center">
+      <h2 className="m-6 text-6xl font-bold text-center">Dashboard</h2>
+      <div className="py-4 px-8 grid place-content-center grid-cols-3 gap-2 ">
+        <Link
+          className="p-6 text-lg hover:bg-violet-950 hover:text-slate-100 text-slate-900 rounded-lg flex gap-1"
+          to={"./paper"}
+        >
+          <GiBookshelf className="text-[4rem] font-" />
+          <div className="font-semibold">
             Papers
-            <p>View Papers and Notes</p>
+            <p className="font-normal text-md ">View Papers and Notes</p>
           </div>
         </Link>
 
-        <Link to={"./attendance"}>
-          <IoCalendarOutline />
-          <div>
+        <Link
+          className="p-6 text-lg hover:bg-violet-950 hover:text-slate-100 text-slate-900 rounded-lg flex gap-1"
+          to={"./attendance"}
+        >
+          <IoCalendarOutline className="text-[4rem] font-" />
+          <div className="font-semibold">
             Attendance
-            <p>Add or Edit Attendance</p>
+            <p className="font-normal text-md ">Add or Edit Attendance</p>
           </div>
         </Link>
 
-        <Link to={"./internal"}>
-          <HiOutlineDocumentReport />
-          <div>
+        <Link
+          className="p-6 text-lg hover:bg-violet-950 hover:text-slate-100 text-slate-900 rounded-lg flex gap-1"
+          to={"./internal"}
+        >
+          <HiOutlineDocumentReport className="text-[4rem] font-" />
+          <div className="font-semibold">
             Internal Mark
-            <p>View or Edit Internal Marks</p>
+            <p className="font-normal text-md ">View or Edit Internal Marks</p>
           </div>
         </Link>
 
-        <Link to={"./time_schedule"}>
-          <AiOutlineSchedule />
-          <div>
+        <Link
+          className="p-6 text-lg hover:bg-violet-950 hover:text-slate-100 text-slate-900 rounded-lg flex gap-1"
+          to={"./time_schedule"}
+        >
+          <AiOutlineSchedule className="text-[4rem] font-" />
+          <div className="font-semibold">
             Time Schedule
-            <p>View or Edit Time Schedule</p>
+            <p className="font-normal text-md ">View or Edit Time Schedule</p>
           </div>
         </Link>
 
         {user.isHOD && (
           <>
-            <Link to={"./add_paper"}>
-              <BiBookAdd />
-              <div>
+            <Link
+              className="p-6 text-lg hover:bg-violet-950 hover:text-slate-100 text-slate-900 rounded-lg flex gap-1"
+              to={"./add_paper"}
+            >
+              <BiBookAdd className="text-[4rem] font-" />
+              <div className="font-semibold">
                 Add Paper
-                <p>Add a New Paper</p>
+                <p className="font-normal text-md ">Add a New Paper</p>
               </div>
             </Link>
 
-            <Link to={"./approve_teacher"}>
-              <RiUserAddLine />
-              <div>
+            <Link
+              className="p-6 text-lg hover:bg-violet-950 hover:text-slate-100 text-slate-900 rounded-lg flex gap-1"
+              to={"./approve_teacher"}
+            >
+              <RiUserAddLine className="text-[4rem] font-" />
+              <div className="font-semibold">
                 Approve Teacher
-                <p>Approve registered teacher(s)</p>
+                <p className="font-normal text-md ">
+                  Approve registered teacher(s)
+                </p>
               </div>
             </Link>
           </>
         )}
-        <Link to={"./reg_student"}>
-          <AiOutlineUserAdd />
-          <div>
+        <Link
+          className="p-6 text-lg hover:bg-violet-950 hover:text-slate-100 text-slate-900 rounded-lg flex gap-1"
+          to={"./reg_student"}
+        >
+          <AiOutlineUserAdd className="text-[4rem] font-" />
+          <div className="font-semibold">
             Register Student
-            <p>Add a new Student</p>
+            <p className="font-normal text-md ">Add a new Student</p>
           </div>
         </Link>
       </div>
