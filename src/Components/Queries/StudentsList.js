@@ -18,7 +18,7 @@ const StudentsList = () => {
   }, [paper]);
   return (
     <main className="student">
-      <h2 className="text-violet-950 text-6xl mt-3 mb-2 underline decoration-violet-950 decoration-2 font-bold">
+      <h2 className="text-violet-950 dark:text-slate-400 underline-offset-4 text-6xl mt-3 dark:mt-0 mb-2 underline decoration-inherit decoration-2 font-bold">
         Students List
       </h2>
       <p className="font-bold text-2xl">{paper.paper}</p>

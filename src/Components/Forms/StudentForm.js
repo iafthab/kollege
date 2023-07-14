@@ -36,15 +36,15 @@ const StudentForm = () => {
 
   return (
     <main className="text-slate-500">
-      <h2 className="text-violet-950 text-6xl mt-3 mb-2 underline decoration-violet-950 decoration-2 font-bold">
+      <h2 className="text-violet-950 dark:text-violet-400 underline-offset-4 text-6xl mt-3 dark:mt-0 mb-2 underline decoration-inherit decoration-2 font-bold">
         Student Registration
       </h2>
-      <h3>TBD</h3>
-      <p>Student side is under progress</p>
+      <h3 className="font-bold text-lg">TBD</h3>
+      <p className="font-bold text-3xl">Student side is under progress</p>
       <form className="w-1/3 mt-8">
         <label htmlFor="name">Name:</label>
         <input
-          className="w-full outline-none text-sm font-medium leading-6 focus:border-violet-900 mb-4 selection:border-[1.5px] block rounded-md p-1  h-10 pl-2 border-[1.5px] border-solid border-slate-400"
+          className="w-full outline-none focus:border-violet-900 dark:border-slate-200 mb-4 selection:border-slate-200 block rounded-md p-1 h-10 pl-2 border-[1.5px] border-solid border-slate-400 dark:active:border-violet-400 dark:focus:border-violet-400 dark:caret-inherit"
           type="text"
           required
           id="name"
@@ -53,7 +53,7 @@ const StudentForm = () => {
         />
         <label htmlFor="email">Email:</label>
         <input
-          className="w-full outline-none text-sm font-medium leading-6 focus:border-violet-900 mb-4 selection:border-[1.5px] block rounded-md p-1  h-10 pl-2 border-[1.5px] border-solid border-slate-400"
+          className="w-full outline-none focus:border-violet-900 dark:border-slate-200 mb-4 selection:border-slate-200 block rounded-md p-1 h-10 pl-2 border-[1.5px] border-solid border-slate-400 dark:active:border-violet-400 dark:focus:border-violet-400 dark:caret-inherit"
           type="text"
           required
           id="email"
@@ -62,7 +62,7 @@ const StudentForm = () => {
         />
         <label htmlFor="username">Username:</label>
         <input
-          className="w-full outline-none text-sm font-medium leading-6 focus:border-violet-900 mb-4 selection:border-[1.5px] block rounded-md p-1  h-10 pl-2 border-[1.5px] border-solid border-slate-400"
+          className="w-full outline-none focus:border-violet-900 dark:border-slate-200 mb-4 selection:border-slate-200 block rounded-md p-1 h-10 pl-2 border-[1.5px] border-solid border-slate-400 dark:active:border-violet-400 dark:focus:border-violet-400 dark:caret-inherit"
           type="text"
           id="username"
           required
@@ -71,7 +71,7 @@ const StudentForm = () => {
         />
         <label htmlFor="password">Password:</label>
         <input
-          className="w-full outline-none text-sm font-medium leading-6 focus:border-violet-900 mb-4 selection:border-[1.5px] block rounded-md p-1  h-10 pl-2 border-[1.5px] border-solid border-slate-400"
+          className="w-full outline-none focus:border-violet-900 dark:border-slate-200 mb-4 selection:border-slate-200 block rounded-md p-1 h-10 pl-2 border-[1.5px] border-solid border-slate-400 dark:active:border-violet-400 dark:focus:border-violet-400 dark:caret-inherit"
           type="password"
           id="password"
           value={student.password}

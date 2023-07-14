@@ -12,8 +12,8 @@ import { AiOutlineUserAdd } from "react-icons/ai";
 const Nav = () => {
   const { user } = useContext(UserContext);
   return (
-    <nav className="h-full py-4 px-4 bg-slate-950 text-slate-100 ">
-      <ul className="flex flex-col flex-grow items-center justify-center m-auto">
+    <nav className="h-full py-4 z-0 px-4 bg-slate-950 dark:bg-gradient-to-b dark:from-slate-800 dark:to-slate-950  text-slate-100 ">
+      <ul className="flex flex-col gap-[6px] flex-grow items-center justify-center m-auto">
         <NavLink to={"./paper"} className="w-full font-medium">
           <li className="flex py-2 rounded-md px-4 gap-2 hover:bg-violet-600/40 ">
             <GiBookshelf className="text-2xl pt-[0.1rem]  " />

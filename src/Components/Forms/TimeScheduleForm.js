@@ -79,12 +79,12 @@ const TimeScheduleForm = () => {
 
   return (
     <main className="time_schedule">
-      <h2 className="text-violet-950 text-6xl mt-3 mb-2 underline decoration-violet-950 decoration-2 font-bold">
+      <h2 className="text-violet-950 dark:text-violet-400 underline-offset-4 text-6xl mt-3 dark:mt-0 mb-2 underline decoration-inherit decoration-2 font-bold">
         Time Schedule
       </h2>
       <form>
         {timeSchedule.monday ? (
-          <div className="rounded-md border-2 border-slate-900 my-4 w-full">
+          <div className="rounded-md border-2 dark:border-slate-500 dark:p-[1px] border-slate-900 my-4 w-full">
             <table className=" w-full text-center">
               <thead>
                 <tr className="text-lg bg-slate-900 h-[3rem] p-4 text-slate-100">
@@ -113,7 +113,7 @@ const TimeScheduleForm = () => {
                           key={index}
                         >
                           <select
-                            className="bg-slate-50 h-[3rem] w-full leading-6 select-img appearance-none focus:border-0 text-center"
+                            className="h-[3rem] w-full leading-6 select-img appearance-none focus:border-0 text-center"
                             value={day}
                             name={key}
                             id={index}
@@ -143,14 +143,14 @@ const TimeScheduleForm = () => {
           <div className="flex gap-4">
             <button
               type="submit"
-              className="bg-slate-800 flex font-semibold hover:bg-violet-900 mb-4 focus:bg-violet-900 dark:text-slate-900 text-slate-200 h-10 py-4 px-6 gap-2 items-center w-auto rounded-md"
+              className="tracking-wide dark:border-violet-300 dark:hover:bg-slate-900 bg-slate-800 font-semibold dark:bg-violet-900 dark:text-violet-100 hover:bg-violet-900 mb-4 focus:bg-violet-900 text-slate-200 h-10 py-2 px-6 border-[1.5px] border-solid flex items-center gap-2 w-auto border-violet-900 rounded-md"
               onClick={() => setDisabled(false)}
             >
               <FaEdit /> Edit
             </button>
             <button
               type="submit"
-              className="bg-slate-800 flex font-semibold hover:bg-red-700 mb-4 focus:bg-violet-900 dark:text-slate-900 text-slate-200 h-10 p-4 gap-2 items-center w-auto rounded-md"
+              className="tracking-wide dark:border-violet-300 dark:hover:bg-red-700 bg-slate-800 font-semibold dark:bg-violet-900 dark:text-violet-100 hover:bg-red-700 mb-4 focus:bg-violet-900 text-slate-200 h-10 py-2 px-6 border-[1.5px] border-solid flex items-center gap-2 w-auto border-violet-900 rounded-md"
               onClick={(e) => deleteTimeSchedule(e)}
             >
               <FaTrash /> Delete
@@ -160,7 +160,7 @@ const TimeScheduleForm = () => {
         {!disabled && (
           <button
             type="submit"
-            className="bg-slate-800 flex font-semibold hover:bg-violet-900 mb-4 focus:bg-violet-900 dark:text-slate-900 text-slate-200 h-10 py-4 px-6 gap-2 items-center w-auto rounded-md "
+            className="tracking-wide dark:border-violet-300 dark:hover:bg-slate-900 bg-slate-800 font-semibold dark:bg-violet-900 dark:text-violet-100 hover:bg-violet-900 mb-4 focus:bg-violet-900 text-slate-200 h-10 py-2 px-6 border-[1.5px] border-solid flex items-center gap-2 w-auto border-violet-900 rounded-md"
             onClick={(e) => addTimeSchedule(e)}
           >
             <FaPlus /> Save

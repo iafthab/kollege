@@ -57,7 +57,7 @@ const TeacherApproval = () => {
     <>
       {user.isHOD ? (
         <main className="teacher__approval">
-          <h2 className="text-violet-950 text-6xl mt-3 mb-2 underline decoration-violet-950 decoration-2 font-bold">
+          <h2 className="text-violet-950 dark:text-slate-400 underline-offset-4 text-6xl mt-3 dark:mt-0 mb-2 underline decoration-inherit decoration-2 font-bold">
             Approve Teacher
           </h2>
           <h3 className="text-2xl font-semibold">
@@ -65,7 +65,7 @@ const TeacherApproval = () => {
           </h3>
           <form>
             {users.length ? (
-              <div className="rounded-md border-2 border-slate-900 my-4 w-full">
+              <div className="rounded-md border-2 dark:border-slate-500 dark:p-[1px] border-slate-900 my-4 w-full">
                 <table className="w-full">
                   <thead>
                     <tr className="text-base rounded-t-xl bg-slate-900 text-slate-100">
@@ -92,19 +92,19 @@ const TeacherApproval = () => {
                         <td className="p-2 border-t-[1px] border-slate-400">
                           {teacher.username}
                         </td>
-                        <td className="p-0 ">
+                        <td className="p-0 border-t-[1px] border-slate-400">
                           <button
                             type="button"
                             id={index}
                             onClick={(e) => handleApprove(e)}
-                            className="bg-slate-900 py-3 h-auto text-xl m-0 hover:bg-violet-900  text-slate-100 w-full flex justify-center "
+                            className="bg-transparent py-3 h-auto text-xl m-0 hover:bg-violet-900  text-slate-100 w-full flex justify-center "
                           >
                             <FaPlus />
                           </button>
                         </td>
-                        <td className="p-0 ">
+                        <td className="p-0 border-t-[1px] border-slate-400">
                           <button
-                            className="bg-slate-900 py-3 h-auto text-xl m-0 hover:bg-red-600  text-slate-100 w-full flex justify-center "
+                            className="bg-transparent py-3 h-auto text-xl m-0 hover:bg-red-600  text-slate-100 w-full flex justify-center "
                             type="button"
                             id={index}
                             onClick={(e) => handleDelete(e)}

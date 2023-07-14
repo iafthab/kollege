@@ -93,13 +93,13 @@ const InternalResultForm = () => {
 
   return (
     <main className="internal">
-      <h2 className="text-violet-950 text-6xl mt-3 mb-2 underline decoration-violet-950 decoration-2 font-bold">
+      <h2 className="text-violet-950 dark:text-slate-400 underline-offset-4 text-6xl mt-3 dark:mt-0 mb-2 underline decoration-inherit decoration-2 font-bold">
         Internal Mark
       </h2>
       <section className="form__head">
         <form className="flex gap-4 w-full">
           <select
-            className="w-1/3 outline-none text-md font-medium leading-6 focus:border-violet-900 mb-4 selection:border-[1.5px] inline-block rounded-md p-1  h-10 pl-2 pr-10 border-[1.5px] border-solid border-slate-400 text-slate-900t"
+            className="w-1/3 outline-none focus:border-violet-900 dark:border-slate-200 mb-4 selection:border-slate-200 block rounded-md p-1 h-10 pl-2 border-[1.5px] border-solid border-slate-400 dark:active:border-violet-400 dark:focus:border-violet-400 dark:caret-inherit"
             placeholder="select paper"
             name="paper"
             id="paper"
@@ -117,7 +117,7 @@ const InternalResultForm = () => {
             ))}
           </select>
           <button
-            className="bg-slate-800 flex font-semibold hover:bg-violet-900 mb-4 focus:bg-violet-900 dark:text-slate-900 text-slate-200 h-10 py-4 px-8 gap-2 items-center w-auto rounded-md"
+            className="tracking-wide dark:border-violet-300 dark:hover:bg-slate-900 bg-slate-800 font-semibold dark:bg-violet-900 dark:text-violet-100 hover:bg-violet-900 mb-4 focus:bg-violet-900 text-slate-200 h-10 py-2 px-8 border-[1.5px] border-solid w-auto border-violet-900 rounded-md"
             type="submit"
             onClick={(e) => fetchInternal(e)}
           >
@@ -133,9 +133,10 @@ const InternalResultForm = () => {
       <section className="internal__body">
         <form className="internal__body__form">
           {internal.length ? (
-            <div className="w-full rounded-md border-2 border-slate-900 my-4">
+            <div className="w-full rounded-md border-2 border-slate-900 dark:border-slate-500 dark:p-[1px] my-4">
               <table className="w-full">
                 <TableHeader
+                  AdditionalHeaderClasses={"text-left"}
                   Headers={[
                     "Student",
                     "Test",
@@ -162,7 +163,7 @@ const InternalResultForm = () => {
                       <td className="p-2 ">{student.name}</td>
                       <td className="p-2 ">
                         <input
-                          className="w-full "
+                          className="w-full pl-3 "
                           type="number"
                           required
                           min="0"
@@ -176,7 +177,7 @@ const InternalResultForm = () => {
                       </td>
                       <td className="p-2 ">
                         <input
-                          className="w-full "
+                          className="w-full pl-3 "
                           type="number"
                           required
                           min="0"
@@ -190,7 +191,7 @@ const InternalResultForm = () => {
                       </td>
                       <td className="p-2 ">
                         <input
-                          className="w-full "
+                          className="w-full pl-3 "
                           type="number"
                           required
                           min="0"
@@ -204,7 +205,7 @@ const InternalResultForm = () => {
                       </td>
                       <td className="p-2 ">
                         <input
-                          className="w-full "
+                          className="w-full pl-3 "
                           type="number"
                           required
                           min="0"
@@ -218,7 +219,7 @@ const InternalResultForm = () => {
                       </td>
                       <td className="p-2 ">
                         <input
-                          className="w-full "
+                          className="w-full pl-3 "
                           type="number"
                           required
                           min="0"
@@ -247,14 +248,14 @@ const InternalResultForm = () => {
             <div className="flex gap-4">
               <button
                 type="submit"
-                className="bg-slate-800 flex font-semibold hover:bg-violet-900 mb-4 focus:bg-violet-900 dark:text-slate-900 text-slate-200 h-10 py-4 px-6 gap-2 items-center w-auto rounded-md"
+                className="tracking-wide dark:border-violet-300 dark:hover:bg-slate-900 bg-slate-800 font-semibold dark:bg-violet-900 dark:text-violet-100 hover:bg-violet-900 mb-4 focus:bg-violet-900 text-slate-200 h-10 py-2 px-6 border-[1.5px] border-solid flex items-center gap-2 w-auto border-violet-900 rounded-md"
                 onClick={(e) => setDisabled(false)}
               >
                 <FaEdit /> Edit
               </button>
               <button
                 type="submit"
-                className="bg-slate-800 flex font-semibold hover:bg-red-700 mb-4 focus:bg-violet-900 dark:text-slate-900 text-slate-200 h-10 p-4 gap-2 items-center w-auto rounded-md"
+                className="tracking-wide dark:border-violet-300 dark:hover:bg-red-700 bg-slate-800 font-semibold dark:bg-violet-900 dark:text-violet-100 hover:bg-red-700 mb-4 focus:bg-violet-900 text-slate-200 h-10 py-2 px-6 border-[1.5px] border-solid flex items-center gap-2 w-auto border-violet-900 rounded-md"
                 onClick={(e) => deleteInternalMark(e)}
               >
                 <FaTrash /> Delete
@@ -266,7 +267,7 @@ const InternalResultForm = () => {
           {!disabled && (
             <button
               type="submit"
-              className="bg-slate-800 flex font-semibold hover:bg-violet-900 mb-4 focus:bg-violet-900 dark:text-slate-900 text-slate-200 h-10 py-4 px-6 gap-2 items-center w-auto rounded-md "
+              className="tracking-wide dark:border-violet-300 dark:hover:bg-slate-900 bg-slate-800 font-semibold dark:bg-violet-900 dark:text-violet-100 hover:bg-violet-900 mb-4 focus:bg-violet-900 text-slate-200 h-10 py-2 px-6 border-[1.5px] border-solid flex items-center gap-2 w-auto border-violet-900 rounded-md"
               onClick={(e) => addInternalMark(e)}
             >
               <FaPlus /> Save

@@ -24,9 +24,9 @@ const Dash = () => {
   return (
     <main className="self-center">
       <h2 className="m-6 text-6xl font-bold text-center">Dashboard</h2>
-      <div className="py-4 px-8 grid place-content-center grid-cols-3 gap-2 ">
+      <div className="py-4 px-8 grid place-content-center grid-cols-3 gap-2">
         <Link
-          className="p-6 text-lg hover:bg-violet-950 hover:text-slate-100 text-slate-900 rounded-lg flex gap-1"
+          className="p-6 text-lg hover:bg-violet-950 hover:text-slate-100 dark:hover:bg-violet-700/50 rounded-lg flex gap-2"
           to={"./paper"}
         >
           <GiBookshelf className="text-[4rem]" />
@@ -37,7 +37,7 @@ const Dash = () => {
         </Link>
 
         <Link
-          className="p-6 text-lg hover:bg-violet-950 hover:text-slate-100 text-slate-900 rounded-lg flex gap-1"
+          className="p-6 text-lg hover:bg-violet-950 hover:text-slate-100 dark:hover:bg-violet-700/50 rounded-lg flex gap-2"
           to={"./attendance"}
         >
           <IoCalendarOutline className="text-[4rem]" />
@@ -48,7 +48,7 @@ const Dash = () => {
         </Link>
 
         <Link
-          className="p-6 text-lg hover:bg-violet-950 hover:text-slate-100 text-slate-900 rounded-lg flex gap-1"
+          className="p-6 text-lg hover:bg-violet-950 hover:text-slate-100 dark:hover:bg-violet-700/50 rounded-lg flex gap-2"
           to={"./internal"}
         >
           <HiOutlineDocumentReport className="text-[4rem]" />
@@ -59,7 +59,7 @@ const Dash = () => {
         </Link>
 
         <Link
-          className="p-6 text-lg hover:bg-violet-950 hover:text-slate-100 text-slate-900 rounded-lg flex gap-1"
+          className="p-6 text-lg hover:bg-violet-950 hover:text-slate-100 dark:hover:bg-violet-700/50 rounded-lg flex gap-2"
           to={"./time_schedule"}
         >
           <AiOutlineSchedule className="text-[4rem]" />
@@ -72,7 +72,7 @@ const Dash = () => {
         {user.isHOD && (
           <>
             <Link
-              className="p-6 text-lg hover:bg-violet-950 hover:text-slate-100 text-slate-900 rounded-lg flex gap-1"
+              className="p-6 text-lg hover:bg-violet-950 hover:text-slate-100 dark:hover:bg-violet-700/50 rounded-lg flex gap-2"
               to={"./add_paper"}
             >
               <BiBookAdd className="text-[4rem]" />
@@ -83,7 +83,7 @@ const Dash = () => {
             </Link>
 
             <Link
-              className="p-6 text-lg hover:bg-violet-950 hover:text-slate-100 text-slate-900 rounded-lg flex gap-1"
+              className="p-6 text-lg hover:bg-violet-950 hover:text-slate-100 dark:hover:bg-violet-700/50 rounded-lg flex gap-2"
               to={"./approve_teacher"}
             >
               <RiUserAddLine className="text-[4rem]" />
@@ -97,7 +97,7 @@ const Dash = () => {
           </>
         )}
         <Link
-          className="p-6 text-lg hover:bg-violet-950 hover:text-slate-100 text-slate-900 rounded-lg flex gap-1"
+          className="p-6 text-lg hover:bg-violet-950 hover:text-slate-100 dark:hover:bg-violet-700/50 rounded-lg flex gap-2"
           to={"./reg_student"}
         >
           <AiOutlineUserAdd className="text-[4rem]" />

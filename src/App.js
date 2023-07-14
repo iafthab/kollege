@@ -27,7 +27,7 @@ import {
 } from "react-router-dom";
 
 const TeacherApproval = lazy(() =>
-  import("./Components/Queries/TeacherApproval"),
+  import("./Components/Queries/TeacherApproval")
 );
 const PaperForm = lazy(() => import("./Components/Forms/PaperForm"));
 
@@ -36,6 +36,7 @@ function App() {
     createRoutesFromElements(
       <Route path="/" element={<LoginLayout />} errorElement={<ErrorElement />}>
         <Route index element={<Login />} />
+        <Route path="reg_teacher" element={<TeacherForm />} />
         <Route
           path="/dash"
           element={<Layout />}
@@ -68,9 +69,8 @@ function App() {
             }
           />
         </Route>
-        <Route path="reg_teacher" element={<TeacherForm />} />
-      </Route>,
-    ),
+      </Route>
+    )
   );
 
   return (

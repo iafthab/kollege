@@ -99,13 +99,13 @@ const Attendance = () => {
 
   return (
     <main className="attendance">
-      <h2 className="text-violet-950 text-6xl mt-3 mb-2 underline decoration-violet-950 decoration-2 font-bold">
+      <h2 className="text-violet-950 dark:text-slate-400 underline-offset-4 text-6xl mt-3 dark:mt-0 mb-2 underline decoration-inherit decoration-2 font-bold">
         Attendance
       </h2>
       <section className="attendance__head">
         <form className="flex gap-4 w-full accent-violet-900 ">
           <select
-            className="w-full outline-none text-md font-medium leading-6 focus:border-violet-900 mb-4 selection:border-[1.5px] block rounded-md p-1  h-10 pl-2 border-[1.5px] border-solid border-slate-400 text-slate-900"
+            className="w-full outline-none focus:border-violet-900 dark:border-slate-200 mb-4 selection:border-slate-200 block rounded-md p-1 h-10 pl-2 border-[1.5px] border-solid border-slate-400 dark:active:border-violet-400 dark:focus:border-violet-400 dark:caret-inherit "
             placeholder="Select Paper"
             name="paper"
             id="paper"
@@ -123,7 +123,7 @@ const Attendance = () => {
             ))}
           </select>
           <input
-            className="w-full outline-none text-md font-medium leading-6 focus:border-violet-900 mb-4 selection:border-[1.5px] block rounded-md p-1  h-10 pl-2 border-[1.5px] placeholder:text-slate-900 border-solid border-slate-400 text-slate-900"
+            className="w-full outline-none focus:border-violet-900 dark:border-slate-200 mb-4 selection:border-slate-200 block rounded-md p-1 h-10 pl-2 border-[1.5px] border-solid border-slate-400 dark:active:border-violet-400 dark:focus:border-violet-400 dark:caret-inherit"
             id="date"
             placeholder="Select Date"
             type="date"
@@ -132,7 +132,7 @@ const Attendance = () => {
             onChange={(e) => setDate(e.target.value)}
           />
           <select
-            className="w-full outline-none text-md font-medium leading-6 focus:border-violet-900 mb-4 selection:border-[1.5px] block rounded-md p-1  h-10 pl-2 border-[1.5px] border-solid border-slate-400 text-slate-900"
+            className="w-full outline-none focus:border-violet-900 dark:border-slate-200 mb-4 selection:border-slate-200 block rounded-md p-1 h-10 pl-2 border-[1.5px] border-solid border-slate-400 dark:active:border-violet-400 dark:focus:border-violet-400 dark:caret-inherit"
             name="hour"
             id="hour"
             value={hour}
@@ -149,7 +149,7 @@ const Attendance = () => {
             <option value="5">V</option>
           </select>
           <button
-            className="bg-slate-800 flex font-semibold hover:bg-violet-900 mb-4 focus:bg-violet-900 dark:text-slate-900 text-slate-200 h-10 py-4 px-8 gap-2 items-center w-auto rounded-md"
+            className="tracking-wide dark:border-violet-300 dark:hover:bg-slate-900 bg-slate-800 font-semibold dark:bg-violet-900 dark:text-violet-100 hover:bg-violet-900 mb-4 focus:bg-violet-900 text-slate-200 h-10 py-2 px-8 border-[1.5px] border-solid w-auto border-violet-900 rounded-md"
             type="submit"
             onClick={(e) => fetchAttendance(e)}
           >
@@ -165,12 +165,13 @@ const Attendance = () => {
       <section className="attendance__form">
         <form className="w-full">
           {attendance?.length ? (
-            <div className="rounded-md border-2 border-slate-900 my-4 w-1/2">
+            <div className="rounded-md border-2 border-slate-900 dark:border-slate-500 dark:p-[1px] my-4 w-1/2">
               <table className="w-full">
                 <TableHeader Headers={["Present", "Student"]} />
                 <tbody>
                   {attendance?.map((student, index) => (
                     <RowWithCheckbox
+                      key={index}
                       keys={index}
                       disabled={disabled}
                       value={student}
@@ -187,14 +188,14 @@ const Attendance = () => {
             <div className="flex gap-4">
               <button
                 type="submit"
-                className="bg-slate-800 flex font-semibold hover:bg-violet-900 mb-4 focus:bg-violet-900 dark:text-slate-900 text-slate-200 h-10 py-4 px-6 gap-2 items-center w-auto rounded-md"
+                className="tracking-wide dark:border-violet-300 dark:hover:bg-slate-900 bg-slate-800 font-semibold dark:bg-violet-900 dark:text-violet-100 hover:bg-violet-900 mb-4 focus:bg-violet-900 text-slate-200 h-10 py-2 px-6 border-[1.5px] border-solid flex items-center gap-2 w-auto border-violet-900 rounded-md"
                 onClick={(e) => setDisabled(false)}
               >
                 <FaEdit /> Edit
               </button>
               <button
                 type="submit"
-                className="bg-slate-800 flex font-semibold hover:bg-red-700 mb-4 focus:bg-violet-900 dark:text-slate-900 text-slate-200 h-10 p-4 gap-2 items-center w-auto rounded-md"
+                className="tracking-wide dark:border-violet-300 dark:hover:bg-red-700 bg-slate-800 font-semibold dark:bg-violet-900 dark:text-violet-100 hover:bg-red-700 mb-4 focus:bg-violet-900 text-slate-200 h-10 py-2 px-4 border-[1.5px] border-solid flex items-center gap-2 w-auto border-violet-900 rounded-md"
                 onClick={(e) => deleteAttendance(e)}
               >
                 <FaTrash /> Delete
@@ -206,7 +207,7 @@ const Attendance = () => {
           {!disabled && (
             <button
               type="submit"
-              className="bg-slate-800 flex font-semibold hover:bg-violet-900 mb-4 focus:bg-violet-900 dark:text-slate-900 text-slate-200 h-10 py-4 px-6 gap-2 items-center w-auto rounded-md "
+              className="tracking-wide dark:border-violet-300 dark:hover:bg-slate-900 bg-slate-800 font-semibold dark:bg-violet-900 dark:text-violet-100 hover:bg-violet-900 mb-4 focus:bg-violet-900 text-slate-200 h-10 py-2 px-4 border-[1.5px] border-solid flex items-center gap-2 w-auto border-violet-900 rounded-md "
               onClick={(e) => addAttendance(e)}
             >
               <FaPlus /> Save
