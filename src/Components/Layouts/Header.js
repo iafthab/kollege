@@ -15,7 +15,7 @@ const Header = () => {
     <header className="flex w-full absolute top-0 justify-between text-slate-50 bg-slate-950 ">
       <Link
         to="/dash"
-        className="text-2xl py-1 px-3 flex items-center font-semibold"
+        className="text-3xl py-1 px-3 ml-4 flex gap-2 items-center font-semibold"
       >
         <FaUniversity className="m-1" />
         <h1 className="pr-1 m-0 font-spectral text-slate-50">
@@ -26,7 +26,7 @@ const Header = () => {
       </Link>
       <Link
         to="./"
-        className="text-md font-semibold p-[7px] m-2 rounded-md hover:bg-violet-900 hover:text-slate-100  flex items-center"
+        className="text-md font-semibold p-[7px] m-2 mb-1 rounded-md hover:bg-violet-900 hover:text-slate-100  flex items-center"
         onClick={() => logout()}
       >
         <p>&nbsp;Logout&nbsp;&nbsp;</p>

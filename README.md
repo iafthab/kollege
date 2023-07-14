@@ -26,9 +26,9 @@ A MERN Stack Application like Google Classroom.
 
 ## Tech Stack
 
-**Front-End:** React, PicoCSS, AXIOS
+**Front-End:** React, TailwindCSS
 
-**Server:** Node, Express
+**Server:** NodeJS, ExpressJS
 
 **Database:** MongoDB, Mongoose
 

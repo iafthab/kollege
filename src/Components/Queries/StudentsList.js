@@ -18,12 +18,19 @@ const StudentsList = () => {
   }, [paper]);
   return (
     <main className="student">
-      <h2>Students</h2>
-      <ol className="student__table">
-        {students?.map((student, index) => (
-          <li key={index}>{student.name}</li>
-        ))}
-      </ol>
+      <h2 className="text-violet-950 text-6xl mt-3 mb-2 underline decoration-violet-950 decoration-2 font-bold">
+        Students List
+      </h2>
+      <p className="font-bold text-2xl">{paper.paper}</p>
+      {students.length ? (
+        <ol className="pl-8 mt-2 text-lg font-medium student__table list-decimal">
+          {students?.map((student, index) => (
+            <li key={index}>{student.name}</li>
+          ))}
+        </ol>
+      ) : (
+        <p className="m-4 font-medium">Loading...</p>
+      )}
     </main>
   );
 };

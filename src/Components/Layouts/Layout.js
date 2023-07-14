@@ -11,10 +11,10 @@ const Layout = () => {
   return (
     <div className="flex flex-col relative">
       <Header />
-      <main className="flex h-[calc(100vh-3.35rem)] whitespace-nowrap bg-slate-950 mt-[3.35rem]">
+      <main className="flex h-[calc(100vh-3.2rem)] whitespace-nowrap  bg-slate-950 mt-[3.15rem]">
         {location === "/dash" ? "" : <Nav />}
         {user ? (
-          <div className=" py-4 px-8 border-slate-950 rounded-xl border-4  bg-slate-50  w-full overflow-y-auto">
+          <div className=" py-4 px-8 border-slate-950 rounded-xl border-4 bg-slate-50  w-full overflow-y-auto">
             <Outlet />
           </div>
         ) : (

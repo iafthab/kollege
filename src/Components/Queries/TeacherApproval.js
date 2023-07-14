@@ -11,7 +11,7 @@ const TeacherApproval = () => {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    const getUsers = async () => {
+    const getNewTeachers = async () => {
       try {
         const response = await axios.get("teacher/approve/" + user.department);
         setUsers(response.data);
@@ -19,7 +19,7 @@ const TeacherApproval = () => {
         setError(err);
       }
     };
-    getUsers();
+    getNewTeachers();
   }, [user]);
 
   const handleApprove = async (e) => {
@@ -57,57 +57,71 @@ const TeacherApproval = () => {
     <>
       {user.isHOD ? (
         <main className="teacher__approval">
-          <h2>Approve Teacher</h2>
-          <h3>Department: {user.department}</h3>
+          <h2 className="text-violet-950 text-6xl mt-3 mb-2 underline decoration-violet-950 decoration-2 font-bold">
+            Approve Teacher
+          </h2>
+          <h3 className="text-2xl font-semibold">
+            Department: {user.department}
+          </h3>
           <form>
             {users.length ? (
-              <table className="table">
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Qualification</th>
-                    <th>Username</th>
-                    <th>Approve</th>
-                    <th>Reject</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {users?.map((teacher, index) => (
-                    <tr key={index}>
-                      <td>{teacher.name}</td>
-                      <td>{teacher.email}</td>
-                      <td>{teacher.qualification}</td>
-                      <td>{teacher.username}</td>
-                      <td>
-                        <button
-                          type="button"
-                          id={index}
-                          onClick={(e) => handleApprove(e)}
-                          className="plus_btn"
-                        >
-                          <FaPlus />
-                        </button>
-                      </td>
-                      <td>
-                        <button
-                          className="delete_btn"
-                          type="button"
-                          id={index}
-                          onClick={(e) => handleDelete(e)}
-                        >
-                          <FaTrash />
-                        </button>
-                      </td>
+              <div className="rounded-md border-2 border-slate-900 my-4 w-full">
+                <table className="w-full">
+                  <thead>
+                    <tr className="text-base rounded-t-xl bg-slate-900 text-slate-100">
+                      <th className="p-2 ">Name</th>
+                      <th className="p-2 ">Email</th>
+                      <th className="p-2 ">Qualification</th>
+                      <th className="p-2 ">Username</th>
+                      <th className="p-2 ">Approve</th>
+                      <th className="p-2 ">Reject</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {users?.map((teacher, index) => (
+                      <tr key={index}>
+                        <td className="p-2 border-t-[1px] border-slate-400">
+                          {teacher.name}
+                        </td>
+                        <td className="p-2 border-t-[1px] border-slate-400">
+                          {teacher.email}
+                        </td>
+                        <td className="p-2 border-t-[1px] border-slate-400">
+                          {teacher.qualification}
+                        </td>
+                        <td className="p-2 border-t-[1px] border-slate-400">
+                          {teacher.username}
+                        </td>
+                        <td className="p-0 ">
+                          <button
+                            type="button"
+                            id={index}
+                            onClick={(e) => handleApprove(e)}
+                            className="bg-slate-900 py-3 h-auto text-xl m-0 hover:bg-violet-900  text-slate-100 w-full flex justify-center "
+                          >
+                            <FaPlus />
+                          </button>
+                        </td>
+                        <td className="p-0 ">
+                          <button
+                            className="bg-slate-900 py-3 h-auto text-xl m-0 hover:bg-red-600  text-slate-100 w-full flex justify-center "
+                            type="button"
+                            id={index}
+                            onClick={(e) => handleDelete(e)}
+                          >
+                            <FaTrash />
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             ) : (
-              ""
+              <p className="m-4 font-medium">Loading...</p>
             )}
           </form>
-          <p className="form__error">
+          <p className="text-center font-medium text-red-700 whitespace-nowrap overflow-hidden text-ellipsis mb-3">
             {error
               ? error?.response?.data?.message ||
                 error?.data?.message ||

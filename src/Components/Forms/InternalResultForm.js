@@ -3,6 +3,7 @@ import axios from "../../config/api/axios";
 import UserContext from "../../Hooks/UserContext";
 import { FaPlus, FaEdit, FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
+import { TableHeader } from "../Table";
 
 const InternalResultForm = () => {
   const { paperList } = useContext(UserContext);
@@ -92,11 +93,13 @@ const InternalResultForm = () => {
 
   return (
     <main className="internal">
-      <h2>Internal Mark</h2>
+      <h2 className="text-violet-950 text-6xl mt-3 mb-2 underline decoration-violet-950 decoration-2 font-bold">
+        Internal Mark
+      </h2>
       <section className="form__head">
-        <form className="internal__form">
+        <form className="flex gap-4 w-full">
           <select
-            className="form__select"
+            className="w-1/3 outline-none text-md font-medium leading-6 focus:border-violet-900 mb-4 selection:border-[1.5px] inline-block rounded-md p-1  h-10 pl-2 pr-10 border-[1.5px] border-solid border-slate-400 text-slate-900t"
             placeholder="select paper"
             name="paper"
             id="paper"
@@ -113,130 +116,145 @@ const InternalResultForm = () => {
               </option>
             ))}
           </select>
-          <button type="submit" onClick={(e) => fetchInternal(e)}>
+          <button
+            className="bg-slate-800 flex font-semibold hover:bg-violet-900 mb-4 focus:bg-violet-900 dark:text-slate-900 text-slate-200 h-10 py-4 px-8 gap-2 items-center w-auto rounded-md"
+            type="submit"
+            onClick={(e) => fetchInternal(e)}
+          >
             Fetch
           </button>
         </form>
       </section>
       <div>
-        <p className="form__error">
+        <p className="text-center font-medium text-red-700 whitespace-nowrap overflow-hidden text-ellipsis mb-3">
           {error ? error?.response?.data?.message || error?.response?.data : ""}
         </p>
       </div>
       <section className="internal__body">
         <form className="internal__body__form">
-          <table className="table">
-            {internal.length ? (
-              <thead>
-                <tr>
-                  <th>student</th>
-                  <th>test</th>
-                  <th>seminar</th>
-                  <th>assignment</th>
-                  <th>attendance</th>
-                  <th>total</th>
-                </tr>
-              </thead>
-            ) : (
-              ""
-            )}
-            <tbody>
-              {internal?.map((student, index) => (
-                <tr
-                  key={index}
-                  className={
-                    parseInt(student?.test) +
-                      parseInt(student?.seminar) +
-                      parseInt(student?.assignment) +
-                      parseInt(student?.attendance) <
-                    7
-                      ? "bg-red"
-                      : "bg-green"
-                  }
-                >
-                  <td>{student.name}</td>
-                  <td>
-                    <input
-                      type="number"
-                      required
-                      min="0"
-                      max="3"
-                      disabled={disabled}
-                      id={index}
-                      name="test"
-                      value={student.test}
-                      onChange={(e) => handleFormChange(e)}
-                    />
-                  </td>
-                  <td>
-                    <input
-                      type="number"
-                      required
-                      min="0"
-                      max="3"
-                      disabled={disabled}
-                      id={index}
-                      name="seminar"
-                      value={student.seminar}
-                      onChange={(e) => handleFormChange(e)}
-                    />
-                  </td>
-                  <td>
-                    <input
-                      type="number"
-                      required
-                      min="0"
-                      max="3"
-                      disabled={disabled}
-                      id={index}
-                      name="assignment"
-                      value={student.assignment}
-                      onChange={(e) => handleFormChange(e)}
-                    />
-                  </td>
-                  <td>
-                    <input
-                      type="number"
-                      required
-                      min="0"
-                      max="3"
-                      disabled={disabled}
-                      id={index}
-                      name="attendance"
-                      value={student.attendance}
-                      onChange={(e) => handleFormChange(e)}
-                    />
-                  </td>
-                  <td>
-                    <input
-                      type="number"
-                      required
-                      min="0"
-                      max="3"
-                      disabled
-                      id={index}
-                      name="total"
-                      value={
+          {internal.length ? (
+            <div className="w-full rounded-md border-2 border-slate-900 my-4">
+              <table className="w-full">
+                <TableHeader
+                  Headers={[
+                    "Student",
+                    "Test",
+                    "Seminar",
+                    "Assignment",
+                    "Attendance",
+                    "Total",
+                  ]}
+                />
+                <tbody>
+                  {internal?.map((student, index) => (
+                    <tr
+                      key={index}
+                      className={
                         parseInt(student?.test) +
-                        parseInt(student?.seminar) +
-                        parseInt(student?.assignment) +
-                        parseInt(student?.attendance)
+                          parseInt(student?.seminar) +
+                          parseInt(student?.assignment) +
+                          parseInt(student?.attendance) >
+                        7
+                          ? "bg-violet-900/50 border-t-[1px] border-slate-400 first:border-none"
+                          : "border-t-[1px] border-slate-400 first:border-none"
                       }
-                      onChange={(e) => handleFormChange(e)}
-                    />
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                    >
+                      <td className="p-2 ">{student.name}</td>
+                      <td className="p-2 ">
+                        <input
+                          className="w-full "
+                          type="number"
+                          required
+                          min="0"
+                          max="3"
+                          disabled={disabled}
+                          id={index}
+                          name="test"
+                          value={student.test}
+                          onChange={(e) => handleFormChange(e)}
+                        />
+                      </td>
+                      <td className="p-2 ">
+                        <input
+                          className="w-full "
+                          type="number"
+                          required
+                          min="0"
+                          max="3"
+                          disabled={disabled}
+                          id={index}
+                          name="seminar"
+                          value={student.seminar}
+                          onChange={(e) => handleFormChange(e)}
+                        />
+                      </td>
+                      <td className="p-2 ">
+                        <input
+                          className="w-full "
+                          type="number"
+                          required
+                          min="0"
+                          max="3"
+                          disabled={disabled}
+                          id={index}
+                          name="assignment"
+                          value={student.assignment}
+                          onChange={(e) => handleFormChange(e)}
+                        />
+                      </td>
+                      <td className="p-2 ">
+                        <input
+                          className="w-full "
+                          type="number"
+                          required
+                          min="0"
+                          max="3"
+                          disabled={disabled}
+                          id={index}
+                          name="attendance"
+                          value={student.attendance}
+                          onChange={(e) => handleFormChange(e)}
+                        />
+                      </td>
+                      <td className="p-2 ">
+                        <input
+                          className="w-full "
+                          type="number"
+                          required
+                          min="0"
+                          max="3"
+                          disabled
+                          id={index}
+                          name="total"
+                          value={
+                            parseInt(student?.test) +
+                            parseInt(student?.seminar) +
+                            parseInt(student?.assignment) +
+                            parseInt(student?.attendance)
+                          }
+                          onChange={(e) => handleFormChange(e)}
+                        />
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            ""
+          )}
           {internal.length && disabled ? (
-            <div className="footer">
-              <button type="submit" onClick={(e) => setDisabled(false)}>
+            <div className="flex gap-4">
+              <button
+                type="submit"
+                className="bg-slate-800 flex font-semibold hover:bg-violet-900 mb-4 focus:bg-violet-900 dark:text-slate-900 text-slate-200 h-10 py-4 px-6 gap-2 items-center w-auto rounded-md"
+                onClick={(e) => setDisabled(false)}
+              >
                 <FaEdit /> Edit
               </button>
               <button
                 type="submit"
-                className="delete_btn"
+                className="bg-slate-800 flex font-semibold hover:bg-red-700 mb-4 focus:bg-violet-900 dark:text-slate-900 text-slate-200 h-10 p-4 gap-2 items-center w-auto rounded-md"
                 onClick={(e) => deleteInternalMark(e)}
               >
                 <FaTrash /> Delete
@@ -246,7 +264,11 @@ const InternalResultForm = () => {
             ""
           )}
           {!disabled && (
-            <button type="submit" onClick={(e) => addInternalMark(e)}>
+            <button
+              type="submit"
+              className="bg-slate-800 flex font-semibold hover:bg-violet-900 mb-4 focus:bg-violet-900 dark:text-slate-900 text-slate-200 h-10 py-4 px-6 gap-2 items-center w-auto rounded-md "
+              onClick={(e) => addInternalMark(e)}
+            >
               <FaPlus /> Save
             </button>
           )}

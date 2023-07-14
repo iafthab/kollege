@@ -30,53 +30,73 @@ const Notes = () => {
   };
 
   return (
-    <main className="notes">
-      <h2>{paper.paper}</h2>
-      <ul className="notes__list">
-        <li>BATCH:{paper.year}</li>
-        <li>SEMESTER:{paper.semester}</li>
-        <li>
-          <Link to="students">STUDENTS</Link>
+    <main>
+      <h2 className="text-violet-950 text-6xl mt-3 mb-2 underline decoration-violet-950 decoration-2 font-bold">
+        {paper.paper}
+      </h2>
+      <ul className="flex items-center justify-start font-semibold gap-16">
+        <li className="p-1">BATCH:{paper.year}</li>
+        <li className="p-1">SEMESTER:{paper.semester}</li>
+        <li className="p-1">
+          <Link
+            className="underline decoration-violet-900 decoration-2 underline-offset-2 hover:decoration-0 hover:bg-violet-950 rounded-md p-2 hover:text-slate-100 "
+            to="students"
+          >
+            STUDENTS
+          </Link>
         </li>
-        <li>
-          <Link to="add">ADD NOTE</Link>
+        <li className="p-1">
+          <Link
+            className="underline decoration-violet-900 decoration-2 underline-offset-2 hover:decoration-0 hover:bg-violet-950 rounded-md p-2 hover:text-slate-100 "
+            to="add"
+          >
+            ADD NOTE
+          </Link>
         </li>
       </ul>
 
-      <hr />
+      <hr className="border-b-[1px] mt-3 border-slate-500 " />
+
       <section className="note__body">
         {notes?.map((note, index) => (
-          <article className="note__container" key={index}>
-            <details>
-              <summary>
-                <div className="note__head">
-                  <h3 className="note__name">{note.title}</h3>
-                  <div className="note__icons">
+          <article
+            className="whitespace bg-violet-200 overflow-hidden-pre-wrap border-2 mt-4 rounded-md border-slate-900"
+            key={index}
+          >
+            <details className="">
+              <summary className="list-none ">
+                <div className="flex justify-between">
+                  <h3 className="text-lg font-semibold  p-4">{note.title}</h3>
+                  <div className="flex p-3 pb-1">
                     <Link
                       to={`${index}/edit`}
                       id={index}
                       onClick={(e) => setNoteId(e.currentTarget.id)}
                     >
-                      <FaEdit />
+                      <FaEdit className="ml-2 text-[2.25rem] rounded-md p-2 pt-1 pr-1 hover:bg-violet-900 hover:text-slate-100" />
                     </Link>
                     <Link
                       id={note._id}
                       style={{ color: "rgba(220, 20, 60, 0.8)" }}
                       onClick={(e) => deleteNote(e)}
                     >
-                      <FaTrash />
+                      <FaTrash className="ml-2 text-[2.25rem] rounded-md p-2 text-red-700 hover:bg-red-700 hover:text-slate-100" />
                     </Link>
                   </div>
                 </div>
               </summary>
-              <hr />
-              <pre>{note.body}</pre>
+              <hr className="border-b-[1.5px] border-slate-900 " />
+              <pre className="whitespace-pre-wrap font-sans p-4">
+                {note.body}
+              </pre>
             </details>
           </article>
         ))}
-        {!notes.length && <p>No Notes Found</p>}
+        {!notes.length && !error && (
+          <p className="m-4 font-medium">Loading...</p>
+        )}
       </section>
-      <p className="form__error">
+      <p className="text-center font-medium text-red-700 whitespace-nowrap overflow-hidden text-ellipsis mb-3">
         {error
           ? error?.response?.data?.message ||
             error?.data?.message ||

@@ -29,7 +29,7 @@ const Dash = () => {
           className="p-6 text-lg hover:bg-violet-950 hover:text-slate-100 text-slate-900 rounded-lg flex gap-1"
           to={"./paper"}
         >
-          <GiBookshelf className="text-[4rem] font-" />
+          <GiBookshelf className="text-[4rem]" />
           <div className="font-semibold">
             Papers
             <p className="font-normal text-md ">View Papers and Notes</p>
@@ -40,7 +40,7 @@ const Dash = () => {
           className="p-6 text-lg hover:bg-violet-950 hover:text-slate-100 text-slate-900 rounded-lg flex gap-1"
           to={"./attendance"}
         >
-          <IoCalendarOutline className="text-[4rem] font-" />
+          <IoCalendarOutline className="text-[4rem]" />
           <div className="font-semibold">
             Attendance
             <p className="font-normal text-md ">Add or Edit Attendance</p>
@@ -51,7 +51,7 @@ const Dash = () => {
           className="p-6 text-lg hover:bg-violet-950 hover:text-slate-100 text-slate-900 rounded-lg flex gap-1"
           to={"./internal"}
         >
-          <HiOutlineDocumentReport className="text-[4rem] font-" />
+          <HiOutlineDocumentReport className="text-[4rem]" />
           <div className="font-semibold">
             Internal Mark
             <p className="font-normal text-md ">View or Edit Internal Marks</p>
@@ -62,7 +62,7 @@ const Dash = () => {
           className="p-6 text-lg hover:bg-violet-950 hover:text-slate-100 text-slate-900 rounded-lg flex gap-1"
           to={"./time_schedule"}
         >
-          <AiOutlineSchedule className="text-[4rem] font-" />
+          <AiOutlineSchedule className="text-[4rem]" />
           <div className="font-semibold">
             Time Schedule
             <p className="font-normal text-md ">View or Edit Time Schedule</p>
@@ -75,7 +75,7 @@ const Dash = () => {
               className="p-6 text-lg hover:bg-violet-950 hover:text-slate-100 text-slate-900 rounded-lg flex gap-1"
               to={"./add_paper"}
             >
-              <BiBookAdd className="text-[4rem] font-" />
+              <BiBookAdd className="text-[4rem]" />
               <div className="font-semibold">
                 Add Paper
                 <p className="font-normal text-md ">Add a New Paper</p>
@@ -86,7 +86,7 @@ const Dash = () => {
               className="p-6 text-lg hover:bg-violet-950 hover:text-slate-100 text-slate-900 rounded-lg flex gap-1"
               to={"./approve_teacher"}
             >
-              <RiUserAddLine className="text-[4rem] font-" />
+              <RiUserAddLine className="text-[4rem]" />
               <div className="font-semibold">
                 Approve Teacher
                 <p className="font-normal text-md ">
@@ -100,7 +100,7 @@ const Dash = () => {
           className="p-6 text-lg hover:bg-violet-950 hover:text-slate-100 text-slate-900 rounded-lg flex gap-1"
           to={"./reg_student"}
         >
-          <AiOutlineUserAdd className="text-[4rem] font-" />
+          <AiOutlineUserAdd className="text-[4rem]" />
           <div className="font-semibold">
             Register Student
             <p className="font-normal text-md ">Add a new Student</p>

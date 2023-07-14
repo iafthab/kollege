@@ -4,9 +4,24 @@
 @import url("https://fonts.googleapis.com/css2?family=Spectral+SC&display=swap");
 
 @layer html {
-  input {
+  input,
+  select,
+  textarea {
+    background-color: inherit;
     display: block;
   }
+
+  .select-img {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='rgb(65, 84, 98)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-position: center right 1px;
+    background-size: 1rem auto;
+    background-repeat: no-repeat;
+  }
+
+  select:disabled {
+    background-image: none;
+  }
+
   .active {
     background-color: rgb(76 29 149);
     border-radius: 0.375rem;
