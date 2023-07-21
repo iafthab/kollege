@@ -34,7 +34,7 @@ const TimeScheduleForm = () => {
         delete response.data.schedule._id;
         setTimeSchedule(response.data.schedule);
       } catch (err) {
-        if (err.response.status === 404) {
+        if (err?.response?.status === 404) {
           setDisabled(false);
           setTimeSchedule({
             monday: ["--", "--", "--", "--", "--"],
@@ -79,22 +79,19 @@ const TimeScheduleForm = () => {
 
   return (
     <main className="time_schedule">
-      <h2 className="text-violet-950 dark:text-violet-400 underline-offset-4 text-6xl mt-3 dark:mt-0 mb-2 underline decoration-inherit decoration-2 font-bold">
+      <h2 className="mb-2 mt-3 whitespace-break-spaces text-4xl font-bold text-violet-950 underline decoration-inherit decoration-2 underline-offset-4 dark:mt-0 dark:text-slate-400 md:text-6xl">
         Time Schedule
       </h2>
       <form>
         {timeSchedule.monday ? (
-          <div className="rounded-md border-2 dark:border-slate-500 dark:p-[1px] border-slate-900 my-4 w-full">
+          <div className="my-4 w-full overflow-auto rounded-md border-2 border-slate-900 dark:border-slate-500 dark:p-[1px]">
             <table className=" w-full text-center">
               <thead>
-                <tr className="text-lg bg-slate-900 h-[3rem] p-4 text-slate-100">
+                <tr className="h-[3rem] bg-slate-900 p-4 text-lg text-slate-100">
                   <th>Day/Hour</th>
                   <th>I</th>
                   <th>II</th>
                   <th>III</th>
-                  {/* <th className="time_schedule__break" rowSpan="5">
-                  B R E A K
-                </th> */}
                   <th>IV</th>
                   <th>V</th>
                 </tr>
@@ -103,17 +100,17 @@ const TimeScheduleForm = () => {
                 {Object.entries(timeSchedule)?.map(([key, value]) => {
                   return (
                     <tr key={key}>
-                      <th className="py-4 text-base border-none px-4 bg-slate-900 text-slate-100 capitalize">
+                      <th className="border-none bg-slate-900 px-4 py-4 text-base capitalize text-slate-100">
                         {key}
                       </th>
                       {value.map((day, index) => (
                         <td
-                          className="p-1 border-t-[1px] border-l-[1px] border-slate-400 first:border-none"
+                          className="min-w-[180px] border-l-[1px]  border-t-[1px] border-slate-400 p-1 first:border-none"
                           id="table__td"
                           key={index}
                         >
                           <select
-                            className="h-[3rem] w-full leading-6 select-img appearance-none focus:border-0 text-center"
+                            className="select-img h-[3rem] w-full appearance-none text-center leading-6 focus:border-0 disabled:opacity-100"
                             value={day}
                             name={key}
                             id={index}
@@ -143,14 +140,14 @@ const TimeScheduleForm = () => {
           <div className="flex gap-4">
             <button
               type="submit"
-              className="tracking-wide dark:border-violet-300 dark:hover:bg-slate-900 bg-slate-800 font-semibold dark:bg-violet-900 dark:text-violet-100 hover:bg-violet-900 mb-4 focus:bg-violet-900 text-slate-200 h-10 py-2 px-6 border-[1.5px] border-solid flex items-center gap-2 w-auto border-violet-900 rounded-md"
+              className="mb-4 flex h-10 w-auto items-center gap-2 rounded-md border-[1.5px] border-solid border-violet-900 bg-slate-800 px-6 py-2 font-semibold tracking-wide text-slate-200 hover:bg-violet-900 focus:bg-violet-900 dark:border-violet-300 dark:bg-violet-900 dark:text-violet-100 dark:hover:bg-slate-900"
               onClick={() => setDisabled(false)}
             >
               <FaEdit /> Edit
             </button>
             <button
               type="submit"
-              className="tracking-wide dark:border-violet-300 dark:hover:bg-red-700 bg-slate-800 font-semibold dark:bg-violet-900 dark:text-violet-100 hover:bg-red-700 mb-4 focus:bg-violet-900 text-slate-200 h-10 py-2 px-6 border-[1.5px] border-solid flex items-center gap-2 w-auto border-violet-900 rounded-md"
+              className="mb-4 flex h-10 w-auto items-center gap-2 rounded-md border-[1.5px] border-solid border-violet-900 bg-slate-800 px-6 py-2 font-semibold tracking-wide text-slate-200 hover:bg-red-700 focus:bg-violet-900 dark:border-violet-300 dark:bg-violet-900 dark:text-violet-100 dark:hover:bg-red-700"
               onClick={(e) => deleteTimeSchedule(e)}
             >
               <FaTrash /> Delete
@@ -160,14 +157,14 @@ const TimeScheduleForm = () => {
         {!disabled && (
           <button
             type="submit"
-            className="tracking-wide dark:border-violet-300 dark:hover:bg-slate-900 bg-slate-800 font-semibold dark:bg-violet-900 dark:text-violet-100 hover:bg-violet-900 mb-4 focus:bg-violet-900 text-slate-200 h-10 py-2 px-6 border-[1.5px] border-solid flex items-center gap-2 w-auto border-violet-900 rounded-md"
+            className="mb-4 flex h-10 w-auto items-center gap-2 rounded-md border-[1.5px] border-solid border-violet-900 bg-slate-800 px-6 py-2 font-semibold tracking-wide text-slate-200 hover:bg-violet-900 focus:bg-violet-900 dark:border-violet-300 dark:bg-violet-900 dark:text-violet-100 dark:hover:bg-slate-900"
             onClick={(e) => addTimeSchedule(e)}
           >
             <FaPlus /> Save
           </button>
         )}
       </form>
-      <p className="text-center font-medium text-red-700 whitespace-nowrap overflow-hidden text-ellipsis mb-3">
+      <p className="mb-3 overflow-hidden text-ellipsis whitespace-nowrap text-center font-medium text-red-700">
         {error
           ? error?.response?.data?.message ||
             error?.data?.message ||

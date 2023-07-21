@@ -24,36 +24,36 @@ const Login = () => {
   return (
     <>
       {!user?._id ? (
-        <main className="h-screen relative z-0 bg-gradient-to-b from-slate-400 to-slate-300 dark:from-slate-950 dark:to-slate-800 text-slate-950 dark:text-slate-300 flex items-center justify-center flex-col">
+        <main className="relative z-0 flex h-screen flex-col items-center justify-center bg-gradient-to-b from-slate-400 to-slate-300 text-slate-950 dark:from-slate-800 dark:to-slate-950 dark:text-slate-300">
           <div
-            className=" hidden lg:flex flex-row  w-full h-full -z-[1] items-center justify-center blur-2xl gap-16 absolute"
+            className="absolute -z-[1]  flex  h-full w-full flex-col items-center justify-center gap-16 blur-[47px] md:blur-2xl lg:flex-row"
             name="blur design"
           >
-            <span className=" w-[10rem] h-[16rem] bg-violet-900 rounded-r-full inline-block"></span>
-            <span className=" w-[18rem] h-[16rem] bg-violet-900 rounded-full inline-block"></span>
-            <span className=" w-[18rem] h-[16rem] bg-violet-900 rounded-full inline-block"></span>
-            <span className=" w-[18rem] h-[16rem] bg-violet-900 rounded-full inline-block"></span>
-            <span className=" w-[10rem] h-[16rem] bg-violet-900 rounded-l-full inline-block"></span>
+            <span className=" inline-block h-[16rem] w-[10rem] rounded-r-full bg-violet-900"></span>
+            <span className=" inline-block h-[16rem] w-[18rem] rounded-full bg-violet-900"></span>
+            <span className=" inline-block h-[16rem] w-[18rem] rounded-full bg-violet-900"></span>
+            <span className=" inline-block h-[16rem] w-[18rem] rounded-full bg-violet-900"></span>
+            <span className=" inline-block h-[16rem] w-[10rem] rounded-l-full bg-violet-900"></span>
           </div>
-          <section className="flex gap-4 z-0  items-center">
-            <FaUniversity className="text-[6rem]" />
-            <h1 className="font-spectral text-[6rem] text-slate-900  font-semibold  dark:text-slate-300 ">
+          <section className="z-0 flex items-center gap-2 whitespace-nowrap text-5xl sm:text-6xl md:text-8xl lg:gap-4 xl:text-[6rem]">
+            <FaUniversity />
+            <h1 className="font-spectral font-semibold  text-slate-900  dark:text-slate-300 ">
               K
-              <span className="bg-violet-900 dark:bg-violet-600 h-14 w-14 rounded-full inline-block"></span>
+              <span className="inline-block h-8 w-8 rounded-full bg-violet-900 dark:bg-violet-600 sm:h-10 sm:w-10 md:h-14 md:w-14 xl:h-14 xl:w-14"></span>
               llege
             </h1>
           </section>
-          <section className="xl:w-[23%] opacity-80 focus:opacity-100 hover:opacity-100 dark:border-[1.5px] dark:border-solid dark:border-violet-900 z-0 md:w-3/5 w-4/5 justify-self-center bg-slate-100 dark:bg-slate-800 rounded-lg pt-4 pb-4 ">
+          <section className="z-0 mt-4 w-[65%] justify-self-center rounded-lg bg-slate-100 py-4 opacity-80 hover:opacity-100 focus:opacity-100 dark:border-[1.5px] dark:border-solid dark:border-violet-900 dark:bg-slate-800 sm:w-[50%] md:w-[40%] xl:w-[23%] ">
             <div className="flex items-center justify-center ">
-              <FaUser className="text-[7rem] border-2 border-solid border-slate-900 dark:border-slate-200 rounded-full p-2 m-4 " />
+              <FaUser className="m-2 rounded-full border-2 border-solid border-slate-900 p-1 text-[5rem] dark:border-slate-200 md:m-4 md:p-2 md:text-[7rem] " />
               {/* <AiOutlineUser className="login__user" /> */}
             </div>
             <form
-              className="pr-8 pl-8 placeholder:text-slate-200 tracking-wide dark:placeholder:text-violet-200 "
+              className="px-4 tracking-wide placeholder:text-slate-200 dark:placeholder:text-violet-200 lg:px-8 "
               onSubmit={(e) => handleLogin(e)}
             >
               <input
-                className="w-full outline-none focus:border-violet-900 dark:border-slate-200 mb-4 selection:border-slate-200 block rounded-md p-1 h-10 pl-2 border-[1.5px] border-solid border-slate-400 dark:active:border-violet-400 dark:focus:border-violet-400 dark:caret-inherit"
+                className="mb-4 block h-10 w-full rounded-md border-[1.5px] border-solid border-slate-400 p-1 pl-2 outline-none selection:border-slate-200 focus:border-violet-900 dark:border-slate-200 dark:caret-inherit dark:focus:border-violet-400 dark:active:border-violet-400"
                 placeholder="username"
                 id="username"
                 type="text"
@@ -64,7 +64,7 @@ const Login = () => {
                 onChange={(e) => setUsername(e.target.value)}
               />
               <input
-                className="w-full outline-none focus:border-violet-900 dark:border-slate-200 mb-4 selection:border-slate-200 block rounded-md p-1 h-10 pl-2 border-[1.5px] border-solid border-slate-400 dark:active:border-violet-400 dark:focus:border-violet-400 dark:caret-inherit"
+                className="mb-4 block h-10 w-full rounded-md border-[1.5px] border-solid border-slate-400 p-1 pl-2 outline-none selection:border-slate-200 focus:border-violet-900 dark:border-slate-200 dark:caret-inherit dark:focus:border-violet-400 dark:active:border-violet-400"
                 placeholder="password"
                 id="password"
                 type="password"
@@ -74,14 +74,14 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
               <button
-                className="bg-slate-800 dark:bg-violet-600 font-bold tracking-wide hover:bg-violet-900 mb-4 focus:bg-violet-900 dark:text-slate-50 text-slate-200 h-10 p-1 border-[1.5px] border-solid block w-full border-violet-900 dark:border-violet-300 dark:hover:bg-slate-900 rounded-md "
+                className="mb-1 block h-10 w-full rounded-md border-[1.5px] border-solid border-violet-900 bg-slate-800 p-1 font-bold tracking-wide text-slate-200 hover:bg-violet-900 focus:bg-violet-900 dark:border-violet-300 dark:bg-violet-600 dark:text-slate-50 dark:hover:bg-slate-900 lg:mb-4 "
                 type="submit"
                 value="Login"
                 onClick={(e) => handleLogin(e)}
               >
                 Login
               </button>
-              <p className="text-center font-medium text-red-700 whitespace-nowrap overflow-hidden text-ellipsis mb-3">
+              <p className="mb-3 overflow-hidden text-ellipsis whitespace-nowrap text-center font-medium text-red-700">
                 {error
                   ? error?.response?.data?.message ||
                     error?.data?.message ||
@@ -92,7 +92,7 @@ const Login = () => {
                 Click to{" "}
               </p>
               <Link
-                className="text-violet-600 hover:underline decoration-2 dark:text-violet-400 font-semibold  "
+                className="font-semibold text-violet-600 decoration-2 hover:underline dark:text-violet-400  "
                 to="./reg_teacher"
               >
                 Register

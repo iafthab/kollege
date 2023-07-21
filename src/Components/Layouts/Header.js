@@ -12,21 +12,21 @@ const Header = () => {
     toast.info("Logged Out");
   };
   return (
-    <header className="flex w-full absolute top-0 justify-between text-slate-50 dark:bg-slate-800 bg-slate-950 ">
+    <header className="absolute top-0 flex w-full justify-between bg-slate-950 text-slate-50 dark:bg-slate-800 ">
       <Link
         to="/dash"
-        className="text-3xl py-1 px-3 ml-4 flex gap-2 items-center font-semibold"
+        className="ml-4 flex items-center gap-2 px-3 py-1 text-3xl font-semibold"
       >
         <FaUniversity className="m-1" />
-        <h1 className="pr-1 m-0 font-spectral hover:underline decoration-[3px] decoration-violet-500 underline-offset-[3px] text-slate-50">
+        <h1 className="m-0 pr-1 font-spectral text-slate-50 decoration-violet-500 decoration-[3px] underline-offset-[3px] hover:underline">
           K
-          <span className="bg-violet-500 dark:bg-violet-400 h-[1.15rem] w-[1.15rem] rounded-full inline-block"></span>
+          <span className="inline-block h-[1.15rem] w-[1.15rem] rounded-full bg-violet-500 dark:bg-violet-400"></span>
           llege
         </h1>
       </Link>
       <Link
         to="./"
-        className="text-md font-semibold p-[7px] m-2 mr-4 rounded-md hover:bg-red-700 hover:text-slate-100  flex items-center"
+        className="text-md m-2 mr-4 flex items-center rounded-md p-[7px] font-semibold  hover:bg-red-700 hover:text-slate-100"
         onClick={() => logout()}
       >
         <p>&nbsp;Logout&nbsp;&nbsp;</p>

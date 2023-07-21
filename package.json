@@ -18,7 +18,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "tailwind": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
-    "prettier": "npx prettier --write src/**/*.js"
+    "prettier": "npx prettier --write ./src/**/*.js"
   },
   "eslintConfig": {
     "extends": [
@@ -37,5 +37,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "prettier-plugin-tailwindcss": "^0.4.1"
   }
 }

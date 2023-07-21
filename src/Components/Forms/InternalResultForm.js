@@ -93,13 +93,13 @@ const InternalResultForm = () => {
 
   return (
     <main className="internal">
-      <h2 className="text-violet-950 dark:text-slate-400 underline-offset-4 text-6xl mt-3 dark:mt-0 mb-2 underline decoration-inherit decoration-2 font-bold">
+      <h2 className="mb-2 mt-3 whitespace-break-spaces text-4xl font-bold text-violet-950 underline decoration-inherit decoration-2 underline-offset-4 dark:mt-0 dark:text-slate-400 md:text-6xl">
         Internal Mark
       </h2>
       <section className="form__head">
-        <form className="flex gap-4 w-full">
+        <form className="w-full gap-4 md:flex">
           <select
-            className="w-1/3 outline-none focus:border-violet-900 dark:border-slate-200 mb-4 selection:border-slate-200 block rounded-md p-1 h-10 pl-2 border-[1.5px] border-solid border-slate-400 dark:active:border-violet-400 dark:focus:border-violet-400 dark:caret-inherit"
+            className="mb-4 block h-10 w-full rounded-md border-[1.5px] border-solid border-slate-400 p-1 pl-2 outline-none selection:border-slate-200 focus:border-violet-900 dark:border-slate-200 dark:caret-inherit dark:focus:border-violet-400 dark:active:border-violet-400 md:w-1/3"
             placeholder="select paper"
             name="paper"
             id="paper"
@@ -117,7 +117,7 @@ const InternalResultForm = () => {
             ))}
           </select>
           <button
-            className="tracking-wide dark:border-violet-300 dark:hover:bg-slate-900 bg-slate-800 font-semibold dark:bg-violet-900 dark:text-violet-100 hover:bg-violet-900 mb-4 focus:bg-violet-900 text-slate-200 h-10 py-2 px-8 border-[1.5px] border-solid w-auto border-violet-900 rounded-md"
+            className="mb-4 h-10 w-auto rounded-md border-[1.5px] border-solid border-violet-900 bg-slate-800 px-8 py-2 font-semibold tracking-wide text-slate-200 hover:bg-violet-900 focus:bg-violet-900 dark:border-violet-300 dark:bg-violet-900 dark:text-violet-100 dark:hover:bg-slate-900"
             type="submit"
             onClick={(e) => fetchInternal(e)}
           >
@@ -126,14 +126,14 @@ const InternalResultForm = () => {
         </form>
       </section>
       <div>
-        <p className="text-center font-medium text-red-700 whitespace-nowrap overflow-hidden text-ellipsis mb-3">
+        <p className="mb-3 overflow-hidden text-ellipsis whitespace-break-spaces text-center font-medium text-red-700">
           {error ? error?.response?.data?.message || error?.response?.data : ""}
         </p>
       </div>
       <section className="internal__body">
         <form className="internal__body__form">
           {internal.length ? (
-            <div className="w-full rounded-md border-2 border-slate-900 dark:border-slate-500 dark:p-[1px] my-4">
+            <div className="my-4 w-full overflow-auto rounded-md border-2 border-slate-900 dark:border-slate-500 dark:p-[1px]">
               <table className="w-full">
                 <TableHeader
                   AdditionalHeaderClasses={"text-left"}
@@ -156,7 +156,7 @@ const InternalResultForm = () => {
                           parseInt(student?.assignment) +
                           parseInt(student?.attendance) >
                         7
-                          ? "bg-violet-900/50 border-t-[1px] border-slate-400 first:border-none"
+                          ? "border-t-[1px] border-slate-400 bg-violet-900/50 first:border-none"
                           : "border-t-[1px] border-slate-400 first:border-none"
                       }
                     >
@@ -248,14 +248,14 @@ const InternalResultForm = () => {
             <div className="flex gap-4">
               <button
                 type="submit"
-                className="tracking-wide dark:border-violet-300 dark:hover:bg-slate-900 bg-slate-800 font-semibold dark:bg-violet-900 dark:text-violet-100 hover:bg-violet-900 mb-4 focus:bg-violet-900 text-slate-200 h-10 py-2 px-6 border-[1.5px] border-solid flex items-center gap-2 w-auto border-violet-900 rounded-md"
+                className="mb-4 flex h-10 w-auto items-center gap-2 rounded-md border-[1.5px] border-solid border-violet-900 bg-slate-800 px-6 py-2 font-semibold tracking-wide text-slate-200 hover:bg-violet-900 focus:bg-violet-900 dark:border-violet-300 dark:bg-violet-900 dark:text-violet-100 dark:hover:bg-slate-900"
                 onClick={(e) => setDisabled(false)}
               >
                 <FaEdit /> Edit
               </button>
               <button
                 type="submit"
-                className="tracking-wide dark:border-violet-300 dark:hover:bg-red-700 bg-slate-800 font-semibold dark:bg-violet-900 dark:text-violet-100 hover:bg-red-700 mb-4 focus:bg-violet-900 text-slate-200 h-10 py-2 px-6 border-[1.5px] border-solid flex items-center gap-2 w-auto border-violet-900 rounded-md"
+                className="mb-4 flex h-10 w-auto items-center gap-2 rounded-md border-[1.5px] border-solid border-violet-900 bg-slate-800 px-6 py-2 font-semibold tracking-wide text-slate-200 hover:bg-red-700 focus:bg-violet-900 dark:border-violet-300 dark:bg-violet-900 dark:text-violet-100 dark:hover:bg-red-700"
                 onClick={(e) => deleteInternalMark(e)}
               >
                 <FaTrash /> Delete
@@ -267,7 +267,7 @@ const InternalResultForm = () => {
           {!disabled && (
             <button
               type="submit"
-              className="tracking-wide dark:border-violet-300 dark:hover:bg-slate-900 bg-slate-800 font-semibold dark:bg-violet-900 dark:text-violet-100 hover:bg-violet-900 mb-4 focus:bg-violet-900 text-slate-200 h-10 py-2 px-6 border-[1.5px] border-solid flex items-center gap-2 w-auto border-violet-900 rounded-md"
+              className="mb-4 flex h-10 w-auto items-center gap-2 rounded-md border-[1.5px] border-solid border-violet-900 bg-slate-800 px-6 py-2 font-semibold tracking-wide text-slate-200 hover:bg-violet-900 focus:bg-violet-900 dark:border-violet-300 dark:bg-violet-900 dark:text-violet-100 dark:hover:bg-slate-900"
               onClick={(e) => addInternalMark(e)}
             >
               <FaPlus /> Save

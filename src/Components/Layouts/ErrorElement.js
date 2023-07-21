@@ -13,7 +13,7 @@ const ErrorElement = () => {
       <main className="main">
         <Nav />
         <div id="error-page">
-          <h2 className="text-violet-950 text-6xl font-bold">Oops!</h2>
+          <h2 className="text-6xl font-bold text-violet-950">Oops!</h2>
           <p>Sorry, an unexpected error has occurred.</p>
           <p>
             <i>{error.statusText || error.message}</i>

@@ -8,7 +8,7 @@ const TableHeader = ({
   return (
     <thead>
       <tr
-        className={`${AdditionalRowClasses} text-lg bg-slate-900 text-slate-100`}
+        className={`${AdditionalRowClasses} bg-slate-900 text-lg text-slate-100`}
       >
         {Headers.map((header, i) => (
           <th key={i} className={`${AdditionalHeaderClasses} p-3`}>
@@ -26,13 +26,13 @@ const RowWithCheckbox = ({ keys, disabled, value, handleFormChange }) => {
       key={keys}
       className={
         value.present
-          ? "bg-violet-900/50 border-t-[1px] border-slate-400 first:border-none"
+          ? "border-t-[1px] border-slate-400 bg-violet-900/50 first:border-none"
           : "border-t-[1px] border-slate-400"
       }
     >
-      <td className="text-center p-2">
+      <td className="p-2 text-center">
         <input
-          className="accent-violet-900 mx-auto text-2xl p-4 w-9 h-9 l"
+          className="l mx-auto h-9 w-9 p-4 text-2xl accent-violet-900"
           type="checkbox"
           required
           disabled={disabled}
@@ -42,7 +42,7 @@ const RowWithCheckbox = ({ keys, disabled, value, handleFormChange }) => {
           onChange={(e) => handleFormChange(e)}
         />
       </td>
-      <td className=" text-center text-lg font-medium px-4 py-2">
+      <td className=" px-4 py-2 text-center text-lg font-medium">
         {value.student?.name || value?.name}
       </td>
     </tr>

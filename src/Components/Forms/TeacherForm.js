@@ -38,41 +38,41 @@ const TeacherForm = () => {
   };
 
   return (
-    <main className="h-screen z-0 relative bg-gradient-to-b from-slate-400 to-slate-300 dark:from-slate-950 dark:to-slate-800 text-slate-900 dark:text-slate-200 flex justify-center items-center">
+    <main className="relative z-0 flex h-screen items-center justify-center bg-gradient-to-b from-slate-400 to-slate-300 py-8 text-slate-900 dark:from-slate-800 dark:to-slate-950 dark:text-slate-200">
       <div
-        className=" hidden lg:flex flex-row  w-full h-full -z-[1] items-center justify-center blur-2xl gap-16 absolute "
+        className="absolute -z-[1]  flex  h-full w-full flex-col items-center justify-center gap-16 blur-2xl xl:flex-row"
         name="blur design"
       >
-        <span className=" w-[10rem] h-[16rem] bg-violet-900 rounded-r-full inline-block"></span>
-        <span className=" w-[18rem] h-[16rem] bg-violet-900 rounded-full inline-block"></span>
-        <span className=" w-[18rem] h-[16rem] bg-violet-900 rounded-full inline-block"></span>
-        <span className=" w-[18rem] h-[16rem] bg-violet-900 rounded-full inline-block"></span>
-        <span className=" w-[10rem] h-[16rem] bg-violet-900 rounded-l-full inline-block"></span>
+        <span className=" inline-block h-[16rem] w-[10rem] rounded-r-full bg-violet-900"></span>
+        <span className=" inline-block h-[16rem] w-[18rem] rounded-full bg-violet-900"></span>
+        <span className=" inline-block h-[16rem] w-[18rem] rounded-full bg-violet-900"></span>
+        <span className=" inline-block h-[16rem] w-[18rem] rounded-full bg-violet-900"></span>
+        <span className=" inline-block h-[16rem] w-[10rem] rounded-l-full bg-violet-900"></span>
       </div>
-      <section className="w-1/2 p-8 opacity-70 focus:opacity-100 hover:opacity-100 flex rounded-md justify-start bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-50">
-        <div className="flex justify-between flex-col mr-8 ">
-          <h2 className="text-5xl font-bold ">
+      <section className="my-8 flex w-[75%] flex-col justify-start rounded-md bg-slate-100 p-4 text-slate-900 opacity-70 hover:opacity-100 focus:opacity-100 dark:bg-slate-800 dark:text-slate-50 md:p-8 xl:w-1/2 xl:flex-row">
+        <div className="mr-8 flex flex-col-reverse justify-between xl:flex-col ">
+          <h2 className="my-4 text-4xl font-bold dark:text-slate-400 md:text-5xl">
             Teacher
             <br /> Registration
           </h2>
           <Link
-            className="font-spectral text-xl text-slate-900 font-semibold  flex items-center dark:text-slate-50"
+            className="flex items-center font-spectral text-xl font-semibold text-slate-900 dark:text-slate-50"
             to="../"
           >
             <FaUniversity />
-            <p className="hover:underline decoration-violet-900 decoration-2">
+            <p className="decoration-violet-900 decoration-2 hover:underline dark:decoration-violet-300">
               K
-              <span className=" h-3 w-3 rounded-full bg-violet-900 dark:bg-violet-500 inline-block "></span>
+              <span className=" inline-block h-3 w-3 rounded-full bg-violet-900 dark:bg-violet-500 "></span>
               llege
             </p>
           </Link>
         </div>
-        <form className="font-medium w-full tracking-wide accent-violet-600">
+        <form className="w-full font-medium tracking-wide accent-violet-600">
           <label className="block" htmlFor="name">
             Name:
           </label>
           <input
-            className="w-full outline-none focus:border-violet-900 dark:border-slate-200 mb-4 selection:border-[1.5px] block rounded-md p-1 h-10 pl-2 border-[1.5px] border-solid border-slate-400 dark:active:border-violet-400 dark:focus:border-violet-400 dark:caret-inherit "
+            className="mb-4 block h-10 w-full rounded-md border-[1.5px] border-solid border-slate-400 p-1 pl-2 outline-none selection:border-[1.5px] focus:border-violet-900 dark:border-slate-200 dark:caret-inherit dark:focus:border-violet-400 dark:active:border-violet-400 "
             type="text"
             name="name"
             required
@@ -84,7 +84,7 @@ const TeacherForm = () => {
             Email:
           </label>
           <input
-            className="w-full outline-none focus:border-violet-900 dark:border-slate-200 mb-4 selection:border-slate-200 block rounded-md p-1 h-10 pl-2 border-[1.5px] border-solid border-slate-400 dark:active:border-violet-400 dark:focus:border-violet-400 dark:caret-inherit "
+            className="mb-4 block h-10 w-full rounded-md border-[1.5px] border-solid border-slate-400 p-1 pl-2 outline-none selection:border-slate-200 focus:border-violet-900 dark:border-slate-200 dark:caret-inherit dark:focus:border-violet-400 dark:active:border-violet-400 "
             type="text"
             required
             id="email"
@@ -96,7 +96,7 @@ const TeacherForm = () => {
             Qualification:
           </label>
           <input
-            className="w-full outline-none focus:border-violet-900  dark:border-slate-200 mb-4 selection:border-slate-200 block rounded-md p-1 h-10 pl-2 border-[1.5px] border-solid border-slate-400 dark:active:border-violet-400 dark:focus:border-violet-400 dark:caret-inherit "
+            className="mb-4 block h-10  w-full rounded-md border-[1.5px] border-solid border-slate-400 p-1 pl-2 outline-none selection:border-slate-200 focus:border-violet-900 dark:border-slate-200 dark:caret-inherit dark:focus:border-violet-400 dark:active:border-violet-400 "
             type="text"
             required
             name="qualification"
@@ -108,7 +108,7 @@ const TeacherForm = () => {
             Department:
           </label>
           <select
-            className="w-full outline-none focus:border-violet-900 dark:border-slate-200 mb-4 selection:border-[1.5px] block rounded-md p-1 h-10 pl-2 border-[1.5px] border-solid border-slate-400 dark:active:border-violet-400 dark:focus:border-violet-400 dark:caret-inherit"
+            className="mb-4 block h-10 w-full rounded-md border-[1.5px] border-solid border-slate-400 p-1 pl-2 outline-none selection:border-[1.5px] focus:border-violet-900 dark:border-slate-200 dark:caret-inherit dark:focus:border-violet-400 dark:active:border-violet-400"
             placeholder="select department"
             name="department"
             id="department"
@@ -121,7 +121,7 @@ const TeacherForm = () => {
             </option>
 
             <option
-              className="font-semibold bg-violet-500 text-slate-100 min-h-[2rem] leading-8"
+              className="min-h-[2rem] bg-violet-500 font-semibold leading-8 text-slate-100"
               value="Computer"
             >
               Computer
@@ -131,7 +131,7 @@ const TeacherForm = () => {
             Username:
           </label>
           <input
-            className="w-full outline-none focus:border-violet-900 dark:border-slate-200 mb-4 selection:border-slate-200 block rounded-md p-1 h-10 pl-2 border-[1.5px] border-solid border-slate-400 dark:active:border-violet-400 dark:focus:border-violet-400 dark:caret-inherit "
+            className="mb-4 block h-10 w-full rounded-md border-[1.5px] border-solid border-slate-400 p-1 pl-2 outline-none selection:border-slate-200 focus:border-violet-900 dark:border-slate-200 dark:caret-inherit dark:focus:border-violet-400 dark:active:border-violet-400 "
             name="username"
             type="text"
             required
@@ -143,7 +143,7 @@ const TeacherForm = () => {
             Password:
           </label>
           <input
-            className="w-full outline-none focus:border-violet-900 dark:border-slate-200 mb-4 selection:border-slate-200 block rounded-md p-1 h-10 pl-2 border-[1.5px] border-solid border-slate-400 dark:active:border-violet-400 dark:focus:border-violet-400 dark:caret-inherit "
+            className="mb-4 block h-10 w-full rounded-md border-[1.5px] border-solid border-slate-400 p-1 pl-2 outline-none selection:border-slate-200 focus:border-violet-900 dark:border-slate-200 dark:caret-inherit dark:focus:border-violet-400 dark:active:border-violet-400 "
             type="password"
             name="password"
             id="password"
@@ -153,12 +153,12 @@ const TeacherForm = () => {
           />
           <button
             type="submit"
-            className="bg-slate-800 dark:bg-violet-600 font-bold tracking-wide hover:bg-violet-900 mb-4 focus:bg-violet-900 dark:text-slate-50 text-slate-200 h-10 p-1 border-[1.5px] border-solid block w-full border-violet-900 dark:border-violet-300 dark:hover:bg-slate-900 rounded-md "
+            className="mb-4 block h-10 w-full rounded-md border-[1.5px] border-solid border-violet-900 bg-slate-800 p-1 font-bold tracking-wide text-slate-200 hover:bg-violet-900 focus:bg-violet-900 dark:border-violet-300 dark:bg-violet-600 dark:text-slate-50 dark:hover:bg-slate-900 "
             onClick={(e) => addTeacher(e)}
           >
             Register
           </button>
-          <p className="text-center font-medium text-red-700 whitespace-nowrap overflow-hidden text-ellipsis mb-3">
+          <p className="mb-3 overflow-hidden text-ellipsis whitespace-nowrap text-center font-medium text-red-700">
             {error
               ? error?.response?.data?.message ||
                 error?.data?.message ||

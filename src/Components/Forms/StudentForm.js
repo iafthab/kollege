@@ -35,16 +35,16 @@ const StudentForm = () => {
   };
 
   return (
-    <main className="text-slate-500">
-      <h2 className="text-violet-950 dark:text-violet-400 underline-offset-4 text-6xl mt-3 dark:mt-0 mb-2 underline decoration-inherit decoration-2 font-bold">
+    <main className="whitespace-pre-wrap text-slate-500">
+      <h2 className="mb-2 mt-3 whitespace-break-spaces text-4xl font-bold text-violet-950 underline decoration-inherit decoration-2 underline-offset-4 dark:mt-0 dark:text-slate-400 md:text-6xl">
         Student Registration
       </h2>
-      <h3 className="font-bold text-lg">TBD</h3>
-      <p className="font-bold text-3xl">Student side is under progress</p>
-      <form className="w-1/3 mt-8">
+      <h3 className="text-lg font-bold">TBD</h3>
+      <p className="text-3xl font-bold">Student side is under progress</p>
+      <form className="mt-8 w-full lg:w-1/3">
         <label htmlFor="name">Name:</label>
         <input
-          className="w-full outline-none focus:border-violet-900 dark:border-slate-200 mb-4 selection:border-slate-200 block rounded-md p-1 h-10 pl-2 border-[1.5px] border-solid border-slate-400 dark:active:border-violet-400 dark:focus:border-violet-400 dark:caret-inherit"
+          className="mb-4 block h-10 w-full rounded-md border-[1.5px] border-solid border-slate-400 p-1 pl-2 outline-none selection:border-slate-200 focus:border-violet-900 dark:border-slate-200 dark:caret-inherit dark:focus:border-violet-400 dark:active:border-violet-400"
           type="text"
           required
           id="name"
@@ -53,7 +53,7 @@ const StudentForm = () => {
         />
         <label htmlFor="email">Email:</label>
         <input
-          className="w-full outline-none focus:border-violet-900 dark:border-slate-200 mb-4 selection:border-slate-200 block rounded-md p-1 h-10 pl-2 border-[1.5px] border-solid border-slate-400 dark:active:border-violet-400 dark:focus:border-violet-400 dark:caret-inherit"
+          className="mb-4 block h-10 w-full rounded-md border-[1.5px] border-solid border-slate-400 p-1 pl-2 outline-none selection:border-slate-200 focus:border-violet-900 dark:border-slate-200 dark:caret-inherit dark:focus:border-violet-400 dark:active:border-violet-400"
           type="text"
           required
           id="email"
@@ -62,7 +62,7 @@ const StudentForm = () => {
         />
         <label htmlFor="username">Username:</label>
         <input
-          className="w-full outline-none focus:border-violet-900 dark:border-slate-200 mb-4 selection:border-slate-200 block rounded-md p-1 h-10 pl-2 border-[1.5px] border-solid border-slate-400 dark:active:border-violet-400 dark:focus:border-violet-400 dark:caret-inherit"
+          className="mb-4 block h-10 w-full rounded-md border-[1.5px] border-solid border-slate-400 p-1 pl-2 outline-none selection:border-slate-200 focus:border-violet-900 dark:border-slate-200 dark:caret-inherit dark:focus:border-violet-400 dark:active:border-violet-400"
           type="text"
           id="username"
           required
@@ -71,7 +71,7 @@ const StudentForm = () => {
         />
         <label htmlFor="password">Password:</label>
         <input
-          className="w-full outline-none focus:border-violet-900 dark:border-slate-200 mb-4 selection:border-slate-200 block rounded-md p-1 h-10 pl-2 border-[1.5px] border-solid border-slate-400 dark:active:border-violet-400 dark:focus:border-violet-400 dark:caret-inherit"
+          className="mb-4 block h-10 w-full rounded-md border-[1.5px] border-solid border-slate-400 p-1 pl-2 outline-none selection:border-slate-200 focus:border-violet-900 dark:border-slate-200 dark:caret-inherit dark:focus:border-violet-400 dark:active:border-violet-400"
           type="password"
           id="password"
           value={student.password}
@@ -79,14 +79,14 @@ const StudentForm = () => {
           required
         />
         <button
-          className="bg-slate-500 font-semibold hover:bg-violet-900 mb-4 focus:bg-violet-900 dark text-slate-200 h-10 p-2 border-[1.5px] border-solid block w-full border-violet-900 rounded-md"
+          className="dark mb-4 block h-10 w-full rounded-md border-[1.5px] border-solid border-violet-900 bg-slate-500 p-2 font-semibold text-slate-200 hover:bg-violet-900 focus:bg-violet-900"
           type="submit"
           onClick={(e) => addStudent(e)}
         >
           Add
         </button>
       </form>
-      <p className="text-center font-medium text-red-700 whitespace-nowrap overflow-hidden text-ellipsis mb-3">
+      <p className="mb-3 overflow-hidden text-ellipsis whitespace-nowrap text-center font-medium text-red-700">
         {error
           ? error?.response?.data?.message ||
             error?.data?.message ||

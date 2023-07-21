@@ -24,6 +24,8 @@
 
   .outlet-border {
     border-color: #020617;
+    border-width: 4px;
+    border-radius: 0.75rem;
   }
 
   .active {
@@ -33,6 +35,8 @@
   @media (prefers-color-scheme: dark) {
     .outlet-border {
       border-image: linear-gradient(to bottom, #1e293b, #020617) 1;
+      border-width: 4px;
+      border-radius: 0rem;
     }
     .active {
       background-color: #6d28d9;

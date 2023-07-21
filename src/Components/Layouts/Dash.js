@@ -23,73 +23,85 @@ const Dash = () => {
 
   return (
     <main className="self-center">
-      <h2 className="m-6 text-6xl font-bold text-center">Dashboard</h2>
-      <div className="py-4 px-8 grid place-content-center grid-cols-3 gap-2">
+      <h2 className="m-6 mx-auto text-center text-6xl font-bold dark:text-slate-400">
+        Dashboard
+      </h2>
+      <div className="grid grid-cols-1 place-content-center gap-3 px-1 py-4 lg:grid-cols-2 lg:gap-4 lg:px-8 xl:grid-cols-3">
         <Link
-          className="p-6 text-lg hover:bg-violet-950 hover:text-slate-100 dark:hover:bg-violet-700/50 rounded-lg flex gap-2"
+          className="flex gap-2 rounded-lg bg-violet-100 p-6 text-base hover:bg-violet-950 hover:text-slate-100 dark:bg-slate-950 dark:hover:bg-violet-700/50 lg:text-lg"
           to={"./paper"}
         >
-          <GiBookshelf className="text-[4rem]" />
+          <GiBookshelf className="text-[2.5rem] lg:text-[4rem] " />
           <div className="font-semibold">
             Papers
-            <p className="font-normal text-md ">View Papers and Notes</p>
+            <p className="text-sm font-normal lg:text-base ">
+              View Papers and Notes
+            </p>
           </div>
         </Link>
 
         <Link
-          className="p-6 text-lg hover:bg-violet-950 hover:text-slate-100 dark:hover:bg-violet-700/50 rounded-lg flex gap-2"
+          className="flex gap-2 rounded-lg bg-violet-100 p-6 text-base hover:bg-violet-950 hover:text-slate-100 dark:bg-slate-950 dark:hover:bg-violet-700/50 lg:text-lg"
           to={"./attendance"}
         >
-          <IoCalendarOutline className="text-[4rem]" />
+          <IoCalendarOutline className="text-[2.5rem] lg:text-[4rem] " />
           <div className="font-semibold">
             Attendance
-            <p className="font-normal text-md ">Add or Edit Attendance</p>
+            <p className="text-sm font-normal lg:text-base ">
+              Add or Edit Attendance
+            </p>
           </div>
         </Link>
 
         <Link
-          className="p-6 text-lg hover:bg-violet-950 hover:text-slate-100 dark:hover:bg-violet-700/50 rounded-lg flex gap-2"
+          className="flex gap-2 rounded-lg bg-violet-100 p-6 text-base hover:bg-violet-950 hover:text-slate-100 dark:bg-slate-950 dark:hover:bg-violet-700/50 lg:text-lg"
           to={"./internal"}
         >
-          <HiOutlineDocumentReport className="text-[4rem]" />
+          <HiOutlineDocumentReport className="text-[2.5rem] lg:text-[4rem] " />
           <div className="font-semibold">
             Internal Mark
-            <p className="font-normal text-md ">View or Edit Internal Marks</p>
+            <p className="text-sm font-normal lg:text-base ">
+              View or Edit Internal Marks
+            </p>
           </div>
         </Link>
 
         <Link
-          className="p-6 text-lg hover:bg-violet-950 hover:text-slate-100 dark:hover:bg-violet-700/50 rounded-lg flex gap-2"
+          className="flex gap-2 rounded-lg bg-violet-100 p-6 text-base hover:bg-violet-950 hover:text-slate-100 dark:bg-slate-950 dark:hover:bg-violet-700/50 lg:text-lg"
           to={"./time_schedule"}
         >
-          <AiOutlineSchedule className="text-[4rem]" />
+          <AiOutlineSchedule className="text-[2.5rem] lg:text-[4rem] " />
           <div className="font-semibold">
             Time Schedule
-            <p className="font-normal text-md ">View or Edit Time Schedule</p>
+            <p className="text-sm font-normal lg:text-base ">
+              View or Edit Time Schedule
+            </p>
           </div>
         </Link>
 
         {user.isHOD && (
           <>
             <Link
-              className="p-6 text-lg hover:bg-violet-950 hover:text-slate-100 dark:hover:bg-violet-700/50 rounded-lg flex gap-2"
+              className="flex gap-2 rounded-lg bg-violet-100 p-6 text-base hover:bg-violet-950 hover:text-slate-100 dark:bg-slate-950 dark:hover:bg-violet-700/50 lg:text-lg"
               to={"./add_paper"}
             >
-              <BiBookAdd className="text-[4rem]" />
+              <BiBookAdd className="text-[2.5rem] lg:text-[4rem] " />
               <div className="font-semibold">
                 Add Paper
-                <p className="font-normal text-md ">Add a New Paper</p>
+                <p className="text-sm font-normal lg:text-base ">
+                  Add a New Paper
+                </p>
               </div>
             </Link>
 
             <Link
-              className="p-6 text-lg hover:bg-violet-950 hover:text-slate-100 dark:hover:bg-violet-700/50 rounded-lg flex gap-2"
+              className="flex gap-2 rounded-lg bg-violet-100 p-6 text-base hover:bg-violet-950 hover:text-slate-100 dark:bg-slate-950 dark:hover:bg-violet-700/50 lg:text-lg"
               to={"./approve_teacher"}
             >
-              <RiUserAddLine className="text-[4rem]" />
+              <RiUserAddLine className="text-[2.5rem] lg:text-[4rem] " />
               <div className="font-semibold">
                 Approve Teacher
-                <p className="font-normal text-md ">
+                <p className="text-sm font-normal lg:text-base ">
                   Approve registered teacher(s)
                 </p>
               </div>
@@ -97,13 +109,15 @@ const Dash = () => {
           </>
         )}
         <Link
-          className="p-6 text-lg hover:bg-violet-950 hover:text-slate-100 dark:hover:bg-violet-700/50 rounded-lg flex gap-2"
+          className="flex gap-2 rounded-lg bg-violet-100 p-6 text-base hover:bg-violet-950 hover:text-slate-100 dark:bg-slate-950 dark:hover:bg-violet-700/50 lg:text-lg"
           to={"./reg_student"}
         >
-          <AiOutlineUserAdd className="text-[4rem]" />
+          <AiOutlineUserAdd className="text-[2.5rem] lg:text-[4rem] " />
           <div className="font-semibold">
             Register Student
-            <p className="font-normal text-md ">Add a new Student</p>
+            <p className="text-sm font-normal lg:text-base ">
+              Add a new Student
+            </p>
           </div>
         </Link>
       </div>
