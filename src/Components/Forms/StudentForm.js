@@ -1,17 +1,20 @@
 import { useState } from "react";
 import axios from "../../config/api/axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { FaUniversity } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 const StudentForm = () => {
+  const navigate = useNavigate();
   const [student, setStudent] = useState({
     name: "",
     email: "",
+    course: "",
     papers: [],
     username: "",
     password: "",
   });
   const [error, setError] = useState("");
-  const navigate = useNavigate();
 
   const handleFormChange = (e) => {
     setStudent({
@@ -25,74 +28,115 @@ const StudentForm = () => {
     try {
       const reqData = JSON.stringify(student);
       const response = await axios.post("student", reqData);
-      console.log(response);
       navigate("../");
-      alert(response.data.message);
+      toast.success(response.data.message);
     } catch (err) {
       setError(err);
     }
-    console.log(error);
   };
 
   return (
-    <main className="whitespace-pre-wrap text-slate-500">
-      <h2 className="mb-2 mt-3 whitespace-break-spaces text-4xl font-bold text-violet-950 underline decoration-inherit decoration-2 underline-offset-4 dark:mt-0 dark:text-slate-400 md:text-6xl">
-        Student Registration
-      </h2>
-      <h3 className="text-lg font-bold">TBD</h3>
-      <p className="text-3xl font-bold">Student side is under progress</p>
-      <form className="mt-8 w-full lg:w-1/3">
-        <label htmlFor="name">Name:</label>
-        <input
-          className="mb-4 block h-10 w-full rounded-md border-[1.5px] border-solid border-slate-400 p-1 pl-2 outline-none selection:border-slate-200 focus:border-violet-900 dark:border-slate-200 dark:caret-inherit dark:focus:border-violet-400 dark:active:border-violet-400"
-          type="text"
-          required
-          id="name"
-          value={student.name}
-          onChange={(e) => handleFormChange(e)}
-        />
-        <label htmlFor="email">Email:</label>
-        <input
-          className="mb-4 block h-10 w-full rounded-md border-[1.5px] border-solid border-slate-400 p-1 pl-2 outline-none selection:border-slate-200 focus:border-violet-900 dark:border-slate-200 dark:caret-inherit dark:focus:border-violet-400 dark:active:border-violet-400"
-          type="text"
-          required
-          id="email"
-          value={student.email}
-          onChange={(e) => handleFormChange(e)}
-        />
-        <label htmlFor="username">Username:</label>
-        <input
-          className="mb-4 block h-10 w-full rounded-md border-[1.5px] border-solid border-slate-400 p-1 pl-2 outline-none selection:border-slate-200 focus:border-violet-900 dark:border-slate-200 dark:caret-inherit dark:focus:border-violet-400 dark:active:border-violet-400"
-          type="text"
-          id="username"
-          required
-          value={student.username}
-          onChange={(e) => handleFormChange(e)}
-        />
-        <label htmlFor="password">Password:</label>
-        <input
-          className="mb-4 block h-10 w-full rounded-md border-[1.5px] border-solid border-slate-400 p-1 pl-2 outline-none selection:border-slate-200 focus:border-violet-900 dark:border-slate-200 dark:caret-inherit dark:focus:border-violet-400 dark:active:border-violet-400"
-          type="password"
-          id="password"
-          value={student.password}
-          onChange={(e) => handleFormChange(e)}
-          required
-        />
-        <button
-          className="dark mb-4 block h-10 w-full rounded-md border-[1.5px] border-solid border-violet-900 bg-slate-500 p-2 font-semibold text-slate-200 hover:bg-violet-900 focus:bg-violet-900"
-          type="submit"
-          onClick={(e) => addStudent(e)}
-        >
-          Add
-        </button>
-      </form>
-      <p className="mb-3 overflow-hidden text-ellipsis whitespace-nowrap text-center font-medium text-red-700">
-        {error
-          ? error?.response?.data?.message ||
-            error?.data?.message ||
-            error?.response?.data
-          : ""}
-      </p>
+    <main className="relative z-0 flex h-screen items-center justify-center bg-gradient-to-b from-slate-400 to-slate-300 py-8 text-slate-900 dark:from-slate-800 dark:to-slate-950 dark:text-slate-200">
+      <div
+        className="absolute -z-[1]  flex  h-full w-full flex-col items-center justify-center gap-16 blur-2xl xl:flex-row"
+        name="blur design"
+      >
+        <span className=" inline-block h-[16rem] w-[10rem] rounded-r-full bg-violet-900"></span>
+        <span className=" inline-block h-[16rem] w-[18rem] rounded-full bg-violet-900"></span>
+        <span className=" inline-block h-[16rem] w-[18rem] rounded-full bg-violet-900"></span>
+        <span className=" inline-block h-[16rem] w-[18rem] rounded-full bg-violet-900"></span>
+        <span className=" inline-block h-[16rem] w-[10rem] rounded-l-full bg-violet-900"></span>
+      </div>
+      <section className="my-8 flex w-[75%] animate-fadeInFast flex-col justify-start rounded-md bg-slate-100 p-4 text-slate-900 opacity-70 hover:opacity-100 focus:opacity-100 dark:bg-[#060913] dark:text-slate-50 md:p-8 xl:w-1/2 xl:flex-row">
+        <div className="mr-8 flex flex-col-reverse justify-between xl:flex-col ">
+          <h2 className="my-4 text-4xl font-bold dark:text-slate-400 md:text-5xl">
+            Student
+            <br /> Registration
+          </h2>
+          <Link
+            className="flex items-center font-spectral text-xl font-semibold text-slate-900 dark:text-slate-50"
+            to="../"
+          >
+            <FaUniversity />
+            <p className="decoration-violet-900 decoration-2 hover:underline dark:decoration-violet-300">
+              K
+              <span className=" inline-block h-3 w-3 rounded-full bg-violet-900 dark:bg-violet-500 "></span>
+              llege
+            </p>
+          </Link>
+        </div>
+        <form className="w-full font-medium tracking-wide accent-violet-600">
+          <label className="block" htmlFor="name">
+            Name:
+          </label>
+          <input
+            className="mb-4 block h-10 w-full rounded-md border-[1.5px] border-solid border-slate-400 p-1 pl-2 outline-none selection:border-slate-200 focus:border-violet-900 dark:border-slate-200 dark:caret-inherit dark:focus:border-violet-400 dark:active:border-violet-400"
+            type="text"
+            required
+            id="name"
+            value={student.name}
+            onChange={(e) => handleFormChange(e)}
+          />
+          <label className="block" htmlFor="email">
+            Email:
+          </label>
+          <input
+            className="mb-4 block h-10 w-full rounded-md border-[1.5px] border-solid border-slate-400 p-1 pl-2 outline-none selection:border-slate-200 focus:border-violet-900 dark:border-slate-200 dark:caret-inherit dark:focus:border-violet-400 dark:active:border-violet-400"
+            type="text"
+            required
+            id="email"
+            value={student.email}
+            onChange={(e) => handleFormChange(e)}
+          />
+          <label className="block" htmlFor="course">
+            Course:
+          </label>
+          <input
+            className="mb-4 block h-10 w-full rounded-md border-[1.5px] border-solid border-slate-400 p-1 pl-2 outline-none selection:border-slate-200 focus:border-violet-900 dark:border-slate-200 dark:caret-inherit dark:focus:border-violet-400 dark:active:border-violet-400"
+            type="text"
+            required
+            id="course"
+            value={student.course}
+            onChange={(e) => handleFormChange(e)}
+          />
+          <label className="block" htmlFor="username">
+            Username:
+          </label>
+          <input
+            className="mb-4 block h-10 w-full rounded-md border-[1.5px] border-solid border-slate-400 p-1 pl-2 outline-none selection:border-slate-200 focus:border-violet-900 dark:border-slate-200 dark:caret-inherit dark:focus:border-violet-400 dark:active:border-violet-400"
+            type="text"
+            id="username"
+            required
+            value={student.username}
+            onChange={(e) => handleFormChange(e)}
+          />
+          <label className="block" htmlFor="password">
+            Password:
+          </label>
+          <input
+            className="mb-4 block h-10 w-full rounded-md border-[1.5px] border-solid border-slate-400 p-1 pl-2 outline-none selection:border-slate-200 focus:border-violet-900 dark:border-slate-200 dark:caret-inherit dark:focus:border-violet-400 dark:active:border-violet-400"
+            type="password"
+            id="password"
+            value={student.password}
+            onChange={(e) => handleFormChange(e)}
+            required
+          />
+          <button
+            type="submit"
+            className="mb-4 block h-10 w-full rounded-md border-[1.5px] border-solid border-violet-900 bg-slate-800 p-1 font-bold tracking-wide text-slate-200 hover:bg-violet-900 focus:bg-violet-900 dark:border-violet-300 dark:bg-violet-600 dark:text-slate-50 dark:hover:bg-slate-900 "
+            onClick={(e) => addStudent(e)}
+          >
+            Register
+          </button>
+          <p className="mb-3 overflow-hidden text-ellipsis whitespace-nowrap text-center font-medium text-red-700">
+            {error
+              ? error?.response?.data?.message ||
+                error?.data?.message ||
+                error?.response?.data
+              : ""}
+          </p>
+        </form>
+      </section>
     </main>
   );
 };

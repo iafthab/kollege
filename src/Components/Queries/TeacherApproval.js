@@ -4,6 +4,7 @@ import { Navigate } from "react-router-dom";
 import axios from "../../config/api/axios";
 import { FaPlus, FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
+import Loading from "../Layouts/Loading";
 
 const TeacherApproval = () => {
   const { user } = useContext(UserContext);
@@ -55,7 +56,7 @@ const TeacherApproval = () => {
 
   return (
     <>
-      {user.isHOD ? (
+      {user.role === "HOD" ? (
         <main className="teacher__approval">
           <h2 className="mb-2 mt-3 whitespace-break-spaces text-4xl font-bold text-violet-950 underline decoration-inherit decoration-2 underline-offset-4 dark:mt-0 dark:text-slate-400 md:text-6xl">
             Approve Teacher
@@ -118,7 +119,7 @@ const TeacherApproval = () => {
                 </table>
               </div>
             ) : (
-              <p className="m-4 font-medium">Loading...</p>
+              <Loading />
             )}
           </form>
           <p className="mb-3 overflow-hidden text-ellipsis whitespace-nowrap text-center font-medium text-red-700">

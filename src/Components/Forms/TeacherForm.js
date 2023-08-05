@@ -49,7 +49,7 @@ const TeacherForm = () => {
         <span className=" inline-block h-[16rem] w-[18rem] rounded-full bg-violet-900"></span>
         <span className=" inline-block h-[16rem] w-[10rem] rounded-l-full bg-violet-900"></span>
       </div>
-      <section className="my-8 flex w-[75%] flex-col justify-start rounded-md bg-slate-100 p-4 text-slate-900 opacity-70 hover:opacity-100 focus:opacity-100 dark:bg-slate-800 dark:text-slate-50 md:p-8 xl:w-1/2 xl:flex-row">
+      <section className="my-8 flex w-[75%] animate-fadeInFast flex-col justify-start rounded-md bg-slate-100 p-4 text-slate-900 opacity-70 hover:opacity-100 focus:opacity-100 dark:bg-[#060913] dark:text-slate-50 md:p-8 xl:w-1/2 xl:flex-row">
         <div className="mr-8 flex flex-col-reverse justify-between xl:flex-col ">
           <h2 className="my-4 text-4xl font-bold dark:text-slate-400 md:text-5xl">
             Teacher

@@ -3,6 +3,8 @@ import axios from "../../config/api/axios";
 import UserContext from "../../Hooks/UserContext";
 import { FaPlus, FaEdit, FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
+import { TableHeader } from "../Table";
+import Loading from "../Layouts/Loading";
 
 const TimeScheduleForm = () => {
   const { user, paperList } = useContext(UserContext);
@@ -86,16 +88,10 @@ const TimeScheduleForm = () => {
         {timeSchedule.monday ? (
           <div className="my-4 w-full overflow-auto rounded-md border-2 border-slate-900 dark:border-slate-500 dark:p-[1px]">
             <table className=" w-full text-center">
-              <thead>
-                <tr className="h-[3rem] bg-slate-900 p-4 text-lg text-slate-100">
-                  <th>Day/Hour</th>
-                  <th>I</th>
-                  <th>II</th>
-                  <th>III</th>
-                  <th>IV</th>
-                  <th>V</th>
-                </tr>
-              </thead>
+              <TableHeader
+                AdditionalHeaderClasses={"h-[3rem]"}
+                Headers={["Day/Hour", "I", "II", "III", "IV", "V"]}
+              />
               <tbody>
                 {Object.entries(timeSchedule)?.map(([key, value]) => {
                   return (
@@ -133,7 +129,7 @@ const TimeScheduleForm = () => {
             </table>
           </div>
         ) : (
-          <p className="m-4 font-medium">Loading...</p>
+          <Loading />
         )}
 
         {timeSchedule.monday && disabled && (

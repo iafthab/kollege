@@ -7,13 +7,13 @@ import { HiOutlineDocumentReport } from "react-icons/hi";
 import { AiOutlineSchedule } from "react-icons/ai";
 import { BiBookAdd } from "react-icons/bi";
 import { RiUserAddLine } from "react-icons/ri";
-import { AiOutlineUserAdd } from "react-icons/ai";
+import { PiStudent, PiUser, PiBooks } from "react-icons/pi";
 
 const Nav = () => {
   const { user } = useContext(UserContext);
   return (
-    <nav className="z-0 hidden h-full bg-slate-950 px-4 py-4 text-slate-100 dark:bg-gradient-to-b dark:from-slate-800 dark:to-slate-950  lg:block ">
-      <ul className="m-auto flex flex-grow flex-col items-center justify-center gap-[6px]">
+    <nav className="z-0 hidden h-full flex-col justify-stretch bg-slate-950 px-4 py-4 text-slate-100 dark:bg-gradient-to-b dark:from-slate-800  dark:to-slate-950 lg:flex ">
+      <ul className="m-auto flex flex-grow flex-col items-center justify-start gap-[6px]">
         <NavLink to={"./paper"} className="w-full font-medium">
           <li className="flex gap-2 rounded-md px-4 py-2 hover:bg-violet-600/40 ">
             <GiBookshelf className="pt-[0.1rem] text-2xl  " />
@@ -38,7 +38,7 @@ const Nav = () => {
             Time Schedule
           </li>
         </NavLink>
-        {user.isHOD && (
+        {user.role === "HOD" && (
           <>
             <NavLink to={"./add_paper"} className="w-full font-medium">
               <li className="flex gap-2 rounded-md px-4 py-2 hover:bg-violet-600/40 ">
@@ -54,10 +54,24 @@ const Nav = () => {
             </NavLink>
           </>
         )}
-        <NavLink to={"./reg_student"} className="w-full font-medium">
+        {user.role === "student" && (
+          <NavLink to={"./join_paper"} className="w-full font-medium">
+            <li className="flex gap-2 rounded-md px-4 py-2 hover:bg-violet-600/40 ">
+              <PiBooks className="pt-[0.1rem] text-2xl  " />
+              Join Paper
+            </li>
+          </NavLink>
+        )}
+      </ul>
+      <ul className="flex flex-grow flex-col items-start justify-end gap-[6px]">
+        <NavLink to={"./profile"} className="w-full font-medium">
           <li className="flex gap-2 rounded-md px-4 py-2 hover:bg-violet-600/40 ">
-            <AiOutlineUserAdd className="pt-[0.1rem] text-2xl  " />
-            Register Student
+            {user.role === "student" ? (
+              <PiStudent className="pt-[0.1rem] text-2xl" />
+            ) : (
+              <PiUser className="pt-[0.1rem] text-2xl" />
+            )}
+            {user.name}
           </li>
         </NavLink>
       </ul>

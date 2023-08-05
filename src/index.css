@@ -18,6 +18,11 @@
     background-repeat: no-repeat;
   }
 
+  .radio:has(input:checked) {
+    color: #a78bfa;
+    font-weight: bold;
+  }
+
   select:disabled {
     background-image: none;
   }
@@ -32,6 +37,7 @@
     background-color: #4c1d95;
     border-radius: 0.375rem;
   }
+
   @media (prefers-color-scheme: dark) {
     .outlet-border {
       border-image: linear-gradient(to bottom, #1e293b, #020617) 1;
@@ -47,4 +53,9 @@
       color: #0f172a;
     }
   }
+}
+
+.Toastify__toast-theme--colored.Toastify__toast--success {
+  background-color: #7c3aed;
+  color: #ddd6fe;
 }

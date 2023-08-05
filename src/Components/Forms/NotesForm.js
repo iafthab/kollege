@@ -35,7 +35,7 @@ const NotesForm = () => {
     try {
       const response = await axios.post("notes/paper/" + paper._id, note);
       setError("");
-      navigate("./../");
+      navigate(-1, { replace: true });
       toast.success(response.data.message);
     } catch (err) {
       setError(err);
@@ -46,7 +46,7 @@ const NotesForm = () => {
     e.preventDefault();
     try {
       const response = await axios.patch("notes/" + note._id, note);
-      navigate("./../../");
+      navigate(-1, { replace: true });
       setError("");
       toast.success(response.data.message);
       setNoteId("");

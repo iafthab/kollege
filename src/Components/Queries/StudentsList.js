@@ -1,18 +1,21 @@
 import { useContext, useState, useEffect } from "react";
 import UserContext from "../../Hooks/UserContext";
 import axios from "../../config/api/axios";
+import Loading from "../Layouts/Loading";
 
 const StudentsList = () => {
   const { paper } = useContext(UserContext);
   const [students, setStudents] = useState([]);
-
-  //TODO Add CSS
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const getStudentsList = async (e) => {
-      const list = await axios.get("/student/list/" + paper._id);
-      const students = list.data[0];
-      setStudents(students.students);
+      try {
+        const response = await axios.get("/paper/students/" + paper._id);
+        setStudents(response.data);
+      } catch (err) {
+        setError(err);
+      }
     };
     getStudentsList();
   }, [paper]);
@@ -29,8 +32,15 @@ const StudentsList = () => {
           ))}
         </ol>
       ) : (
-        <p className="m-4 font-medium">Loading...</p>
+        ""
       )}
+      {!students.length && !error && <Loading />}
+
+      <div>
+        <p className="mb-3 overflow-hidden text-ellipsis whitespace-break-spaces text-center font-medium text-red-700">
+          {error ? error?.response?.data?.message || error?.response?.data : ""}
+        </p>
+      </div>
     </main>
   );
 };

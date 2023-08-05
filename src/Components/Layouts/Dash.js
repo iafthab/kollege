@@ -1,6 +1,3 @@
-import React, { useContext, useEffect } from "react";
-import UserContext from "../../Hooks/UserContext";
-import axios from "../../config/api/axios";
 import { Link } from "react-router-dom";
 import { GiBookshelf } from "react-icons/gi";
 import { IoCalendarOutline } from "react-icons/io5";
@@ -8,18 +5,26 @@ import { HiOutlineDocumentReport } from "react-icons/hi";
 import { AiOutlineSchedule } from "react-icons/ai";
 import { BiBookAdd } from "react-icons/bi";
 import { RiUserAddLine } from "react-icons/ri";
-import { AiOutlineUserAdd } from "react-icons/ai";
+import { PiBooks, PiUser, PiStudent } from "react-icons/pi";
+import { useContext, useEffect } from "react";
+import UserContext from "../../Hooks/UserContext";
+import axios from "../../config/api/axios";
 
 const Dash = () => {
-  const { setPaperList, user } = useContext(UserContext);
+  const { user, userType, setPaperList } = useContext(UserContext);
 
   useEffect(() => {
     const getPapers = async () => {
-      const response = await axios.get("paper/teacher/" + user._id);
+      const url =
+        userType === "teacher"
+          ? `paper/teacher/${user._id}`
+          : `student/papers/${user._id}`;
+
+      const response = await axios.get(url);
       setPaperList(response.data);
     };
     getPapers();
-  }, [user, setPaperList]);
+  }, [setPaperList, userType, user]);
 
   return (
     <main className="self-center">
@@ -28,7 +33,7 @@ const Dash = () => {
       </h2>
       <div className="grid grid-cols-1 place-content-center gap-3 px-1 py-4 lg:grid-cols-2 lg:gap-4 lg:px-8 xl:grid-cols-3">
         <Link
-          className="flex gap-2 rounded-lg bg-violet-100 p-6 text-base hover:bg-violet-950 hover:text-slate-100 dark:bg-slate-950 dark:hover:bg-violet-700/50 lg:text-lg"
+          className="flex gap-2 rounded-lg bg-violet-100 p-6 text-base hover:bg-violet-950 hover:text-slate-100 dark:bg-slate-950 lg:text-lg"
           to={"./paper"}
         >
           <GiBookshelf className="text-[2.5rem] lg:text-[4rem] " />
@@ -41,7 +46,7 @@ const Dash = () => {
         </Link>
 
         <Link
-          className="flex gap-2 rounded-lg bg-violet-100 p-6 text-base hover:bg-violet-950 hover:text-slate-100 dark:bg-slate-950 dark:hover:bg-violet-700/50 lg:text-lg"
+          className="flex gap-2 rounded-lg bg-violet-100 p-6 text-base hover:bg-violet-950 hover:text-slate-100 dark:bg-slate-950 lg:text-lg"
           to={"./attendance"}
         >
           <IoCalendarOutline className="text-[2.5rem] lg:text-[4rem] " />
@@ -54,7 +59,7 @@ const Dash = () => {
         </Link>
 
         <Link
-          className="flex gap-2 rounded-lg bg-violet-100 p-6 text-base hover:bg-violet-950 hover:text-slate-100 dark:bg-slate-950 dark:hover:bg-violet-700/50 lg:text-lg"
+          className="flex gap-2 rounded-lg bg-violet-100 p-6 text-base hover:bg-violet-950 hover:text-slate-100 dark:bg-slate-950 lg:text-lg"
           to={"./internal"}
         >
           <HiOutlineDocumentReport className="text-[2.5rem] lg:text-[4rem] " />
@@ -67,7 +72,7 @@ const Dash = () => {
         </Link>
 
         <Link
-          className="flex gap-2 rounded-lg bg-violet-100 p-6 text-base hover:bg-violet-950 hover:text-slate-100 dark:bg-slate-950 dark:hover:bg-violet-700/50 lg:text-lg"
+          className="flex gap-2 rounded-lg bg-violet-100 p-6 text-base hover:bg-violet-950 hover:text-slate-100 dark:bg-slate-950 lg:text-lg"
           to={"./time_schedule"}
         >
           <AiOutlineSchedule className="text-[2.5rem] lg:text-[4rem] " />
@@ -79,10 +84,10 @@ const Dash = () => {
           </div>
         </Link>
 
-        {user.isHOD && (
+        {user.role === "HOD" && (
           <>
             <Link
-              className="flex gap-2 rounded-lg bg-violet-100 p-6 text-base hover:bg-violet-950 hover:text-slate-100 dark:bg-slate-950 dark:hover:bg-violet-700/50 lg:text-lg"
+              className="flex gap-2 rounded-lg bg-violet-100 p-6 text-base hover:bg-violet-950 hover:text-slate-100 dark:bg-slate-950 lg:text-lg"
               to={"./add_paper"}
             >
               <BiBookAdd className="text-[2.5rem] lg:text-[4rem] " />
@@ -95,7 +100,7 @@ const Dash = () => {
             </Link>
 
             <Link
-              className="flex gap-2 rounded-lg bg-violet-100 p-6 text-base hover:bg-violet-950 hover:text-slate-100 dark:bg-slate-950 dark:hover:bg-violet-700/50 lg:text-lg"
+              className="flex gap-2 rounded-lg bg-violet-100 p-6 text-base hover:bg-violet-950 hover:text-slate-100 dark:bg-slate-950 lg:text-lg"
               to={"./approve_teacher"}
             >
               <RiUserAddLine className="text-[2.5rem] lg:text-[4rem] " />
@@ -108,15 +113,33 @@ const Dash = () => {
             </Link>
           </>
         )}
+        {user.role === "student" && (
+          <Link
+            className="flex gap-2 rounded-lg bg-violet-100 p-6 text-base hover:bg-violet-950 hover:text-slate-100 dark:bg-slate-950 lg:text-lg"
+            to={"./join_paper"}
+          >
+            <PiBooks className="text-[2.5rem] lg:text-[4rem] " />
+            <div className="font-semibold">
+              Manage Paper
+              <p className="text-sm font-normal lg:text-base ">
+                Join or Leave Paper
+              </p>
+            </div>
+          </Link>
+        )}
         <Link
-          className="flex gap-2 rounded-lg bg-violet-100 p-6 text-base hover:bg-violet-950 hover:text-slate-100 dark:bg-slate-950 dark:hover:bg-violet-700/50 lg:text-lg"
-          to={"./reg_student"}
+          className="flex gap-2 rounded-lg bg-violet-100 p-6 text-base hover:bg-violet-950 hover:text-slate-100 dark:bg-slate-950 lg:text-lg"
+          to={"./profile"}
         >
-          <AiOutlineUserAdd className="text-[2.5rem] lg:text-[4rem] " />
+          {user.role === "student" ? (
+            <PiStudent className="text-[2.5rem] lg:text-[4rem] " />
+          ) : (
+            <PiUser className="text-[2.5rem] lg:text-[4rem] " />
+          )}
           <div className="font-semibold">
-            Register Student
+            Profile
             <p className="text-sm font-normal lg:text-base ">
-              Add a new Student
+              View or Edit Profile
             </p>
           </div>
         </Link>

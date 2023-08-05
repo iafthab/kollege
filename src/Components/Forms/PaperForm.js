@@ -22,11 +22,12 @@ const PaperForm = () => {
   // Fetch teachers
   useEffect(() => {
     const getTeachers = async (e) => {
-      const list = await axios.get("/teacher/list");
+      const list = await axios.get("/teacher/list/" + user.department);
+      console.log(list.data);
       setTeachers(list.data);
     };
     getTeachers();
-  }, []);
+  }, [user]);
 
   const addPaper = async (e) => {
     e.preventDefault();
@@ -48,7 +49,7 @@ const PaperForm = () => {
 
   return (
     <>
-      {user.isHOD ? (
+      {user.role === "HOD" ? (
         <main className="paper">
           <h2 className="mb-2 mt-3 whitespace-break-spaces text-4xl font-bold text-violet-950 underline decoration-inherit decoration-2 underline-offset-4 dark:mt-0 dark:text-slate-400 md:text-6xl">
             Add Paper
@@ -106,7 +107,7 @@ const PaperForm = () => {
             />
             <label htmlFor="teacher">Teacher:</label>
             <select
-              className="text-md mb-4 block h-10 w-full rounded-md border-[1.5px] border-solid border-slate-400 p-1 pl-2  font-medium leading-6 text-slate-900 outline-none selection:border-[1.5px] focus:border-violet-900 "
+              className="mb-4 block h-10 w-full rounded-md border-[1.5px] border-solid border-slate-400 p-1 pl-2 outline-none selection:border-slate-200 focus:border-violet-900 dark:border-slate-200 dark:caret-inherit dark:focus:border-violet-400 dark:active:border-violet-400"
               required
               id="teacher"
               name="teacher"

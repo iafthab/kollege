@@ -13,8 +13,6 @@ import NotesForm from "./Components/Forms/NotesForm";
 import TimeScheduleForm from "./Components/Forms/TimeScheduleForm";
 import LoginLayout from "./Components/Layouts/LoginLayout";
 import Login from "./Components/Forms/Login";
-// import PaperForm from "./Components/Forms/PaperForm";
-// import TeacherApproval from "./Components/Queries/TeacherApproval";
 import { UserProvider } from "./Hooks/UserContext";
 
 import { ToastContainer } from "react-toastify";
@@ -25,11 +23,14 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
+import Profile from "./Components/Forms/Profile";
+import Loading from "./Components/Layouts/Loading";
 
 const TeacherApproval = lazy(() =>
   import("./Components/Queries/TeacherApproval")
 );
 const PaperForm = lazy(() => import("./Components/Forms/PaperForm"));
+const JoinPaper = lazy(() => import("./Components/Forms/JoinPaper"));
 
 function App() {
   const router = createBrowserRouter(
@@ -37,6 +38,7 @@ function App() {
       <Route path="/" element={<LoginLayout />} errorElement={<ErrorElement />}>
         <Route index element={<Login />} />
         <Route path="reg_teacher" element={<TeacherForm />} />
+        <Route path="reg_student" element={<StudentForm />} />
         <Route
           path="/dash"
           element={<Layout />}
@@ -51,11 +53,11 @@ function App() {
           <Route path="attendance" element={<Attendance />} />
           <Route path="internal" element={<InternalResultForm />} />
           <Route path="time_schedule" element={<TimeScheduleForm />} />
-          <Route path="reg_student" element={<StudentForm />} />
+          <Route path="profile" element={<Profile />} />
           <Route
             path="approve_teacher"
             element={
-              <Suspense fallback={<p>Loading..</p>}>
+              <Suspense fallback={<Loading />}>
                 <TeacherApproval />
               </Suspense>
             }
@@ -63,8 +65,16 @@ function App() {
           <Route
             path="add_paper"
             element={
-              <Suspense fallback={<p>Loading..</p>}>
+              <Suspense fallback={<Loading />}>
                 <PaperForm />
+              </Suspense>
+            }
+          />
+          <Route
+            path="join_paper"
+            element={
+              <Suspense fallback={<Loading />}>
+                <JoinPaper />
               </Suspense>
             }
           />
@@ -76,7 +86,18 @@ function App() {
   return (
     <UserProvider>
       <RouterProvider router={router} />
-      <ToastContainer />
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </UserProvider>
   );
 }

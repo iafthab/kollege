@@ -6,9 +6,10 @@ import UserContext from "../../Hooks/UserContext";
 import { toast } from "react-toastify";
 
 const Header = () => {
-  const { setUser } = useContext(UserContext);
+  const { setUser, setUserType } = useContext(UserContext);
   const logout = () => {
     setUser("");
+    setUserType("");
     toast.info("Logged Out");
   };
   return (
