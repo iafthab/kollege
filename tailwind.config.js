@@ -35,6 +35,7 @@ module.exports = {
         slide: "slide 0.2s ease-in-out 1",
         fadeIn: "fadeIn 1s ease-in-out 1",
         fadeInFast: "fadeIn 0.5s ease-out 1",
+        pulseSlow: "pulse 5s cubic-bezier(0.4, 0, 0.6, 1) infinite",
       },
     },
   },

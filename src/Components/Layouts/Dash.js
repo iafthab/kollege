@@ -18,7 +18,7 @@ const Dash = () => {
       const url =
         userType === "teacher"
           ? `paper/teacher/${user._id}`
-          : `student/papers/${user._id}`;
+          : `paper/student/${user._id}`;
 
       const response = await axios.get(url);
       setPaperList(response.data);

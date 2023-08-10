@@ -4,6 +4,7 @@ import { PiStudentThin, PiUserThin, PiSpinnerGapBold } from "react-icons/pi";
 import { useNavigate, Navigate } from "react-router-dom";
 import axios from "../../config/api/axios";
 import UserContext from "../../Hooks/UserContext";
+import CircleDesign from "../Layouts/CircleDesign";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -31,13 +32,10 @@ const Login = () => {
           password,
         });
         setTimeout(() => {
-          setButtonText("Please Wait...");
-        }, 4000);
-        setTimeout(() => {
           setMessage(
             "Web Services on the free instance type are automatically spun down after 15 minutes of inactivity. When a new request for a free service comes in, Render spins it up again so it can process the request. This will cause a delay in the response of the first request after a period of inactivity while the instance spins up."
           );
-        }, 8000);
+        }, 4000);
         setUser(response.data);
       } catch (err) {
         setError(err);
@@ -70,16 +68,7 @@ const Login = () => {
               {message}
             </header>
           )}
-          <div
-            className="absolute -z-[1]  flex  h-full w-full flex-col items-center justify-center gap-16 blur-[47px] md:blur-2xl lg:flex-row"
-            name="blur design"
-          >
-            <span className=" inline-block h-[16rem] w-[10rem] rounded-r-full bg-violet-900"></span>
-            <span className=" inline-block h-[16rem] w-[18rem] rounded-full bg-violet-900"></span>
-            <span className=" inline-block h-[16rem] w-[18rem] rounded-full bg-violet-900"></span>
-            <span className=" inline-block h-[16rem] w-[18rem] rounded-full bg-violet-900"></span>
-            <span className=" inline-block h-[16rem] w-[10rem] rounded-l-full bg-violet-900"></span>
-          </div>
+          <CircleDesign />
           <section className="z-0 mb-4 flex items-center gap-2 whitespace-nowrap text-6xl md:text-8xl lg:gap-4">
             <FaUniversity />
             <h1 className="font-spectral font-semibold  text-slate-900  dark:text-slate-300 ">

@@ -2,62 +2,69 @@ import { useContext, useState, useEffect } from "react";
 import UserContext from "../../Hooks/UserContext";
 import { Navigate } from "react-router-dom";
 import axios from "../../config/api/axios";
-import { PiPlusBold, PiMinusBold } from "react-icons/pi";
 import { TableHeader } from "../Table";
-import Soon from "./../Layouts/Soon";
 import Loading from "../Layouts/Loading";
-// import { toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 //TODO Refactor
 const JoinPaper = () => {
-  const { user } = useContext(UserContext);
-  const [papers, setPapers] = useState([]);
+  const { user, setPaperList } = useContext(UserContext);
   const [error, setError] = useState("");
+  const [papers, setPapers] = useState([]);
 
   useEffect(() => {
-    const getNewTeachers = async () => {
+    const getallPapers = async () => {
       try {
-        const response = await axios.get("paper/");
-        console.log(response.data);
+        const response = await axios.get("paper/manage/" + user._id);
         setPapers(response.data);
       } catch (err) {
         setError(err);
       }
     };
-    getNewTeachers();
-  }, [user]);
+    getallPapers();
 
-  // TODO
-  // const handleJoin = async (e) => {
-  //   const index = e.currentTarget.id;
-  //   const teacher = users[index];
-  //   teacher.roles.push("Teacher");
-  //   try {
-  //     const response = await axios.patch("/teacher/" + teacher._id, {
-  //       id: teacher._id,
-  //       roles: teacher.roles,
-  //     });
-  //     users.splice(index, 1);
-  //     toast.success(response.data.message);
-  //     setError("");
-  //   } catch (err) {
-  //     setError(err);
-  //     console.log(err);
-  //   }
-  // };
+    const updatePapers = async () => {
+      const response = await axios.get(`paper/student/${user._id}`);
+      setPaperList(response.data);
+    };
+    return () => updatePapers();
+  }, [user, setPaperList]);
 
-  // const handleLeave = async (e) => {
-  //   const teacher = users[e.currentTarget.id]._id;
-  //   try {
-  //     const response = await axios.delete("/teacher/" + teacher);
-  //     users.splice(e.currentTarget.id, 1);
-  //     toast.success(response.data.message, {
-  //       icon: ({ theme, type }) => <FaTrash />,
-  //     });
-  //   } catch (err) {
-  //     toast.error(err.message);
-  //   }
-  // };
+  const handleJoin = async (e) => {
+    const paperId = e.currentTarget.id;
+    const index = e.target.name;
+    const students = papers[index].students;
+    students.push(user._id);
+    updateStudents(paperId, students, index);
+  };
+
+  const handleLeave = async (e) => {
+    const paperId = e.currentTarget.id;
+    const index = e.target.name;
+    const students = papers[index].students;
+    const updatedStudents = students.filter((student) => student !== user._id);
+    updateStudents(paperId, updatedStudents, index);
+  };
+
+  const updateStudents = async (paperId, studentsObj, paperIndex) => {
+    setError("");
+    try {
+      const response = await axios.patch("/paper/" + paperId, {
+        students: studentsObj,
+        id: paperId,
+      });
+      toast.success(response.data.message);
+      const updatedPaper = papers.map((paper, index) => {
+        if (index === parseInt(paperIndex)) {
+          paper.joined = !paper.joined;
+          return paper;
+        } else return paper;
+      });
+      setPapers(updatedPaper);
+    } catch (err) {
+      setError(err);
+    }
+  };
 
   return (
     <>
@@ -79,8 +86,7 @@ const JoinPaper = () => {
                         "Year",
                         "Semester",
                         "Teacher",
-                        "Join",
-                        "Leave",
+                        "Manage",
                       ]}
                     />
                     <tbody>
@@ -102,31 +108,33 @@ const JoinPaper = () => {
                             {paper.teacher.name}
                           </td>
                           <td className="border-t-[1px] border-slate-400 p-0">
-                            <button
-                              type="button"
-                              id={index}
-                              // onClick={(e) => handleApprove(e)}
-                              className="m-0 flex h-auto w-full justify-center bg-transparent  py-3 text-xl hover:bg-violet-900 hover:text-slate-100 dark:text-slate-100 "
-                            >
-                              <PiPlusBold />
-                            </button>
-                          </td>
-                          <td className="border-t-[1px] border-slate-400 p-0">
-                            <button
-                              className="m-0 flex h-auto w-full justify-center bg-transparent  py-3 text-xl hover:bg-red-600 hover:text-slate-100 dark:text-slate-100 "
-                              type="button"
-                              id={index}
-                              // onClick={(e) => handleDelete(e)}
-                            >
-                              <PiMinusBold />
-                            </button>
+                            {!paper.joined ? (
+                              <button
+                                type="button"
+                                id={paper._id}
+                                name={index}
+                                onClick={(e) => handleJoin(e)}
+                                className="m-0 flex h-auto w-full justify-center bg-transparent py-3  text-lg  hover:bg-violet-900 hover:text-slate-100 dark:text-slate-100 "
+                              >
+                                Join
+                              </button>
+                            ) : (
+                              <button
+                                className="m-0 flex h-auto w-full justify-center bg-transparent py-3  text-lg  hover:bg-red-600 hover:text-slate-100 dark:text-slate-100 "
+                                type="button"
+                                id={paper._id}
+                                name={index}
+                                onClick={(e) => handleLeave(e)}
+                              >
+                                Leave
+                              </button>
+                            )}
                           </td>
                         </tr>
                       ))}
                     </tbody>
                   </table>
                 </div>
-                <Soon />
               </>
             ) : (
               <Loading />

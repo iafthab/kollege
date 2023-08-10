@@ -4,10 +4,9 @@ import UserContext from "../../Hooks/UserContext";
 import { FaPlus, FaEdit, FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { TableHeader, RowWithCheckbox } from "../Table";
-import Soon from "../Layouts/Soon";
 
 const Attendance = () => {
-  const { paperList, userType } = useContext(UserContext);
+  const { paperList } = useContext(UserContext);
   const [attendance, setAttendance] = useState([]);
   const [paper, setPaper] = useState("");
   const [date, setDate] = useState("");
@@ -107,68 +106,53 @@ const Attendance = () => {
       </h2>
       <section className="attendance__head">
         <form className="w-full gap-4 accent-violet-900 md:flex ">
-          {userType === "teacher" ? (
-            <>
-              <select
-                className="mb-4 block h-10 w-full rounded-md border-[1.5px] border-solid border-slate-400 p-1 pl-2 outline-none selection:border-slate-200 focus:border-violet-900 dark:border-slate-200 dark:caret-inherit dark:focus:border-violet-400 dark:active:border-violet-400 "
-                placeholder="Select Paper"
-                name="paper"
-                id="paper"
-                value={paper}
-                required
-                onChange={(e) => setPaper(e.target.value)}
-              >
-                <option defaultValue hidden>
-                  Select Paper
-                </option>
-                {paperList.map((paper, index) => (
-                  <option key={index} value={paper._id}>
-                    {paper.paper}
-                  </option>
-                ))}
-              </select>
-              <input
-                className="mb-4 block h-10 w-full rounded-md border-[1.5px] border-solid border-slate-400 p-1 pl-2 outline-none selection:border-slate-200 focus:border-violet-900 dark:border-slate-200 dark:caret-inherit dark:focus:border-violet-400 dark:active:border-violet-400"
-                id="date"
-                placeholder="Select Date"
-                type="date"
-                name="date"
-                value={date}
-                onChange={(e) => setDate(e.target.value)}
-              />
-              <select
-                className="mb-4 block h-10 w-full rounded-md border-[1.5px] border-solid border-slate-400 p-1 pl-2 outline-none selection:border-slate-200 focus:border-violet-900 dark:border-slate-200 dark:caret-inherit dark:focus:border-violet-400 dark:active:border-violet-400"
-                name="hour"
-                id="hour"
-                value={hour}
-                required
-                onChange={(e) => setHour(e.target.value)}
-              >
-                <option defaultValue hidden>
-                  Select Hour
-                </option>
-                <option value="1">I</option>
-                <option value="2">II</option>
-                <option value="3">III</option>
-                <option value="4">IV</option>
-                <option value="5">V</option>
-              </select>
-            </>
-          ) : (
-            <input
-              className="mb-4 block h-10 w-1/3 rounded-md border-[1.5px] border-solid border-slate-400 p-1 pl-2 outline-none selection:border-slate-200 focus:border-violet-900 dark:border-slate-200 dark:caret-inherit dark:focus:border-violet-400 dark:active:border-violet-400"
-              id="date"
-              placeholder="Select Date"
-              type="date"
-              name="date"
-              value={date}
-              onChange={(e) => setDate(e.target.value)}
-            />
-          )}
+          <select
+            className="mb-4 block h-10 w-full rounded-md border-[1.5px] border-solid border-slate-400 p-1 pl-2 outline-none selection:border-slate-200 focus:border-violet-900 dark:border-slate-200 dark:caret-inherit dark:focus:border-violet-400 dark:active:border-violet-400 "
+            placeholder="Select Paper"
+            name="paper"
+            id="paper"
+            value={paper}
+            required
+            onChange={(e) => setPaper(e.target.value)}
+          >
+            <option defaultValue hidden>
+              Select Paper
+            </option>
+            {paperList.map((paper, index) => (
+              <option key={index} value={paper._id}>
+                {paper.paper}
+              </option>
+            ))}
+          </select>
+          <input
+            className="mb-4 block h-10 w-full rounded-md border-[1.5px] border-solid border-slate-400 p-1 pl-2 outline-none selection:border-slate-200 focus:border-violet-900 dark:border-slate-200 dark:caret-inherit dark:focus:border-violet-400 dark:active:border-violet-400"
+            id="date"
+            placeholder="Select Date"
+            type="date"
+            name="date"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+          />
+          <select
+            className="mb-4 block h-10 w-full rounded-md border-[1.5px] border-solid border-slate-400 p-1 pl-2 outline-none selection:border-slate-200 focus:border-violet-900 dark:border-slate-200 dark:caret-inherit dark:focus:border-violet-400 dark:active:border-violet-400"
+            name="hour"
+            id="hour"
+            value={hour}
+            required
+            onChange={(e) => setHour(e.target.value)}
+          >
+            <option defaultValue hidden>
+              Select Hour
+            </option>
+            <option value="1">I</option>
+            <option value="2">II</option>
+            <option value="3">III</option>
+            <option value="4">IV</option>
+            <option value="5">V</option>
+          </select>
           <button
             className="mb-4 h-10 rounded-md border-[1.5px] border-solid border-violet-900 bg-slate-800 px-8 py-2 font-semibold tracking-wide text-slate-200 hover:bg-violet-900 focus:bg-violet-900 disabled:cursor-not-allowed dark:border-violet-300 dark:bg-violet-900 dark:text-violet-100 dark:hover:bg-slate-900 md:w-auto"
             type="submit"
-            disabled={userType === "student" ? true : false}
             onClick={(e) => fetchAttendance(e)}
           >
             Fetch
@@ -234,7 +218,6 @@ const Attendance = () => {
             ""
           )}
         </form>
-        {userType === "student" && <Soon />}
       </section>
     </main>
   );

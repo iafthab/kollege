@@ -23,7 +23,6 @@ const PaperForm = () => {
   useEffect(() => {
     const getTeachers = async (e) => {
       const list = await axios.get("/teacher/list/" + user.department);
-      console.log(list.data);
       setTeachers(list.data);
     };
     getTeachers();

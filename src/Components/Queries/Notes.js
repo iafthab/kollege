@@ -21,7 +21,7 @@ const Notes = () => {
       }
     };
     getNotes();
-    setNoteId("");
+    return () => setNotes([]);
   }, [paper, setNotes, setNoteId]);
 
   const deleteNote = async (e) => {
@@ -40,14 +40,17 @@ const Notes = () => {
         {paper.paper}
       </h2>
       <ul className="grid grid-cols-2 justify-normal font-semibold lg:flex lg:items-center lg:justify-start lg:gap-16">
-        <li className="p-1">BATCH:{paper.year}</li>
-        <li className="p-1">SEMESTER:{paper.semester}</li>
+        <li className="p-1">Batch : {paper.year}</li>
+        <li className="p-1">Semester : {paper.semester}</li>
+        {userType === "student" && (
+          <li className="p-1">Teacher : {paper.teacher.name}</li>
+        )}
         <li className="p-1">
           <Link
             className="rounded-md underline decoration-violet-900  decoration-2 underline-offset-2 hover:bg-violet-950 hover:text-slate-100 hover:decoration-0 dark:decoration-inherit dark:hover:bg-slate-600/80 dark:hover:text-slate-200 lg:p-2 "
             to="students"
           >
-            STUDENTS
+            Students
           </Link>
         </li>
         {userType === "teacher" && (
@@ -56,7 +59,7 @@ const Notes = () => {
               className="rounded-md underline decoration-violet-900   decoration-2 underline-offset-2 hover:bg-violet-950 hover:text-slate-100 hover:decoration-0 dark:decoration-inherit dark:hover:bg-slate-600/80 dark:hover:text-slate-200 lg:p-2 "
               to="add"
             >
-              ADD NOTE
+              Add Note
             </Link>
           </li>
         )}

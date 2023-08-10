@@ -18,7 +18,8 @@ const NotesForm = () => {
     if (noteId) {
       setNote(notes[noteId]);
     }
-  }, [noteId, notes]);
+    return () => setNoteId("");
+  }, [noteId, notes, setNoteId]);
 
   const [error, setError] = useState("");
   const navigate = useNavigate();

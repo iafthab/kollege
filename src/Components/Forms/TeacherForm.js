@@ -3,6 +3,7 @@ import axios from "../../config/api/axios";
 import { Link, useNavigate } from "react-router-dom";
 import { FaUniversity } from "react-icons/fa";
 import { toast } from "react-toastify";
+import CircleDesign from "../Layouts/CircleDesign";
 
 const TeacherForm = () => {
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ const TeacherForm = () => {
     email: "",
     qualification: "",
     department: "",
-    roles: [],
+    role: "",
     username: "",
     password: "",
   });
@@ -39,16 +40,7 @@ const TeacherForm = () => {
 
   return (
     <main className="relative z-0 flex h-screen items-center justify-center bg-gradient-to-b from-slate-400 to-slate-300 py-8 text-slate-900 dark:from-slate-800 dark:to-slate-950 dark:text-slate-200">
-      <div
-        className="absolute -z-[1]  flex  h-full w-full flex-col items-center justify-center gap-16 blur-2xl xl:flex-row"
-        name="blur design"
-      >
-        <span className=" inline-block h-[16rem] w-[10rem] rounded-r-full bg-violet-900"></span>
-        <span className=" inline-block h-[16rem] w-[18rem] rounded-full bg-violet-900"></span>
-        <span className=" inline-block h-[16rem] w-[18rem] rounded-full bg-violet-900"></span>
-        <span className=" inline-block h-[16rem] w-[18rem] rounded-full bg-violet-900"></span>
-        <span className=" inline-block h-[16rem] w-[10rem] rounded-l-full bg-violet-900"></span>
-      </div>
+      <CircleDesign />
       <section className="my-8 flex w-[75%] animate-fadeInFast flex-col justify-start rounded-md bg-slate-100 p-4 text-slate-900 opacity-70 hover:opacity-100 focus:opacity-100 dark:bg-[#060913] dark:text-slate-50 md:p-8 xl:w-1/2 xl:flex-row">
         <div className="mr-8 flex flex-col-reverse justify-between xl:flex-col ">
           <h2 className="my-4 text-4xl font-bold dark:text-slate-400 md:text-5xl">

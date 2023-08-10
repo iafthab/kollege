@@ -4,10 +4,9 @@ import UserContext from "../../Hooks/UserContext";
 import { FaPlus, FaEdit, FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { TableHeader } from "../Table";
-import Soon from "../Layouts/Soon";
 
 const InternalResultForm = () => {
-  const { paperList, userType } = useContext(UserContext);
+  const { paperList } = useContext(UserContext);
   const [paper, setPaper] = useState("");
   const [disabled, setDisabled] = useState(true);
   const [internal, setInternal] = useState([]);
@@ -122,7 +121,6 @@ const InternalResultForm = () => {
           <button
             className="mb-4 h-10 w-auto rounded-md border-[1.5px] border-solid border-violet-900 bg-slate-800 px-8 py-2 font-semibold tracking-wide text-slate-200 hover:bg-violet-900 focus:bg-violet-900 disabled:cursor-not-allowed dark:border-violet-300 dark:bg-violet-900 dark:text-violet-100 dark:hover:bg-slate-900"
             type="submit"
-            disabled={userType === "student" ? true : false}
             onClick={(e) => fetchInternal(e)}
           >
             Fetch
@@ -280,7 +278,6 @@ const InternalResultForm = () => {
             ""
           )}
         </form>
-        {userType === "student" && <Soon />}
       </section>
     </main>
   );

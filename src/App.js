@@ -1,30 +1,29 @@
 import { lazy, Suspense } from "react";
-import Layout from "./Components/Layouts/Layout";
-import Dash from "./Components/Layouts/Dash";
-import ErrorElement from "./Components/Layouts/ErrorElement";
-import Paper from "./Components/Queries/Paper";
-import Attendance from "./Components/Queries/Attendance";
-import Notes from "./Components/Queries/Notes";
-import StudentsList from "./Components/Queries/StudentsList";
-import InternalResultForm from "./Components/Forms/InternalResultForm";
-import TeacherForm from "./Components/Forms/TeacherForm";
-import StudentForm from "./Components/Forms/StudentForm";
-import NotesForm from "./Components/Forms/NotesForm";
-import TimeScheduleForm from "./Components/Forms/TimeScheduleForm";
-import LoginLayout from "./Components/Layouts/LoginLayout";
-import Login from "./Components/Forms/Login";
-import { UserProvider } from "./Hooks/UserContext";
-
-import { ToastContainer } from "react-toastify";
-
 import {
   createBrowserRouter,
   createRoutesFromElements,
   Route,
   RouterProvider,
 } from "react-router-dom";
-import Profile from "./Components/Forms/Profile";
+import { ToastContainer } from "react-toastify";
+
+import { UserProvider } from "./Hooks/UserContext";
+import Layout from "./Components/Layouts/Layout";
+import Dash from "./Components/Layouts/Dash";
+import ErrorElement from "./Components/Layouts/ErrorElement";
 import Loading from "./Components/Layouts/Loading";
+import AttendanceLayout from "./Components/Layouts/AttendanceLayout";
+import LoginLayout from "./Components/Layouts/LoginLayout";
+import InternalLayout from "./Components/Layouts/InternalLayout";
+import Paper from "./Components/Queries/Paper";
+import Notes from "./Components/Queries/Notes";
+import StudentsList from "./Components/Queries/StudentsList";
+import TeacherForm from "./Components/Forms/TeacherForm";
+import StudentForm from "./Components/Forms/StudentForm";
+import NotesForm from "./Components/Forms/NotesForm";
+import TimeScheduleForm from "./Components/Forms/TimeScheduleForm";
+import Login from "./Components/Forms/Login";
+import Profile from "./Components/Forms/Profile";
 
 const TeacherApproval = lazy(() =>
   import("./Components/Queries/TeacherApproval")
@@ -50,8 +49,8 @@ function App() {
           <Route path="paper/:paper/add" element={<NotesForm />} />
           <Route path="paper/:paper/:note/edit" element={<NotesForm />} />
           <Route path="paper/:paper/students" element={<StudentsList />} />
-          <Route path="attendance" element={<Attendance />} />
-          <Route path="internal" element={<InternalResultForm />} />
+          <Route path="attendance" element={<AttendanceLayout />} />
+          <Route path="internal" element={<InternalLayout />} />
           <Route path="time_schedule" element={<TimeScheduleForm />} />
           <Route path="profile" element={<Profile />} />
           <Route

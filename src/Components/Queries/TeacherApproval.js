@@ -26,18 +26,17 @@ const TeacherApproval = () => {
   const handleApprove = async (e) => {
     const index = e.currentTarget.id;
     const teacher = users[index];
-    teacher.roles.push("Teacher");
+    teacher.role = "teacher";
     try {
       const response = await axios.patch("/teacher/" + teacher._id, {
         id: teacher._id,
-        roles: teacher.roles,
+        role: teacher.role,
       });
       users.splice(index, 1);
       toast.success(response.data.message);
       setError("");
     } catch (err) {
       setError(err);
-      console.log(err);
     }
   };
 
@@ -119,8 +118,9 @@ const TeacherApproval = () => {
                 </table>
               </div>
             ) : (
-              <Loading />
+              ""
             )}
+            {!users.length && !error && <Loading />}
           </form>
           <p className="mb-3 overflow-hidden text-ellipsis whitespace-nowrap text-center font-medium text-red-700">
             {error

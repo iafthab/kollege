@@ -1,14 +1,10 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import UserContext from "../../Hooks/UserContext";
 import { AiFillBook } from "react-icons/ai";
 
 const Paper = () => {
-  const { setNotes, setPaper, paperList } = useContext(UserContext);
-
-  useEffect(() => {
-    setNotes([]);
-  }, [setNotes]);
+  const { setPaper, paperList } = useContext(UserContext);
 
   return (
     <main className="paper">
@@ -35,7 +31,10 @@ const Paper = () => {
           ))}
         </section>
       ) : (
-        <p>No Papers Found</p>
+        <p className="text-lg">
+          No Papers Found.
+          <br /> Join Papers First.
+        </p>
       )}
     </main>
   );
