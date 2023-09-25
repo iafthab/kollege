@@ -18,6 +18,13 @@ module.exports = {
             opacity: "1",
           },
         },
+        circle: {
+          "50%": {
+            transform: "scale(0.9)",
+            opacity: "0.9",
+            filter: "blur(9px)",
+          },
+        },
         fadeIn: {
           "0%": {
             opacity: "0.1",
@@ -35,7 +42,7 @@ module.exports = {
         slide: "slide 0.2s ease-in-out 1",
         fadeIn: "fadeIn 1s ease-in-out 1",
         fadeInFast: "fadeIn 0.5s ease-out 1",
-        pulseSlow: "pulse 5s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        circle: "circle 5s cubic-bezier(0.4, 0, 0.6, 1) infinite",
       },
     },
   },

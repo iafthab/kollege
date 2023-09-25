@@ -15,6 +15,14 @@ const Notes = () => {
     const getNotes = async () => {
       try {
         const response = await axios.get("notes/paper/" + paper._id);
+        //TODO Move to backend
+        if (!response.data.length) {
+          setError({
+            response: {
+              data: "No Notes found",
+            },
+          });
+        }
         setNotes(response.data);
       } catch (err) {
         setError(err);
@@ -106,7 +114,7 @@ const Notes = () => {
         ))}
         {!notes.length && !error && <Loading />}
       </section>
-      <p className="mb-3 overflow-hidden text-ellipsis whitespace-nowrap text-center font-medium text-red-700">
+      <p className="m-2 overflow-hidden text-ellipsis whitespace-nowrap text-center font-medium text-red-700">
         {error
           ? error?.response?.data?.message ||
             error?.data?.message ||

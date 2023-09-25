@@ -2,6 +2,7 @@ import React from "react";
 import UserContext from "../../Hooks/UserContext";
 import { TableHeader } from "../Table";
 import axios from "../../config/api/axios";
+import Loading from "../Layouts/Loading";
 
 const InternalStudent = () => {
   const { user } = React.useContext(UserContext);
@@ -75,7 +76,7 @@ const InternalStudent = () => {
           </table>
         </section>
       ) : (
-        ""
+        <Loading />
       )}
     </main>
   );

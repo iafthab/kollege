@@ -8,11 +8,18 @@ import CircleDesign from "../Layouts/CircleDesign";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { user, setUser, userType, setUserType } = useContext(UserContext);
+  const {
+    user,
+    setUser,
+    userType,
+    setUserType,
+    message,
+    setMessage,
+    slowLoadingIndicator,
+  } = useContext(UserContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [message, setMessage] = useState("");
   const [buttonText, setButtonText] = useState("Login");
 
   const handleLogin = async (e) => {
@@ -26,16 +33,12 @@ const Login = () => {
     } else {
       e.target.disabled = true;
       setButtonText("Loading...");
+      slowLoadingIndicator();
       try {
         const response = await axios.post("/auth/login/" + userType, {
           username,
           password,
         });
-        setTimeout(() => {
-          setMessage(
-            "Web Services on the free instance type are automatically spun down after 15 minutes of inactivity. When a new request for a free service comes in, Render spins it up again so it can process the request. This will cause a delay in the response of the first request after a period of inactivity while the instance spins up."
-          );
-        }, 4000);
         setUser(response.data);
       } catch (err) {
         setError(err);
@@ -47,7 +50,8 @@ const Login = () => {
 
   React.useEffect(() => {
     setUserType("");
-  }, [setUserType]);
+    setMessage("");
+  }, [setUserType, setMessage]);
 
   const NavigateToReg = () => {
     userType === ""
@@ -156,7 +160,7 @@ const Login = () => {
                   )}
                   {buttonText}
                 </button>
-                <p className="mb-2 overflow-hidden text-ellipsis whitespace-nowrap text-center font-medium text-red-700">
+                <p className="m-2 overflow-hidden text-ellipsis whitespace-nowrap text-center font-medium text-red-700">
                   {error
                     ? error?.response?.data?.message ||
                       error?.data?.message ||

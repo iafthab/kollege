@@ -119,7 +119,7 @@ const StudentForm = () => {
           >
             Register
           </button>
-          <p className="mb-3 overflow-hidden text-ellipsis whitespace-nowrap text-center font-medium text-red-700">
+          <p className="m-2 overflow-hidden text-ellipsis whitespace-nowrap text-center font-medium text-red-700">
             {error
               ? error?.response?.data?.message ||
                 error?.data?.message ||

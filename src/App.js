@@ -86,12 +86,16 @@ function App() {
     <UserProvider>
       <RouterProvider router={router} />
       <ToastContainer
+        className="toast"
+        toastClassName="toast-rounded"
+        bodyClassName="toast-body"
+        // progressClassName="toast-progress"
         position="bottom-right"
         autoClose={5000}
-        hideProgressBar
         newestOnTop={false}
         closeOnClick
         rtl={false}
+        hideProgressBar={true}
         pauseOnFocusLoss
         draggable
         pauseOnHover

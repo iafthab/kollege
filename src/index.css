@@ -4,6 +4,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Spectral+SC&display=swap");
 
 @layer html {
+  :root {
+    --toastify-color-light: #7c3aed;
+    --toastify-text-color-light: #ddd6fe;
+  }
+
   input,
   select,
   textarea {
@@ -53,9 +58,18 @@
       color: #0f172a;
     }
   }
-}
 
-.Toastify__toast-theme--colored.Toastify__toast--success {
-  background-color: #7c3aed;
-  color: #ddd6fe;
+  #root .toast {
+    color: #6d28d9 !important;
+  }
+  #root .toast-body {
+    color: #6d28d9 !important;
+  }
+  #root .toast-rounded {
+    border-radius: 6px !important;
+    background-color: #e4e0fa !important;
+  }
+  /* #root .toast-progress {
+    background: #6d28d9 !important;
+  } */
 }
