@@ -6,15 +6,15 @@ import UserContext from "../../Hooks/UserContext";
 import { toast } from "react-toastify";
 
 const Header = () => {
-  const { setUser, setUserType, setPaperList } = useContext(UserContext);
+  const { setUser, setPaperList } = useContext(UserContext);
   const logout = () => {
     setUser("");
-    setUserType("");
     setPaperList([]);
+    localStorage.clear();
     toast.info("Logged Out");
   };
   return (
-    <header className="absolute top-0 flex w-full justify-between bg-slate-950 text-slate-50 dark:bg-slate-800 ">
+    <header className="absolute top-0 flex w-full justify-between bg-slate-950 text-slate-50 dark:bg-slate-950 ">
       <Link
         to="/dash"
         className="ml-4 flex items-center gap-2 px-3 py-1 text-3xl font-semibold"

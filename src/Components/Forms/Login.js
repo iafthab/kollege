@@ -8,17 +8,11 @@ import CircleDesign from "../Layouts/CircleDesign";
 
 const Login = () => {
   const navigate = useNavigate();
-  const {
-    user,
-    setUser,
-    userType,
-    setUserType,
-    message,
-    setMessage,
-    slowLoadingIndicator,
-  } = useContext(UserContext);
+  const { user, setUser, message, setMessage, slowLoadingIndicator } =
+    useContext(UserContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [userType, setUserType] = useState("");
   const [error, setError] = useState("");
   const [buttonText, setButtonText] = useState("Login");
 
@@ -39,7 +33,11 @@ const Login = () => {
           username,
           password,
         });
-        setUser(response.data);
+        await setUser({ ...response.data, userType });
+        localStorage.setItem(
+          "userDetails",
+          JSON.stringify({ ...response.data, userType })
+        );
       } catch (err) {
         setError(err);
         setButtonText("Login");
@@ -49,9 +47,12 @@ const Login = () => {
   };
 
   React.useEffect(() => {
+    if ("userDetails" in localStorage) {
+      setUser(JSON.parse(localStorage.getItem("userDetails")));
+    }
     setUserType("");
     setMessage("");
-  }, [setUserType, setMessage]);
+  }, [setUserType, setMessage, setUser]);
 
   const NavigateToReg = () => {
     userType === ""
@@ -67,7 +68,7 @@ const Login = () => {
     <>
       {!user?._id ? (
         <main className="relative z-0 flex h-screen flex-col items-center justify-center bg-gradient-to-b from-slate-400 to-slate-300 text-slate-950 dark:from-slate-800 dark:to-slate-950 dark:text-slate-300">
-          {message && (
+          {message && !error && (
             <header className="absolute top-0 w-full bg-violet-500/50 p-2 text-xs dark:bg-slate-700/50 lg:text-base">
               {message}
             </header>
@@ -160,13 +161,14 @@ const Login = () => {
                   )}
                   {buttonText}
                 </button>
-                <p className="m-2 overflow-hidden text-ellipsis whitespace-nowrap text-center font-medium text-red-700">
-                  {error
-                    ? error?.response?.data?.message ||
-                      error?.data?.message ||
-                      error?.response?.data
-                    : ""}
-                </p>
+                {error ? (
+                  <p className="m-2 overflow-hidden text-ellipsis whitespace-nowrap rounded bg-red-300/50 p-1 text-center font-medium text-red-700">
+                    error?.response?.data?.message || error?.data?.message ||
+                    error?.response?.data
+                  </p>
+                ) : (
+                  ""
+                )}
                 <p className="inline text-slate-600 dark:text-violet-200">
                   Click to{" "}
                 </p>

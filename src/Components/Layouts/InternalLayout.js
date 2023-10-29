@@ -4,9 +4,15 @@ import InternalStudent from "../Queries/InternalStudent";
 import UserContext from "../../Hooks/UserContext";
 
 const InternalLayout = () => {
-  const { userType } = React.useContext(UserContext);
+  const { user } = React.useContext(UserContext);
   return (
-    <>{userType === "student" ? <InternalStudent /> : <InternalResultForm />}</>
+    <>
+      {user.userType === "student" ? (
+        <InternalStudent />
+      ) : (
+        <InternalResultForm />
+      )}
+    </>
   );
 };
 

@@ -43,12 +43,22 @@
     border-radius: 0.375rem;
   }
 
+  #root .toast {
+    color: #2e1065 !important;
+  }
+  #root .toast-body {
+    color: #2e1065 !important;
+  }
+  #root .toast-rounded {
+    border-radius: 6px !important;
+    background-color: #e4e0fa !important;
+  }
+
+  /* #root .toast-progress {
+    background: #6d28d9 !important;
+  } */
+
   @media (prefers-color-scheme: dark) {
-    .outlet-border {
-      border-image: linear-gradient(to bottom, #1e293b, #020617) 1;
-      border-width: 4px;
-      border-radius: 0rem;
-    }
     .active {
       background-color: #6d28d9;
       border-radius: 0.375rem;
@@ -57,19 +67,15 @@
       background-color: #cbd5e1;
       color: #0f172a;
     }
+    #root .toast {
+      color: #e4e0fa !important;
+    }
+    #root .toast-body {
+      color: #e4e0fa !important;
+    }
+    #root .toast-rounded {
+      border-radius: 6px !important;
+      background-color: #2e1065 !important;
+    }
   }
-
-  #root .toast {
-    color: #6d28d9 !important;
-  }
-  #root .toast-body {
-    color: #6d28d9 !important;
-  }
-  #root .toast-rounded {
-    border-radius: 6px !important;
-    background-color: #e4e0fa !important;
-  }
-  /* #root .toast-progress {
-    background: #6d28d9 !important;
-  } */
 }

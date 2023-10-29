@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, useCallback } from "react";
 import axios from "../../config/api/axios";
 import UserContext from "../../Hooks/UserContext";
 import { FaPlus, FaEdit, FaTrash } from "react-icons/fa";
@@ -28,28 +28,29 @@ const TimeScheduleForm = () => {
     });
   };
 
+  const fetchTimeSchedule = useCallback(async () => {
+    try {
+      const response = await axios.get("time_schedule/" + user._id);
+      setId(response.data._id);
+      delete response.data.schedule._id;
+      setTimeSchedule(response.data.schedule);
+    } catch (err) {
+      if (err?.response?.status === 404) {
+        setDisabled(false);
+        setTimeSchedule({
+          monday: ["--", "--", "--", "--", "--"],
+          tuesday: ["--", "--", "--", "--", "--"],
+          wednesday: ["--", "--", "--", "--", "--"],
+          thursday: ["--", "--", "--", "--", "--"],
+          friday: ["--", "--", "--", "--", "--"],
+        });
+      } else setError(err);
+    }
+  }, [user._id]);
+
   useEffect(() => {
-    const fetchTimeSchedule = async () => {
-      try {
-        const response = await axios.get("time_schedule/" + user._id);
-        setId(response.data._id);
-        delete response.data.schedule._id;
-        setTimeSchedule(response.data.schedule);
-      } catch (err) {
-        if (err?.response?.status === 404) {
-          setDisabled(false);
-          setTimeSchedule({
-            monday: ["--", "--", "--", "--", "--"],
-            tuesday: ["--", "--", "--", "--", "--"],
-            wednesday: ["--", "--", "--", "--", "--"],
-            thursday: ["--", "--", "--", "--", "--"],
-            friday: ["--", "--", "--", "--", "--"],
-          });
-        } else setError(err);
-      }
-    };
     fetchTimeSchedule();
-  }, [user]);
+  }, [user, fetchTimeSchedule]);
 
   const addTimeSchedule = async (e) => {
     e.preventDefault();
@@ -77,6 +78,7 @@ const TimeScheduleForm = () => {
       icon: ({ theme, type }) => <FaTrash />,
     });
     setTimeSchedule({});
+    fetchTimeSchedule();
   };
 
   return (

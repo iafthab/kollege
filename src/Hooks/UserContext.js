@@ -1,11 +1,9 @@
-import { createContext } from "react";
-import { useState } from "react";
+import { createContext, useState } from "react";
 
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const [user, setUser] = useState("teacher");
-  const [userType, setUserType] = useState("");
+  const [user, setUser] = useState("");
   const [paper, setPaper] = useState("");
   const [paperList, setPaperList] = useState([]);
   const [notes, setNotes] = useState([]);
@@ -25,8 +23,6 @@ export const UserProvider = ({ children }) => {
       value={{
         user,
         setUser,
-        userType,
-        setUserType,
         paper,
         setPaper,
         paperList,

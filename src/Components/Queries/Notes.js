@@ -7,8 +7,7 @@ import { toast } from "react-toastify";
 import Loading from "../Layouts/Loading";
 
 const Notes = () => {
-  const { paper, setNoteId, notes, setNotes, userType } =
-    useContext(UserContext);
+  const { paper, setNoteId, notes, setNotes, user } = useContext(UserContext);
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -50,7 +49,7 @@ const Notes = () => {
       <ul className="grid grid-cols-2 justify-normal font-semibold lg:flex lg:items-center lg:justify-start lg:gap-16">
         <li className="p-1">Batch : {paper.year}</li>
         <li className="p-1">Semester : {paper.semester}</li>
-        {userType === "student" && (
+        {user.userType === "student" && (
           <li className="p-1">Teacher : {paper.teacher.name}</li>
         )}
         <li className="p-1">
@@ -61,7 +60,7 @@ const Notes = () => {
             Students
           </Link>
         </li>
-        {userType === "teacher" && (
+        {user.userType === "teacher" && (
           <li className="p-1">
             <Link
               className="rounded-md underline decoration-violet-900   decoration-2 underline-offset-2 hover:bg-violet-950 hover:text-slate-100 hover:decoration-0 dark:decoration-inherit dark:hover:bg-slate-600/80 dark:hover:text-slate-200 lg:p-2 "
@@ -78,14 +77,14 @@ const Notes = () => {
       <section className="note__body w-full ">
         {notes?.map((note, index) => (
           <article
-            className="mt-4 overflow-auto whitespace-break-spaces rounded-md border-2 border-slate-900 bg-violet-200 dark:border-slate-500 dark:bg-slate-800 dark:text-slate-300"
+            className="mt-4 overflow-auto whitespace-break-spaces rounded-md border-2 border-slate-900 bg-violet-200 dark:border-slate-500 dark:bg-slate-950 dark:text-slate-300"
             key={index}
           >
-            <details className="">
+            <details>
               <summary className="list-none ">
                 <div className="flex justify-between">
                   <h3 className="p-4 text-lg  font-semibold">{note.title}</h3>
-                  {userType === "teacher" && (
+                  {user.userType === "teacher" && (
                     <div className="flex p-3 pb-1">
                       <Link
                         to={`${index}/edit`}
@@ -99,7 +98,7 @@ const Notes = () => {
                         style={{ color: "rgba(220, 20, 60, 0.8)" }}
                         onClick={(e) => deleteNote(e)}
                       >
-                        <FaTrash className="ml-2 rounded-md p-1 text-3xl text-red-700 hover:bg-red-700 hover:text-slate-100 dark:text-red-600 lg:p-2 lg:text-4xl" />
+                        <FaTrash className="ml-2 rounded-md p-1 text-3xl text-red-700 hover:bg-red-700 hover:text-slate-100 dark:text-red-700/70 lg:p-2 lg:text-4xl" />
                       </Link>
                     </div>
                   )}

@@ -5,16 +5,16 @@ import axios from "../../config/api/axios";
 import { PiUser, PiStudent } from "react-icons/pi";
 
 const Profile = () => {
-  const { user, userType } = React.useContext(UserContext);
+  const { user } = React.useContext(UserContext);
   const [profile, setProfile] = React.useState({});
 
   React.useEffect(() => {
     const getProfile = async () => {
-      const response = await axios.get(`${userType}/${user._id}`);
+      const response = await axios.get(`${user.userType}/${user._id}`);
       setProfile(response.data);
     };
     getProfile();
-  }, [userType, user]);
+  }, [user]);
 
   return (
     <main>
@@ -23,7 +23,7 @@ const Profile = () => {
       </h2>
       {profile.name ? (
         <div className=" my-4 w-full overflow-auto rounded-md border-2 border-slate-900 dark:border-slate-500 dark:p-[1px] md:w-1/2 xl:w-1/3">
-          {userType === "teacher" ? (
+          {user.userType === "teacher" ? (
             <PiUser className="mx-auto my-6 rounded-full border-2 border-slate-900 p-1 text-9xl dark:border-slate-300 md:p-2" />
           ) : (
             <PiStudent className="mx-auto my-6 rounded-full border-2 border-slate-900 p-1 text-9xl font-light dark:border-slate-300 md:p-2" />
