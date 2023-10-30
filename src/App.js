@@ -23,7 +23,7 @@ import StudentForm from "./Components/Forms/StudentForm";
 import NotesForm from "./Components/Forms/NotesForm";
 import TimeScheduleForm from "./Components/Forms/TimeScheduleForm";
 import Login from "./Components/Forms/Login";
-import Profile from "./Components/Forms/Profile";
+import Profile from "./Components/Queries/Profile";
 import RegisterLayout from "./Components/Layouts/RegisterLayout";
 
 const TeacherApproval = lazy(() =>

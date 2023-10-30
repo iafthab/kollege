@@ -31,12 +31,12 @@ const AttendanceStudent = () => {
       </h2>
       <section className="attendance__head">
         <form className="w-full gap-4 accent-violet-900 md:flex ">
-          <div className="flex w-1/3 flex-col">
+          <div className="flex w-fit flex-col">
             <label className="m-1" htmlFor="date">
               Select Date
             </label>
             <input
-              className="mb-4 block h-10  rounded-md border-[1.5px] border-solid border-slate-400 p-1 pl-2 outline-none selection:border-slate-200 focus:border-violet-900 dark:border-slate-200 dark:caret-inherit dark:focus:border-violet-400 dark:active:border-violet-400"
+              className="mb-4 block h-10 w-full rounded-md border-[1.5px] border-solid border-slate-400 p-1 pl-2 outline-none selection:border-slate-200 focus:border-violet-900 dark:border-slate-200 dark:caret-inherit dark:focus:border-violet-400 dark:active:border-violet-400"
               id="date"
               placeholder="Select Date"
               type="date"
@@ -57,7 +57,7 @@ const AttendanceStudent = () => {
         </form>
       </section>
       <div>
-        <p className="mb-3 overflow-hidden text-ellipsis whitespace-nowrap text-center font-medium text-red-700">
+        <p className="mb-3 text-ellipsis text-center font-medium text-red-700">
           {error ? error?.response?.data?.message || error?.response?.data : ""}
         </p>
       </div>
@@ -78,7 +78,9 @@ const AttendanceStudent = () => {
                       }
                     >
                       <td className="p-2">{period.hour}</td>
-                      <td className="p-2">{period.paper.paper}</td>
+                      <td className="whitespace-break-spaces p-2">
+                        {period.paper.paper}
+                      </td>
                       <td className="p-2">
                         {period.attendance.present ? "Present" : "Absent"}
                       </td>

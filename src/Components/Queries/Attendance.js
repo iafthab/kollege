@@ -176,7 +176,7 @@ const Attendance = () => {
         </form>
       </section>
       <div>
-        <p className="mb-3 overflow-hidden text-ellipsis whitespace-nowrap text-center font-medium text-red-700">
+        <p className="text-balance mb-3 overflow-hidden text-ellipsis text-center font-medium text-red-700">
           {error ? error?.response?.data?.message || error?.response?.data : ""}
         </p>
       </div>
