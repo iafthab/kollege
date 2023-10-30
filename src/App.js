@@ -24,6 +24,7 @@ import NotesForm from "./Components/Forms/NotesForm";
 import TimeScheduleForm from "./Components/Forms/TimeScheduleForm";
 import Login from "./Components/Forms/Login";
 import Profile from "./Components/Forms/Profile";
+import RegisterLayout from "./Components/Layouts/RegisterLayout";
 
 const TeacherApproval = lazy(() =>
   import("./Components/Queries/TeacherApproval")
@@ -36,8 +37,10 @@ function App() {
     createRoutesFromElements(
       <Route path="/" element={<LoginLayout />} errorElement={<ErrorElement />}>
         <Route index element={<Login />} />
-        <Route path="reg_teacher" element={<TeacherForm />} />
-        <Route path="reg_student" element={<StudentForm />} />
+        <Route path="/register" element={<RegisterLayout />}>
+          <Route path="reg_teacher" element={<TeacherForm />} />
+          <Route path="reg_student" element={<StudentForm />} />
+        </Route>
         <Route
           path="/dash"
           element={<Layout />}

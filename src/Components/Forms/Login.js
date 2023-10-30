@@ -54,16 +54,6 @@ const Login = () => {
     setMessage("");
   }, [setUserType, setMessage, setUser]);
 
-  const NavigateToReg = () => {
-    userType === ""
-      ? setError({
-          data: {
-            message: "Select User Type",
-          },
-        })
-      : navigate("./reg_" + userType);
-  };
-
   return (
     <>
       {!user?._id ? (
@@ -162,9 +152,10 @@ const Login = () => {
                   {buttonText}
                 </button>
                 {error ? (
-                  <p className="m-2 overflow-hidden text-ellipsis whitespace-nowrap rounded bg-red-300/50 p-1 text-center font-medium text-red-700">
-                    error?.response?.data?.message || error?.data?.message ||
-                    error?.response?.data
+                  <p className="m-2 overflow-hidden text-ellipsis whitespace-nowrap rounded bg-red-300/50 p-1 text-center font-medium text-red-700 dark:bg-transparent">
+                    {error?.response?.data?.message ||
+                      error?.data?.message ||
+                      error?.response?.data}
                   </p>
                 ) : (
                   ""
@@ -175,7 +166,7 @@ const Login = () => {
                 <button
                   type="button"
                   className="font-semibold text-violet-600 decoration-2 hover:underline focus:underline   dark:text-violet-400"
-                  onClick={() => NavigateToReg()}
+                  onClick={() => navigate("./register/reg_student")}
                 >
                   Register
                 </button>
