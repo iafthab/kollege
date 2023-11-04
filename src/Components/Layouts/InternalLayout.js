@@ -1,16 +1,25 @@
 import React from "react";
-import InternalResultForm from "../Forms/InternalResultForm";
-import InternalStudent from "../Queries/InternalStudent";
 import UserContext from "../../Hooks/UserContext";
+import Loading from "./Loading";
 
 const InternalLayout = () => {
+  const InternalResultForm = React.lazy(() =>
+    import("../Forms/InternalResultForm")
+  );
+  const InternalStudent = React.lazy(() =>
+    import("../Queries/InternalStudent")
+  );
   const { user } = React.useContext(UserContext);
   return (
     <>
       {user.userType === "student" ? (
-        <InternalStudent />
+        <React.Suspense fallback={<Loading />}>
+          <InternalStudent />
+        </React.Suspense>
       ) : (
-        <InternalResultForm />
+        <React.Suspense fallback={<Loading />}>
+          <InternalResultForm />
+        </React.Suspense>
       )}
     </>
   );

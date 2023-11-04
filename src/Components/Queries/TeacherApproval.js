@@ -5,17 +5,18 @@ import axios from "../../config/api/axios";
 import { FaPlus, FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
 import Loading from "../Layouts/Loading";
+import ErrorStrip from "../ErrorStrip";
 
 const TeacherApproval = () => {
   const { user } = useContext(UserContext);
-  const [users, setUsers] = useState([]);
+  const [newTeachers, setNewTeachers] = useState([]);
   const [error, setError] = useState("");
 
   useEffect(() => {
     const getNewTeachers = async () => {
       try {
         const response = await axios.get("teacher/approve/" + user.department);
-        setUsers(response.data);
+        setNewTeachers(response.data);
       } catch (err) {
         setError(err);
       }
@@ -25,14 +26,14 @@ const TeacherApproval = () => {
 
   const handleApprove = async (e) => {
     const index = e.currentTarget.id;
-    const teacher = users[index];
+    const teacher = newTeachers[index];
     teacher.role = "teacher";
     try {
       const response = await axios.patch("/teacher/" + teacher._id, {
         id: teacher._id,
         role: teacher.role,
       });
-      users.splice(index, 1);
+      newTeachers.splice(index, 1);
       toast.success(response.data.message);
       setError("");
     } catch (err) {
@@ -41,10 +42,10 @@ const TeacherApproval = () => {
   };
 
   const handleDelete = async (e) => {
-    const teacher = users[e.currentTarget.id]._id;
+    const teacher = newTeachers[e.currentTarget.id]._id;
     try {
       const response = await axios.delete("/teacher/" + teacher);
-      users.splice(e.currentTarget.id, 1);
+      newTeachers.splice(e.currentTarget.id, 1);
       toast.success(response.data.message, {
         icon: ({ theme, type }) => <FaTrash />,
       });
@@ -64,7 +65,7 @@ const TeacherApproval = () => {
             Department: {user.department}
           </h3>
           <form>
-            {users.length ? (
+            {newTeachers.length ? (
               <div className="my-4 w-full overflow-auto rounded-md border-2 border-slate-900 dark:border-slate-500 dark:p-[1px]">
                 <table className="w-full">
                   <thead>
@@ -78,7 +79,7 @@ const TeacherApproval = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {users?.map((teacher, index) => (
+                    {newTeachers?.map((teacher, index) => (
                       <tr key={index}>
                         <td className="border-t-[1px] border-slate-400 p-2">
                           {teacher.name}
@@ -120,15 +121,9 @@ const TeacherApproval = () => {
             ) : (
               ""
             )}
-            {!users.length && !error && <Loading />}
+            {!newTeachers.length && !error && <Loading />}
           </form>
-          <p className="m-2 overflow-hidden text-ellipsis whitespace-nowrap text-center font-medium text-red-700">
-            {error
-              ? error?.response?.data?.message ||
-                error?.data?.message ||
-                error?.response?.data
-              : ""}
-          </p>
+          {error ? <ErrorStrip error={error} /> : ""}
         </main>
       ) : (
         <Navigate to="/dash" />

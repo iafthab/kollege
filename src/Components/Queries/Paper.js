@@ -31,10 +31,7 @@ const Paper = () => {
           ))}
         </section>
       ) : (
-        <p className="text-lg">
-          No Papers Found.
-          <br /> Join Papers First.
-        </p>
+        <p className="text-lg">No Papers Found.</p>
       )}
     </main>
   );

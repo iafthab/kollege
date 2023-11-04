@@ -4,6 +4,7 @@ import UserContext from "../../Hooks/UserContext";
 import { FaPlus, FaEdit, FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { TableHeader, RowWithCheckbox } from "../Table";
+import ErrorStrip from "../ErrorStrip";
 
 const Attendance = () => {
   const { paperList } = useContext(UserContext);
@@ -23,13 +24,16 @@ const Attendance = () => {
     setError("");
     try {
       const response = await axios.get(`/attendance/${paper}/${date}/${hour}`);
+      // saving the record ID for Updating/Deleting record
       setId(response.data._id);
       setAttendance(response.data.attendance);
       setDisabled(true);
     } catch (err) {
       setError(err);
+      // in case no attendance record exists
       if (err.response.status === 404) {
         const response = await axios.get("paper/" + paper);
+        // students list is fetched and mapped to add "present" value
         const students = response.data.students;
         students.forEach((student) => {
           Object.assign(student, { present: true });
@@ -40,12 +44,15 @@ const Attendance = () => {
     }
   };
 
+  // adding new attendance and updating existing attendance record
   const addAttendance = async (e) => {
     e.preventDefault();
+    // removing student names from data since only studentId is stored in database
     const newData = attendance.map((i) => {
       return { student: i._id, present: i.present };
     });
     try {
+      // adding a new attendance record
       const response = await axios.post(
         `/attendance/${paper}/${date}/${hour}`,
         { paper, date, hour, attendance: newData }
@@ -55,11 +62,13 @@ const Attendance = () => {
       setError("");
       fetchAttendance(e);
     } catch (err) {
+      // conflict, attendance record already exists
       if (err?.response.status === 409) {
         const newData = attendance.map((i) => {
           return { student: i.student._id, present: i.present };
         });
         try {
+          // updating the old attendance record
           const response = await axios.patch(
             `/attendance/${paper}/${date}/${hour}`,
             { id, paper, date, hour, attendance: newData }
@@ -88,7 +97,10 @@ const Attendance = () => {
     }
   };
 
+  // updating attendance state on "onChange" event.
   const handleFormChange = (e) => {
+    // the whole thing is a convoluted mess, but it works.
+    // if you have an alternative, DM ;).
     const index = parseInt(e.target.id);
     const newStudent = attendance[index];
     newStudent.present = !newStudent.present;
@@ -175,11 +187,7 @@ const Attendance = () => {
           </div>
         </form>
       </section>
-      <div>
-        <p className="text-balance mb-3 overflow-hidden text-ellipsis text-center font-medium text-red-700">
-          {error ? error?.response?.data?.message || error?.response?.data : ""}
-        </p>
-      </div>
+      <div>{error ? <ErrorStrip error={error} /> : ""}</div>
       <section className="attendance__form">
         <form className="w-full">
           {attendance?.length ? (

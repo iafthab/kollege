@@ -4,6 +4,7 @@ import Nav from "./Nav";
 import { useContext } from "react";
 import UserContext from "../../Hooks/UserContext";
 
+// layout of the entire dash/ route
 const Layout = () => {
   const { user } = useContext(UserContext);
   const location = useLocation().pathname;
@@ -18,7 +19,6 @@ const Layout = () => {
             <Outlet />
           </div>
         ) : (
-          // <p>Login to continue</p>
           <Navigate to="/" replace={true} />
         )}
       </main>

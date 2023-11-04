@@ -1,12 +1,12 @@
 import { useContext, useState, useEffect } from "react";
-import UserContext from "../../Hooks/UserContext";
 import { Navigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import axios from "../../config/api/axios";
+import UserContext from "../../Hooks/UserContext";
 import { TableHeader } from "../Table";
 import Loading from "../Layouts/Loading";
-import { toast } from "react-toastify";
+import ErrorStrip from "../ErrorStrip";
 
-//TODO Refactor
 const JoinPaper = () => {
   const { user, setPaperList } = useContext(UserContext);
   const [error, setError] = useState("");
@@ -27,6 +27,7 @@ const JoinPaper = () => {
       const response = await axios.get(`paper/student/${user._id}`);
       setPaperList(response.data);
     };
+    // updating paperList while component unmounts
     return () => updatePapers();
   }, [user, setPaperList]);
 
@@ -140,13 +141,7 @@ const JoinPaper = () => {
               <Loading />
             )}
           </form>
-          <p className="m-2 overflow-hidden text-ellipsis whitespace-nowrap text-center font-medium text-red-700">
-            {error
-              ? error?.response?.data?.message ||
-                error?.data?.message ||
-                error?.response?.data
-              : ""}
-          </p>
+          {error ? <ErrorStrip error={error} /> : ""}
         </main>
       ) : (
         <Navigate to="/dash" />

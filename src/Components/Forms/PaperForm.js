@@ -4,10 +4,11 @@ import { useNavigate, Navigate } from "react-router-dom";
 import UserContext from "../../Hooks/UserContext";
 import { toast } from "react-toastify";
 import { FaPlus } from "react-icons/fa";
+import ErrorStrip from "../ErrorStrip";
 
 const PaperForm = () => {
   const { user } = useContext(UserContext);
-  const [paper, setPaper] = useState({
+  const [newPaper, setNewPaper] = useState({
     department: user.department,
     paper: "",
     year: "2023",
@@ -21,7 +22,7 @@ const PaperForm = () => {
 
   // Fetch teachers
   useEffect(() => {
-    const getTeachers = async (e) => {
+    const getTeachers = async () => {
       const list = await axios.get("/teacher/list/" + user.department);
       setTeachers(list.data);
     };
@@ -31,7 +32,7 @@ const PaperForm = () => {
   const addPaper = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("paper", JSON.stringify(paper));
+      const response = await axios.post("paper", JSON.stringify(newPaper));
       navigate("./..");
       toast.success(response.data.message);
     } catch (err) {
@@ -40,8 +41,8 @@ const PaperForm = () => {
   };
 
   const handleFormChange = (e) => {
-    setPaper({
-      ...paper,
+    setNewPaper({
+      ...newPaper,
       [e.target.id]: e.target.value,
     });
   };
@@ -61,7 +62,7 @@ const PaperForm = () => {
               type="text"
               required
               id="department"
-              value={paper.department}
+              value={newPaper.department}
               disabled
             />
             <label htmlFor="paper">Paper:</label>
@@ -70,7 +71,7 @@ const PaperForm = () => {
               type="text"
               name="paper"
               id="paper"
-              value={paper.paper}
+              value={newPaper.paper}
               required
               onChange={(e) => handleFormChange(e)}
             />
@@ -78,7 +79,7 @@ const PaperForm = () => {
             <select
               className="mb-4 block h-10 w-full rounded-md border-[1.5px] border-solid border-slate-400 p-1 pl-2 outline-none selection:border-slate-200 focus:border-violet-900 dark:border-slate-200 dark:caret-inherit dark:focus:border-violet-400 dark:active:border-violet-400"
               id="semester"
-              value={paper.semester}
+              value={newPaper.semester}
               required
               onChange={(e) => handleFormChange(e)}
             >
@@ -101,7 +102,7 @@ const PaperForm = () => {
               step="1"
               required
               id="year"
-              value={paper.year}
+              value={newPaper.year}
               onChange={(e) => handleFormChange(e)}
             />
             <label htmlFor="teacher">Teacher:</label>
@@ -110,7 +111,7 @@ const PaperForm = () => {
               required
               id="teacher"
               name="teacher"
-              value={paper.teacher}
+              value={newPaper.teacher}
               onChange={(e) => handleFormChange(e)}
             >
               <option defaultValue hidden>
@@ -131,13 +132,7 @@ const PaperForm = () => {
               Add
             </button>
           </form>
-          <p className="m-2 overflow-hidden text-ellipsis whitespace-nowrap text-center font-medium text-red-700">
-            {error
-              ? error?.response?.data?.message ||
-                error?.data?.message ||
-                error?.response?.data
-              : ""}
-          </p>
+          {error ? <ErrorStrip error={error} /> : ""}
         </main>
       ) : (
         <Navigate to="/" replace={true} />

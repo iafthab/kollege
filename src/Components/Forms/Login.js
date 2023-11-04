@@ -1,20 +1,29 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
+import { useNavigate, Navigate } from "react-router-dom";
+import UserContext from "../../Hooks/UserContext";
+import axios from "../../config/api/axios";
 import { FaUniversity } from "react-icons/fa";
 import { PiStudentThin, PiUserThin, PiSpinnerGapBold } from "react-icons/pi";
-import { useNavigate, Navigate } from "react-router-dom";
-import axios from "../../config/api/axios";
-import UserContext from "../../Hooks/UserContext";
 import CircleDesign from "../Layouts/CircleDesign";
+import ErrorStrip from "../ErrorStrip";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { user, setUser, message, setMessage, slowLoadingIndicator } =
-    useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [userType, setUserType] = useState("");
   const [error, setError] = useState("");
   const [buttonText, setButtonText] = useState("Login");
+  const [message, setMessage] = useState("");
+
+  const slowLoadingIndicator = () => {
+    setTimeout(() => {
+      setMessage(
+        "NOTE:Web Services on the free instance type are automatically spun down after 15 minutes of inactivity. When a new request for a free service comes in, Render spins it up again so it can process the request. This will cause a delay in the response of the first request after a period of inactivity while the instance spins up."
+      );
+    }, 4000);
+  };
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -25,7 +34,6 @@ const Login = () => {
         },
       });
     } else {
-      e.target.disabled = true;
       setButtonText("Loading...");
       slowLoadingIndicator();
       try {
@@ -41,12 +49,11 @@ const Login = () => {
       } catch (err) {
         setError(err);
         setButtonText("Login");
-        e.target.disabled = false;
       }
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     if ("userDetails" in localStorage) {
       setUser(JSON.parse(localStorage.getItem("userDetails")));
     }
@@ -144,6 +151,7 @@ const Login = () => {
                   className="mb-1 flex h-10 w-full items-center justify-center gap-1 rounded-md border-[1.5px] border-solid border-violet-900 bg-slate-800 p-1 font-bold tracking-wide text-slate-200 hover:bg-violet-900 focus:bg-violet-900 disabled:cursor-wait dark:border-violet-300 dark:bg-violet-600 dark:text-slate-50 dark:hover:bg-slate-900 dark:focus:bg-slate-900 lg:mb-2 "
                   type="submit"
                   value="Login"
+                  disabled={buttonText !== "Login"}
                   onClick={(e) => handleLogin(e)}
                 >
                   {!(buttonText === "Login") && (
@@ -151,15 +159,7 @@ const Login = () => {
                   )}
                   {buttonText}
                 </button>
-                {error ? (
-                  <p className="m-2 overflow-hidden text-ellipsis whitespace-nowrap rounded bg-red-300/50 p-1 text-center font-medium text-red-700 dark:bg-transparent">
-                    {error?.response?.data?.message ||
-                      error?.data?.message ||
-                      error?.response?.data}
-                  </p>
-                ) : (
-                  ""
-                )}
+                {error ? <ErrorStrip error={error} /> : ""}
                 <p className="inline text-slate-600 dark:text-violet-200">
                   Click to{" "}
                 </p>

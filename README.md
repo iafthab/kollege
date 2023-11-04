@@ -1,5 +1,7 @@
 # KOLLEGE
 
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
+
 [kollege.onrender.com](https://kollege.onrender.com)
 
 A College Based Data Management System.
@@ -47,7 +49,7 @@ Student can view
 - Attendance
 - Internal Marks
 
-Attendance and Marks has to added by the teacher first.  
+Attendance and Marks needs to be added by the teacher first.  
 Student can also join or leave a Paper(Subject).
 
 ## Tech Stack
@@ -64,9 +66,67 @@ Student can also join or leave a Paper(Subject).
 - Dark Theme
 - Mobile Responsive
 
+## Run Locally
+
+Clone the project - Kollege:
+
+```bash
+  git clone https://github.com/iafthab/5.6-Kollege
+```
+
+Clone the backend - Kollege API:
+
+```bash
+  git clone https://github.com/iafthab/4.4-Kollege_API
+```
+
+Open Kollege API project, create a .env file and paste your database URI:
+
+```javascript
+  DATABASE_URI = mongodb+srv:/...
+```
+
+Install dependencies on both projects:
+
+```bash
+  npm install
+```
+
+Start the server in Kollege API:
+
+```bash
+  npm run start
+```
+
+On the Kollege project, go to src/config/api/axios.js. change the baseURL:
+
+```javascript
+baseURL: "http://localhost:3500";
+```
+
+or
+
+```javascript
+baseURL: "https://example.address.com";
+```
+
+Finally,
+
+```bash
+  npm start
+```
+
+### Still getting errors?
+
+In the Kollege API project, go to config/allowedOptions.js. Make sure your front-end address is included:
+
+```javascript
+const allowedOrigins = ["http://localhost:3000", "https://example.address.com"];
+```
+
 ## RoadMap
 
-- Refactor Code
+- Add admin 😴
 - Cache Queries
 
 ## Acknowledgements
@@ -80,10 +140,14 @@ Student can also join or leave a Paper(Subject).
 - [Axios](https://axios-http.com/)
 - [README Editor](readme.so)
 
-## Feedback
-
-If you have any feedback, please reach out to me at [here](mailto:afthabiqbal123@gmail.com)
-
 ## Related
 
 [KOLLEGE API](https://github.com/afthab-i/4.4-Kollege_API)
+
+## Feedback
+
+If you have any feedback, please reach out to me at [here](mailto:afthabiqbal123@gmail.com). Thank You ❤️.
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)

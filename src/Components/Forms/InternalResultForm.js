@@ -4,6 +4,7 @@ import UserContext from "../../Hooks/UserContext";
 import { FaPlus, FaEdit, FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { TableHeader } from "../Table";
+import ErrorStrip from "../ErrorStrip";
 
 const InternalResultForm = () => {
   const { paperList } = useContext(UserContext);
@@ -18,14 +19,18 @@ const InternalResultForm = () => {
     setError("");
     e.preventDefault();
     try {
+      // fetching internal record
       const response = await axios.get("/internal/" + paper);
+      // saving record id for updating/deleting record
       setId(response.data._id);
       setInternal(response.data.marks);
       setDisabled(true);
       setError("");
     } catch (err) {
       setError(err);
+      // incase no record exists
       if (err.response.status === 404) {
+        // fetching students list and mapping to add fields
         const response = await axios.get("paper/" + paper);
         const students = response.data.students;
         students.forEach((student) => {
@@ -47,14 +52,17 @@ const InternalResultForm = () => {
     e.preventDefault();
     const marks = { id, paper, marks: internal };
     try {
+      // adding new internal mark record
       const response = await axios.post("internal/" + paper, marks);
       toast.success(response.data.message);
       setDisabled(true);
       setError("");
       fetchInternal(e);
     } catch (err) {
+      // conflict, record already exists
       if (err.response.status === 409) {
         try {
+          // updating internal record
           const response = await axios.patch("internal/" + paper, marks);
           toast.success(response.data.message);
           setDisabled(true);
@@ -79,7 +87,10 @@ const InternalResultForm = () => {
     }
   };
 
+  // updating internal state on "onChange" event.
   const handleFormChange = (e) => {
+    // the whole thing is a convoluted mess, but it works.
+    // if you have an alternative, DM ;).
     const index = parseInt(e.target.id);
     const value = e.target.value;
     const key = e.target.name;
@@ -127,11 +138,7 @@ const InternalResultForm = () => {
           </button>
         </form>
       </section>
-      <div>
-        <p className="mb-3 overflow-hidden text-ellipsis whitespace-break-spaces text-center font-medium text-red-700">
-          {error ? error?.response?.data?.message || error?.response?.data : ""}
-        </p>
-      </div>
+      <div>{error ? <ErrorStrip error={error} /> : ""}</div>
       <section className="internal__body">
         <form className="internal__body__form">
           {internal.length ? (
@@ -153,6 +160,7 @@ const InternalResultForm = () => {
                     <tr
                       key={index}
                       className={
+                        // checking whether the student passed (total mark is above 7), bgcolor to represent it.
                         parseInt(student?.test) +
                           parseInt(student?.seminar) +
                           parseInt(student?.assignment) +

@@ -2,6 +2,7 @@ import { useContext, useState, useEffect } from "react";
 import UserContext from "../../Hooks/UserContext";
 import axios from "../../config/api/axios";
 import Loading from "../Layouts/Loading";
+import ErrorStrip from "../ErrorStrip";
 
 const StudentsList = () => {
   const { paper } = useContext(UserContext);
@@ -44,11 +45,7 @@ const StudentsList = () => {
       )}
       {!students.length && !error && <Loading />}
 
-      <div>
-        <p className="mb-3 overflow-hidden text-ellipsis whitespace-break-spaces text-center font-medium text-red-700">
-          {error ? error?.response?.data?.message || error?.response?.data : ""}
-        </p>
-      </div>
+      <div>{error ? <ErrorStrip error={error} /> : ""}</div>
     </main>
   );
 };

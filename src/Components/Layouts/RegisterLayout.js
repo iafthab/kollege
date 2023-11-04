@@ -4,6 +4,7 @@ import { FaUniversity } from "react-icons/fa";
 import { PiStudentThin, PiUserThin } from "react-icons/pi";
 import { NavLink, Link, Outlet, useLocation } from "react-router-dom";
 
+// layout of the register route
 const RegisterLayout = () => {
   const location = useLocation().pathname;
 

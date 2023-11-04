@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "../../config/api/axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import ErrorStrip from "../ErrorStrip";
 
 const StudentForm = () => {
   const navigate = useNavigate();
@@ -97,13 +98,7 @@ const StudentForm = () => {
       >
         Register
       </button>
-      <p className="m-2 overflow-hidden text-ellipsis whitespace-nowrap text-center font-medium text-red-700">
-        {error
-          ? error?.response?.data?.message ||
-            error?.data?.message ||
-            error?.response?.data
-          : ""}
-      </p>
+      {error ? <ErrorStrip error={error} /> : ""}
     </form>
   );
 };

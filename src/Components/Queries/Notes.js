@@ -5,9 +5,10 @@ import UserContext from "../../Hooks/UserContext";
 import { FaTrash, FaEdit } from "react-icons/fa";
 import { toast } from "react-toastify";
 import Loading from "../Layouts/Loading";
+import ErrorStrip from "../ErrorStrip";
 
 const Notes = () => {
-  const { paper, setNoteId, notes, setNotes, user } = useContext(UserContext);
+  const { paper, notes, setNotes, user } = useContext(UserContext);
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -29,7 +30,7 @@ const Notes = () => {
     };
     getNotes();
     return () => setNotes([]);
-  }, [paper, setNotes, setNoteId]);
+  }, [paper, setNotes]);
 
   const deleteNote = async (e) => {
     const id = e.currentTarget.id;
@@ -52,18 +53,18 @@ const Notes = () => {
         {user.userType === "student" && (
           <li className="p-1">Teacher : {paper.teacher.name}</li>
         )}
-        <li className="p-1">
+        <li>
           <Link
-            className="rounded-md underline decoration-violet-900  decoration-2 underline-offset-2 hover:bg-violet-950 hover:text-slate-100 hover:decoration-0 dark:decoration-inherit dark:hover:bg-violet-900/80 dark:hover:text-slate-200 lg:p-2 "
+            className="rounded-md px-2 py-1 underline decoration-violet-900  decoration-2 underline-offset-2 hover:bg-violet-950 hover:text-slate-100 hover:decoration-0 dark:decoration-inherit dark:hover:bg-violet-900/80 dark:hover:text-slate-200 md:p-2 "
             to="students"
           >
             Students
           </Link>
         </li>
         {user.userType === "teacher" && (
-          <li className="p-1">
+          <li>
             <Link
-              className="rounded-md underline decoration-violet-900   decoration-2 underline-offset-2 hover:bg-violet-950 hover:text-slate-100 hover:decoration-0 dark:decoration-inherit dark:hover:bg-violet-900/80 dark:hover:text-slate-200 lg:p-2 "
+              className="rounded-md px-2 py-1 underline decoration-violet-900   decoration-2 underline-offset-2 hover:bg-violet-950 hover:text-slate-100 hover:decoration-0 dark:decoration-inherit dark:hover:bg-violet-900/80 dark:hover:text-slate-200 md:p-2 "
               to="add"
             >
               Add Note
@@ -86,11 +87,7 @@ const Notes = () => {
                   <h3 className="p-4 text-lg  font-semibold">{note.title}</h3>
                   {user.userType === "teacher" && (
                     <div className="flex p-3 pb-1">
-                      <Link
-                        to={`${index}/edit`}
-                        id={index}
-                        onClick={(e) => setNoteId(e.currentTarget.id)}
-                      >
+                      <Link to={`${index}/edit`} id={index}>
                         <FaEdit className="ml-2 rounded-md p-1 text-3xl hover:bg-violet-900 hover:text-slate-100 dark:hover:bg-violet-600 lg:p-2 lg:text-4xl" />
                       </Link>
                       <Link
@@ -111,15 +108,9 @@ const Notes = () => {
             </details>
           </article>
         ))}
-        {!notes.length && !error && <Loading />}
+        {!notes.length && !error ? <Loading /> : ""}
       </section>
-      <p className="m-2 overflow-hidden text-ellipsis whitespace-nowrap text-center font-medium text-red-700">
-        {error
-          ? error?.response?.data?.message ||
-            error?.data?.message ||
-            error?.response?.data
-          : ""}
-      </p>
+      {error ? <ErrorStrip error={error} /> : ""}
     </main>
   );
 };

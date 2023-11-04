@@ -2,7 +2,7 @@ import React from "react";
 import UserContext from "../../Hooks/UserContext";
 import Loading from "../Layouts/Loading";
 import axios from "../../config/api/axios";
-import { PiUser, PiStudent } from "react-icons/pi";
+import { PiUserThin, PiStudentThin } from "react-icons/pi";
 
 const Profile = () => {
   const { user } = React.useContext(UserContext);
@@ -17,14 +17,14 @@ const Profile = () => {
   }, [user]);
 
   return (
-    <main className="flex w-fit flex-col justify-center">
+    <main className="flex w-full flex-col justify-center md:w-fit">
       {profile.name ? (
         <>
           <div className=" my-4 flex w-full justify-center overflow-auto dark:border-slate-500 dark:p-[1px]">
             {user.userType === "teacher" ? (
-              <PiUser className="m-1 rounded-full border-2 border-slate-900 p-1 text-6xl dark:border-slate-300 md:p-2 md:text-9xl lg:text-[12rem]" />
+              <PiUserThin className="m-2 rounded-full border-2 border-slate-900 p-1 text-6xl dark:border-slate-300 md:p-2 md:text-9xl lg:text-[12rem]" />
             ) : (
-              <PiStudent className="m-1 rounded-full border-2 border-slate-900 p-1 text-6xl font-light dark:border-slate-300 md:p-2 md:text-9xl lg:text-[12rem]" />
+              <PiStudentThin className="m-2 rounded-full border-2 border-slate-900 p-1 text-6xl font-light dark:border-slate-300 md:p-2 md:text-9xl lg:text-[12rem]" />
             )}
             <div className="flex flex-col items-start justify-center">
               <h2 className=" whitespace-break-spaces text-3xl font-bold text-violet-950 underline decoration-inherit decoration-2 underline-offset-4 dark:mt-0 dark:text-slate-400 md:text-6xl">
@@ -33,7 +33,6 @@ const Profile = () => {
               <p className="text-lg capitalize sm:text-xl md:text-2xl">
                 {user?.role}
               </p>
-              {/* <hr className="border-2" /> */}
             </div>
           </div>
           <div className=" w-full overflow-auto rounded-md border-2 border-slate-900 dark:border-slate-500 dark:p-[1px]">

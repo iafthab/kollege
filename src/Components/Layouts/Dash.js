@@ -15,12 +15,7 @@ const Dash = () => {
 
   useEffect(() => {
     const getPapers = async () => {
-      const url =
-        user.userType === "teacher"
-          ? `paper/teacher/${user._id}`
-          : `paper/student/${user._id}`;
-
-      const response = await axios.get(url);
+      const response = await axios.get(`paper/${user.userType}/${user._id}`);
       setPaperList(response.data);
     };
     getPapers();

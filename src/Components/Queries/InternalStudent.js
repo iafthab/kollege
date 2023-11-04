@@ -3,6 +3,7 @@ import UserContext from "../../Hooks/UserContext";
 import { TableHeader } from "../Table";
 import axios from "../../config/api/axios";
 import Loading from "../Layouts/Loading";
+import ErrorStrip from "../ErrorStrip";
 
 const InternalStudent = () => {
   const { user } = React.useContext(UserContext);
@@ -26,11 +27,7 @@ const InternalStudent = () => {
       <h2 className="mb-2 mt-3 whitespace-break-spaces text-4xl font-bold text-violet-950 underline decoration-inherit decoration-2 underline-offset-4 dark:mt-0 dark:text-slate-400 md:text-6xl">
         Internal Mark
       </h2>
-      <div>
-        <p className="mb-3 overflow-hidden text-ellipsis whitespace-break-spaces text-center font-medium text-red-700">
-          {error ? error?.response?.data?.message || error?.response?.data : ""}
-        </p>
-      </div>
+      <div>{error ? <ErrorStrip error={error} /> : ""}</div>
       {internal.length ? (
         <section className="my-4 w-full overflow-auto rounded-md border-2 border-slate-900 dark:border-slate-500 dark:p-[1px]">
           <table className="w-full">

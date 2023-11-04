@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import axios from "../../config/api/axios";
 import UserContext from "../../Hooks/UserContext";
 import { TableHeader } from "../Table";
+import ErrorStrip from "../ErrorStrip";
 
 const AttendanceStudent = () => {
   const { user } = useContext(UserContext);
@@ -56,11 +57,7 @@ const AttendanceStudent = () => {
           </div>
         </form>
       </section>
-      <div>
-        <p className="mb-3 text-ellipsis text-center font-medium text-red-700">
-          {error ? error?.response?.data?.message || error?.response?.data : ""}
-        </p>
-      </div>
+      <div>{error ? <ErrorStrip error={error} /> : ""}</div>
       <section className="attendance__form">
         <form className="w-full">
           {attendance?.length ? (
