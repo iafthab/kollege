@@ -18,10 +18,15 @@
 
   .text-balance {
     text-wrap: balance;
+
   }
 
+form{
+  accent-color: rgb(221 214 254);
+}
+
   .select-img {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='rgb(65, 84, 98)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='rgb(124, 58, 237)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
     background-position: center right 1px;
     background-size: 1rem auto;
     background-repeat: no-repeat;
@@ -42,6 +47,10 @@
     border-radius: 0.75rem;
   }
 
+  .secondLast:nth-last-child(2){
+    text-align: center;
+  }
+
   #nav a.active {
     background-color: #4c1d95;
     border-radius: 0.375rem;
@@ -59,7 +68,7 @@
   }
   #root .toast-rounded {
     border-radius: 6px !important;
-    background-color: #e4e0fa !important;
+    background-color: #ddd6fe !important;
   }
 
   .scrollWidth:-webkit-scrollbar {

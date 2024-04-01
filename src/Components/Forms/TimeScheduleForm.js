@@ -61,8 +61,7 @@ const TimeScheduleForm = () => {
   const addTimeSchedule = async (e) => {
     e.preventDefault();
     const data = {
-      //TODO change Schema to user.
-      teacher: user._id,
+      user: user._id,
       schedule: timeSchedule,
     };
     try {
@@ -123,7 +122,7 @@ const TimeScheduleForm = () => {
                           key={index}
                         >
                           <select
-                            className="select-img h-[3rem] w-full appearance-none text-center leading-6 focus:border-0 disabled:opacity-100"
+                            className="select-img h-[3rem] focus:outline-none dark:text-violet-50 w-full appearance-none text-center leading-6 focus:border-0 disabled:opacity-100"
                             value={day}
                             name={key}
                             id={index}

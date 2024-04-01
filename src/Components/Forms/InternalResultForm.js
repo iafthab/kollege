@@ -140,12 +140,13 @@ const InternalResultForm = () => {
       </section>
       <div>{error ? <ErrorStrip error={error} /> : ""}</div>
       <section className="internal__body">
-        <form className="internal__body__form">
+        <form className="internal__body__form group">
           {internal.length ? (
+            
             <div className="my-4 w-full overflow-auto rounded-md border-2 border-slate-900 dark:border-slate-500 dark:p-[1px]">
               <table className="w-full">
                 <TableHeader
-                  AdditionalHeaderClasses={"text-left"}
+                  AdditionalHeaderClasses={"first:text-left"}
                   Headers={[
                     "Student",
                     "Test",
@@ -155,29 +156,29 @@ const InternalResultForm = () => {
                     "Total",
                   ]}
                 />
-                <tbody>
+                <tbody className="">
                   {internal?.map((student, index) => (
                     <tr
                       key={index}
                       className={
-                        // checking whether the student passed (total mark is above 7), bgcolor to represent it.
+                        // checking whether the student passed (total mark is above 12), bgcolor to represent it.
                         parseInt(student?.test) +
                           parseInt(student?.seminar) +
                           parseInt(student?.assignment) +
                           parseInt(student?.attendance) >
-                        7
+                        12
                           ? "border-t-[1px] border-slate-400 bg-violet-900/50 first:border-none"
                           : "border-t-[1px] border-slate-400 first:border-none"
                       }
                     >
-                      <td className="p-2 ">{student.name}</td>
-                      <td className="p-2 ">
+                      <td className="p-2 text-left">{student.name}</td>
+                      <td className="p-2 text-center">
                         <input
                           className="w-full pl-3 "
                           type="number"
                           required
                           min="0"
-                          max="3"
+                          max="5"
                           disabled={disabled}
                           id={index}
                           name="test"
@@ -185,13 +186,13 @@ const InternalResultForm = () => {
                           onChange={(e) => handleFormChange(e)}
                         />
                       </td>
-                      <td className="p-2 ">
+                      <td className="p-2 text-center">
                         <input
                           className="w-full pl-3 "
                           type="number"
                           required
                           min="0"
-                          max="3"
+                          max="5"
                           disabled={disabled}
                           id={index}
                           name="seminar"
@@ -199,13 +200,13 @@ const InternalResultForm = () => {
                           onChange={(e) => handleFormChange(e)}
                         />
                       </td>
-                      <td className="p-2 ">
+                      <td className="p-2 text-center">
                         <input
                           className="w-full pl-3 "
                           type="number"
                           required
                           min="0"
-                          max="3"
+                          max="5"
                           disabled={disabled}
                           id={index}
                           name="assignment"
@@ -213,13 +214,13 @@ const InternalResultForm = () => {
                           onChange={(e) => handleFormChange(e)}
                         />
                       </td>
-                      <td className="p-2 ">
+                      <td className="p-2 text-center">
                         <input
                           className="w-full pl-3 "
                           type="number"
                           required
                           min="0"
-                          max="3"
+                          max="5"
                           disabled={disabled}
                           id={index}
                           name="attendance"
@@ -227,13 +228,13 @@ const InternalResultForm = () => {
                           onChange={(e) => handleFormChange(e)}
                         />
                       </td>
-                      <td className="p-2 ">
+                      <td className="p-2 text-center">
                         <input
                           className="w-full pl-3 "
                           type="number"
                           required
                           min="0"
-                          max="3"
+                          max="5"
                           disabled
                           id={index}
                           name="total"
@@ -277,7 +278,7 @@ const InternalResultForm = () => {
           {internal.length && !disabled ? (
             <button
               type="submit"
-              className="mb-4 flex h-10 w-auto items-center gap-2 rounded-md border-[1.5px] border-solid border-violet-900 bg-slate-800 px-6 py-2 font-semibold tracking-wide text-slate-200 hover:bg-violet-900 focus:bg-violet-900 dark:border-violet-300 dark:bg-violet-900 dark:text-violet-100 dark:hover:bg-slate-900"
+              className="mb-4 flex h-10 group-invalid:hidden w-auto items-center gap-2 rounded-md border-[1.5px] border-solid border-violet-900 bg-slate-800 px-6 py-2 font-semibold tracking-wide text-slate-200 hover:bg-violet-900 focus:bg-violet-900 dark:border-violet-300 dark:bg-violet-900 dark:text-violet-100 dark:hover:bg-slate-900"
               onClick={(e) => addInternalMark(e)}
             >
               <FaPlus /> Save
@@ -285,6 +286,7 @@ const InternalResultForm = () => {
           ) : (
             ""
           )}
+          <p className="text-balance m-2 overflow-hidden text-ellipsis whitespace-break-spaces rounded bg-red-300/50 p-1 text-center font-medium text-red-700 dark:bg-transparent group-invalid:block hidden">invalid Data</p>
         </form>
       </section>
     </main>

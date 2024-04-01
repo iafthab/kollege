@@ -20,10 +20,10 @@ const PaperForm = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  // Fetch teachers
+  // Fetch staffs
   useEffect(() => {
     const getTeachers = async () => {
-      const list = await axios.get("/teacher/list/" + user.department);
+      const list = await axios.get("/staff/list/" + user.department);
       setTeachers(list.data);
     };
     getTeachers();

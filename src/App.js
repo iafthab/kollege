@@ -28,15 +28,15 @@ import StudentsList from "./Components/Queries/StudentsList";
 import Profile from "./Components/Queries/Profile";
 
 // forms
-import TeacherForm from "./Components/Forms/TeacherForm";
+import StaffForm from "./Components/Forms/StaffForm";
 import StudentForm from "./Components/Forms/StudentForm";
 import NotesForm from "./Components/Forms/NotesForm";
 import TimeScheduleForm from "./Components/Forms/TimeScheduleForm";
 import Login from "./Components/Forms/Login";
 
 // lazy loading user specific components
-const TeacherApproval = lazy(() =>
-  import("./Components/Queries/TeacherApproval")
+const StaffApproval = lazy(() =>
+  import("./Components/Queries/StaffApproval")
 );
 const PaperForm = lazy(() => import("./Components/Forms/PaperForm"));
 const JoinPaper = lazy(() => import("./Components/Forms/JoinPaper"));
@@ -47,7 +47,7 @@ function App() {
       <Route path="/" element={<AppLayout />} errorElement={<ErrorElement />}>
         <Route index element={<Login />} />
         <Route path="/register" element={<RegisterLayout />}>
-          <Route path="reg_teacher" element={<TeacherForm />} />
+          <Route path="reg_staff" element={<StaffForm />} />
           <Route path="reg_student" element={<StudentForm />} />
         </Route>
         <Route
@@ -66,10 +66,10 @@ function App() {
           <Route path="time_schedule" element={<TimeScheduleForm />} />
           <Route path="profile" element={<Profile />} />
           <Route
-            path="approve_teacher"
+            path="approve_staff"
             element={
               <Suspense fallback={<Loading />}>
-                <TeacherApproval />
+                <StaffApproval />
               </Suspense>
             }
           />

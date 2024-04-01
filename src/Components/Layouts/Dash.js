@@ -23,12 +23,12 @@ const Dash = () => {
 
   return (
     <main className="self-center">
-      <h2 className="m-6 mx-auto text-center text-6xl font-bold dark:text-slate-400">
-        Dashboard
+      <h2 className="m-6 font-spectral mx-auto text-center text-6xl font-bold dark:text-slate-400">
+        Kollege
       </h2>
       <div className="grid grid-cols-1 place-content-center gap-3 px-1 py-4 lg:grid-cols-2 lg:gap-4 lg:px-8 xl:grid-cols-3">
         <Link
-          className="flex gap-2 rounded-lg bg-violet-100 p-6 text-base hover:bg-violet-950 hover:text-slate-100 dark:bg-violet-950/40 lg:text-lg"
+          className="flex gap-2 rounded-lg bg-violet-300 p-6 text-base hover:bg-violet-400/90 dark:bg-violet-950/80 dark:hover:bg-violet-950 dark:hover:text-slate-300 duration-200 lg:text-lg"
           to={"./paper"}
         >
           <GiBookshelf className="text-[2.5rem] lg:text-[4rem] " />
@@ -41,7 +41,7 @@ const Dash = () => {
         </Link>
 
         <Link
-          className="flex gap-2 rounded-lg bg-violet-100 p-6 text-base hover:bg-violet-950 hover:text-slate-100 dark:bg-violet-950/40 lg:text-lg"
+          className="flex gap-2 rounded-lg bg-violet-300 p-6 text-base hover:bg-violet-400/90 dark:bg-violet-950/80 dark:hover:bg-violet-950 dark:hover:text-slate-300 duration-200 lg:text-lg"
           to={"./attendance"}
         >
           <IoCalendarOutline className="text-[2.5rem] lg:text-[4rem] " />
@@ -54,7 +54,7 @@ const Dash = () => {
         </Link>
 
         <Link
-          className="flex gap-2 rounded-lg bg-violet-100 p-6 text-base hover:bg-violet-950 hover:text-slate-100 dark:bg-violet-950/40 lg:text-lg"
+          className="flex gap-2 rounded-lg bg-violet-300 p-6 text-base hover:bg-violet-400/90 dark:bg-violet-950/80 dark:hover:bg-violet-950 dark:hover:text-slate-300 duration-200 lg:text-lg"
           to={"./internal"}
         >
           <HiOutlineDocumentReport className="text-[2.5rem] lg:text-[4rem] " />
@@ -67,7 +67,7 @@ const Dash = () => {
         </Link>
 
         <Link
-          className="flex gap-2 rounded-lg bg-violet-100 p-6 text-base hover:bg-violet-950 hover:text-slate-100 dark:bg-violet-950/40 lg:text-lg"
+          className="flex gap-2 rounded-lg bg-violet-300 p-6 text-base hover:bg-violet-400/90 dark:bg-violet-950/80 dark:hover:bg-violet-950 dark:hover:text-slate-300 duration-200 lg:text-lg"
           to={"./time_schedule"}
         >
           <AiOutlineSchedule className="text-[2.5rem] lg:text-[4rem] " />
@@ -82,7 +82,7 @@ const Dash = () => {
         {user.role === "HOD" && (
           <>
             <Link
-              className="flex gap-2 rounded-lg bg-violet-100 p-6 text-base hover:bg-violet-950 hover:text-slate-100 dark:bg-violet-950/40 lg:text-lg"
+              className="flex gap-2 rounded-lg bg-violet-300 p-6 text-base hover:bg-violet-400/90 dark:bg-violet-950/80 dark:hover:bg-violet-950 dark:hover:text-slate-300 duration-200 lg:text-lg"
               to={"./add_paper"}
             >
               <BiBookAdd className="text-[2.5rem] lg:text-[4rem] " />
@@ -95,14 +95,14 @@ const Dash = () => {
             </Link>
 
             <Link
-              className="flex gap-2 rounded-lg bg-violet-100 p-6 text-base hover:bg-violet-950 hover:text-slate-100 dark:bg-violet-950/40 lg:text-lg"
-              to={"./approve_teacher"}
+              className="flex gap-2 rounded-lg bg-violet-300 p-6 text-base hover:bg-violet-400/90 dark:bg-violet-950/80 dark:hover:bg-violet-950 dark:hover:text-slate-300 duration-200 lg:text-lg"
+              to={"./approve_staff"}
             >
               <RiUserAddLine className="text-[2.5rem] lg:text-[4rem] " />
               <div className="font-semibold">
-                Approve Teacher
+                Approve Staff
                 <p className="text-sm font-normal lg:text-base ">
-                  Approve registered teacher(s)
+                  Approve registered staff(s)
                 </p>
               </div>
             </Link>
@@ -110,7 +110,7 @@ const Dash = () => {
         )}
         {user.role === "student" && (
           <Link
-            className="flex gap-2 rounded-lg bg-violet-100 p-6 text-base hover:bg-violet-950 hover:text-slate-100 dark:bg-violet-950/40 lg:text-lg"
+            className="flex gap-2 rounded-lg bg-violet-300 p-6 text-base hover:bg-violet-400/90 dark:bg-violet-950/80 dark:hover:bg-violet-950 dark:hover:text-slate-300 duration-200 lg:text-lg"
             to={"./join_paper"}
           >
             <PiBooks className="text-[2.5rem] lg:text-[4rem] " />
@@ -123,7 +123,7 @@ const Dash = () => {
           </Link>
         )}
         <Link
-          className="flex gap-2 rounded-lg bg-violet-100 p-6 text-base hover:bg-violet-950 hover:text-slate-100 dark:bg-violet-950/40 lg:text-lg"
+          className="flex gap-2 rounded-lg bg-violet-300 p-6 text-base hover:bg-violet-400/90 dark:bg-violet-950/80 dark:hover:bg-violet-950 dark:hover:text-slate-300 duration-200 lg:text-lg"
           to={"./profile"}
         >
           {user.role === "student" ? (

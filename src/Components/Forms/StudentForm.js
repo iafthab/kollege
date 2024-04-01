@@ -27,7 +27,7 @@ const StudentForm = () => {
     try {
       const reqData = JSON.stringify(student);
       const response = await axios.post("student", reqData);
-      navigate("../");
+      navigate("/");
       toast.success(response.data.message);
     } catch (err) {
       setError(err);
@@ -35,7 +35,7 @@ const StudentForm = () => {
   };
 
   return (
-    <form className="scrollWidth w-full  font-medium tracking-wide accent-violet-600">
+    <form className="scrollWidth w-full animate-fadeIn font-medium tracking-wide accent-violet-600">
       <label className="block" htmlFor="name">
         Name:
       </label>

@@ -28,7 +28,7 @@ const Header = () => {
       </Link>
       <Link
         to="./"
-        className="text-md m-2 mr-4 flex items-center rounded-md p-[7px] font-semibold  hover:bg-red-700 hover:text-slate-100"
+        className="text-md m-2 mr-4 flex items-center rounded-md p-[7px] font-semibold duration-200 hover:bg-red-700 hover:text-slate-100"
         onClick={() => logout()}
       >
         <p>&nbsp;Logout&nbsp;&nbsp;</p>

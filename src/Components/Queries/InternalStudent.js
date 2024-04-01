@@ -30,9 +30,9 @@ const InternalStudent = () => {
       <div>{error ? <ErrorStrip error={error} /> : ""}</div>
       {internal.length ? (
         <section className="my-4 w-full overflow-auto rounded-md border-2 border-slate-900 dark:border-slate-500 dark:p-[1px]">
-          <table className="w-full">
+          <table className="w-full ">
             <TableHeader
-              AdditionalHeaderClasses={"text-left"}
+              AdditionalHeaderClasses={"first:text-left"}
               Headers={[
                 "Paper",
                 "Test",
@@ -42,7 +42,7 @@ const InternalStudent = () => {
                 "Total",
               ]}
             />
-            <tbody>
+            <tbody className="text-left">
               {internal?.map((paper, index) => (
                 <tr
                   key={index}
@@ -52,16 +52,16 @@ const InternalStudent = () => {
                       parseInt(paper?.marks.assignment) +
                       parseInt(paper?.marks.attendance) >
                     7
-                      ? "border-t-[1px] border-slate-400 bg-violet-900/50 first:border-none"
-                      : "border-t-[1px] border-slate-400 first:border-none"
+                      ? "border-t-[1px] border-violet-500 bg-violet-900/50 first:border-none"
+                      : "border-t-[1px] border-violet-500 first:border-none"
                   }
                 >
-                  <td className="p-2 ">{paper.paper.paper}</td>
-                  <td className="p-2 ">{paper.marks.test}</td>
-                  <td className="p-2 ">{paper.marks.seminar}</td>
-                  <td className="p-2 ">{paper.marks.assignment}</td>
-                  <td className="p-2 ">{paper.marks.attendance}</td>
-                  <td className="p-2 ">
+                  <td className="p-2 text-left">{paper.paper.paper}</td>
+                  <td className="p-2 text-center">{paper.marks.test}</td>
+                  <td className="p-2 text-center">{paper.marks.seminar}</td>
+                  <td className="p-2 text-center">{paper.marks.assignment}</td>
+                  <td className="p-2 text-center">{paper.marks.attendance}</td>
+                  <td className="p-2 text-center">
                     {paper.marks.test +
                       paper.marks.seminar +
                       paper.marks.assignment +

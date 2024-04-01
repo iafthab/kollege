@@ -13,14 +13,6 @@ const StudentsList = () => {
     const getStudentsList = async (e) => {
       try {
         const response = await axios.get("/paper/students/" + paper._id);
-        // TODO Move to backend
-        if (!response.data.length) {
-          setError({
-            response: {
-              data: "No Students found",
-            },
-          });
-        }
         setStudents(response.data);
       } catch (err) {
         setError(err);

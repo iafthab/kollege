@@ -15,14 +15,6 @@ const Notes = () => {
     const getNotes = async () => {
       try {
         const response = await axios.get("notes/paper/" + paper._id);
-        //TODO Move to backend
-        if (!response.data.length) {
-          setError({
-            response: {
-              data: "No Notes found",
-            },
-          });
-        }
         setNotes(response.data);
       } catch (err) {
         setError(err);
@@ -61,7 +53,7 @@ const Notes = () => {
             Students
           </Link>
         </li>
-        {user.userType === "teacher" && (
+        {user.userType === "staff" && (
           <li>
             <Link
               className="rounded-md px-2 py-1 underline decoration-violet-900   decoration-2 underline-offset-2 hover:bg-violet-950 hover:text-slate-100 hover:decoration-0 dark:decoration-inherit dark:hover:bg-violet-900/80 dark:hover:text-slate-200 md:p-2 "
@@ -78,30 +70,30 @@ const Notes = () => {
       <section className="note__body w-full ">
         {notes?.map((note, index) => (
           <article
-            className="mt-4 overflow-auto whitespace-break-spaces rounded-md border-2 border-slate-900 bg-violet-200 dark:border-slate-500 dark:bg-slate-950 dark:text-slate-300"
+            className="mt-4 overflow-auto whitespace-break-spaces rounded-md  bg-violet-300 hover:bg-violet-400/60 dark:bg-slate-800/70 dark:hover:bg-slate-800 duration-300 dark:text-slate-300"
             key={index}
           >
-            <details>
-              <summary className="list-none ">
+            <details className="duration-200">
+              <summary className="list-none duration-200">
                 <div className="flex justify-between">
                   <h3 className="p-4 text-lg  font-semibold">{note.title}</h3>
-                  {user.userType === "teacher" && (
+                  {user.userType === "staff" && (
                     <div className="flex p-3 pb-1">
                       <Link to={`${index}/edit`} id={index}>
-                        <FaEdit className="ml-2 rounded-md p-1 text-3xl hover:bg-violet-900 hover:text-slate-100 dark:hover:bg-violet-600 lg:p-2 lg:text-4xl" />
+                        <FaEdit className="ml-2 duration-200 rounded-md p-1 text-3xl hover:bg-violet-900 hover:text-slate-100 dark:hover:bg-violet-600 lg:p-2 lg:text-4xl" />
                       </Link>
                       <Link
                         id={note._id}
                         style={{ color: "rgba(220, 20, 60, 0.8)" }}
                         onClick={(e) => deleteNote(e)}
                       >
-                        <FaTrash className="ml-2 rounded-md p-1 text-3xl text-red-700 hover:bg-red-700 hover:text-slate-100 dark:text-red-700/70 lg:p-2 lg:text-4xl" />
+                        <FaTrash className="ml-2 duration-200 rounded-md p-1 text-3xl text-red-700 hover:bg-red-700 hover:text-slate-100 dark:text-red-700/70 lg:p-2 lg:text-4xl" />
                       </Link>
                     </div>
                   )}
                 </div>
               </summary>
-              <hr className="border-b-[1.5px] border-slate-900 dark:border-slate-500 " />
+              <hr className="border-b-[1.5px] border-violet-900 dark:border-slate-500 " />
               <pre className="whitespace-pre-wrap p-4 font-sans">
                 {note.body}
               </pre>

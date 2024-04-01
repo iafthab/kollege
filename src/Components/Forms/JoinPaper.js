@@ -81,6 +81,7 @@ const JoinPaper = () => {
                   <table className="w-full text-left">
                     <TableHeader
                       AdditionalRowClasses={"rounded-t-xl text-left"}
+                      AdditionalHeaderClasses={'last:text-center'}
                       Headers={[
                         "Paper",
                         "Department",
@@ -93,22 +94,22 @@ const JoinPaper = () => {
                     <tbody>
                       {papers?.map((paper, index) => (
                         <tr key={index}>
-                          <td className="border-t-[1px] border-slate-400 px-4 py-2">
+                          <td className="border-t-[1px] border-violet-400 dark:border-slate-400 px-4 py-2">
                             {paper.paper}
                           </td>
-                          <td className="border-t-[1px] border-slate-400 px-4 py-2">
+                          <td className="border-t-[1px] border-violet-400 dark:border-slate-400 px-4 py-2">
                             {paper.department}
                           </td>
-                          <td className="border-t-[1px] border-slate-400 px-4 py-2">
+                          <td className="border-t-[1px] border-violet-400 dark:border-slate-400 px-4 py-2">
                             {paper.year}
                           </td>
-                          <td className="border-t-[1px] border-slate-400 px-4 py-2">
+                          <td className="border-t-[1px] border-violet-400 dark:border-slate-400 px-4 py-2">
                             {paper.semester}
                           </td>
-                          <td className="border-t-[1px] border-slate-400 px-4 py-2">
+                          <td className="border-t-[1px] border-violet-400 dark:border-slate-400 px-4 py-2">
                             {paper.teacher.name}
                           </td>
-                          <td className="border-t-[1px] border-slate-400 p-0">
+                          <td className="border-t-[1px] border-violet-400 dark:border-slate-400 p-0">
                             {!paper.joined ? (
                               <button
                                 type="button"

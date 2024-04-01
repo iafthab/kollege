@@ -6,13 +6,13 @@
 
 A College Based Data Management System.
 
-- There are three roles: Teacher, HOD and Student.
+- There are two types of roles: Staff[Teacher,HOD] and Student.
 
 ## Login Details
 
 PS: BE KIND :)
 
-### Teacher
+### Teacher [staff]
 
 **username:** Delphine  
 **pwd:** Delphine123
@@ -24,7 +24,7 @@ Teacher can add or edit
 - Internal Marks
 - Time Schedule
 
-### HOD
+### HOD (Head of Department) [staff]
 
 **username:** Moriah  
 **pwd:** Moriah123
@@ -54,11 +54,11 @@ Student can also join or leave a Paper(Subject).
 
 ## Tech Stack
 
-**Front-End:** <img src="https://cdn.svgporn.com/logos/react.svg" height="12" width="12"> React, <img src="https://cdn.svgporn.com/logos/tailwindcss-icon.svg" height="12" width="12"> TailwindCSS
+**Client:** React, TailwindCSS
 
-**Server:** <img src="https://cdn.svgporn.com/logos/nodejs-icon.svg" height="12" width="12"> NodeJS, ExpressJS
+**Server:** NodeJS, ExpressJS
 
-**Database:** <img src="https://cdn.svgporn.com/logos/mongodb-icon.svg" height="12" width="12">MongoDB, Mongoose
+**Database:** MongoDB, Mongoose
 
 ## Other Features
 
@@ -66,48 +66,24 @@ Student can also join or leave a Paper(Subject).
 - Dark Theme
 - Mobile Responsive
 
-## Run Locally
+## Setting Up
 
-Clone the project - Kollege:
-
-```bash
-  git clone https://github.com/iafthab/5.6-Kollege
-```
-
-Clone the backend - Kollege API:
+Clone the project:
 
 ```bash
-  git clone https://github.com/iafthab/4.4-Kollege_API
+  git clone https://github.com/iafthab/kollege.git
 ```
 
-Open Kollege API project, create a .env file and paste your database URI:
+Change Directory:
 
-```javascript
-  DATABASE_URI = mongodb+srv:/...
+```bash
+  cd kollege
 ```
 
-Install dependencies on both projects:
+Install dependencies:
 
 ```bash
   npm install
-```
-
-Start the server in Kollege API:
-
-```bash
-  npm run start
-```
-
-On the Kollege project, go to src/config/api/axios.js. change the baseURL:
-
-```javascript
-baseURL: "http://localhost:3500";
-```
-
-or
-
-```javascript
-baseURL: "https://example.address.com";
 ```
 
 Finally,
@@ -116,37 +92,47 @@ Finally,
   npm start
 ```
 
-### Still getting errors?
+### Using your own server and database
 
-In the Kollege API project, go to config/allowedOptions.js. Make sure your front-end address is included:
+The requests are send to the hosted server by default.  
+if you want to use your own server and database, follow the steps [here](https://github.com/iafthab/kollege_api#readme) to step up one.
+
+Then, go to src/config/api/axios.js. change the baseURL to your backend address:
 
 ```javascript
-const allowedOrigins = ["http://localhost:3000", "https://example.address.com"];
+baseURL: "http://localhost:3500";
+```
+
+```javascript
+baseURL: "https://example.address.com";
 ```
 
 ## RoadMap
 
 - Add admin 😴
 - Cache Queries
+- Paginate Queries
+
+## Contact
+
+Errors are bound to happen and the documentation is incomplete.  
+I'd love to hear feedbacks and suggestions.  
+In any case, start a conversation: [LinkedIn](https://www.linkedin.com/in/iafthab) [Telegram](https://tttttt.me/LazySage01) [Mail](mailto:afthabiqbal123@gmail.com)(Make sure your mail doesn't get flagged as spam/junk)  
+Thank You ❤️.
 
 ## Acknowledgements
 
 - [MERN Stack Tutorial](https://www.youtube.com/watch?v=CvCiNeLnZ00&pp=ygUOZGF2ZSBncmF5IGZ1bGw%3D) by [Dave Gray](https://github.com/gitdagray)
 - [React Tutorial](https://www.youtube.com/watch?v=RVFAyFWO4go&pp=ygUOZGF2ZSBncmF5IGZ1bGw%3D) by [Dave Gray](https://github.com/gitdagray)
-- Official Documentation ([React](https://react.dev/), [TailwindCSS](https://tailwindcss.com/), [MongoDB](https://www.mongodb.com/docs/))
 - [React Icons](https://react-icons.github.io/react-icons/search)
 - [React Router](https://reactrouter.com/en/main)
 - [React Toastify](https://fkhadra.github.io/react-toastify/introduction)
-- [Axios](https://axios-http.com/)
+- [axios](https://axios-http.com/)
 - [README Editor](readme.so)
 
 ## Related
 
-[KOLLEGE API](https://github.com/afthab-i/4.4-Kollege_API)
-
-## Feedback
-
-If you have any feedback, please reach out to me at [here](mailto:afthabiqbal123@gmail.com). Thank You ❤️.
+[kollege_api](https://github.com/iafthab/kollege_api)
 
 ## License
 
