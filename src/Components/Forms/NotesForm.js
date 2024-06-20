@@ -14,12 +14,14 @@ const NotesForm = () => {
     title: "",
     body: "",
   });
+
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const noteId = useParams()?.note;
-
+  
   useEffect(() => {
-    if (noteId) {
+    console.log("mounting");
+    if (noteId && notes) {
       setNote(notes[noteId]);
     }
   }, [noteId, notes]);
@@ -45,6 +47,7 @@ const NotesForm = () => {
 
   const updateNote = async (e) => {
     e.preventDefault();
+    console.log(noteId,note)
     try {
       const response = await axios.patch("notes/" + note._id, note);
       navigate(-1, { replace: true });

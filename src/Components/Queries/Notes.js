@@ -21,7 +21,7 @@ const Notes = () => {
       }
     };
     getNotes();
-    return () => setNotes([]);
+    // return () => setNotes([]);
   }, [paper, setNotes]);
 
   const deleteNote = async (e) => {
